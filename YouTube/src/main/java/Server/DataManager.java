@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+
 public class DataManager {
     //When Calling openConnection method,the connection with database will be connected
     public static void openConnection(){
@@ -61,7 +62,7 @@ public class DataManager {
     }
     public static void CreatNewPlaylistForAUser(String Username,String PUName){}
     public static void insertAVPCIDToUserPlaylist(String PUID,String VPCID){}
-    public static ArrayList<String> ListingVPCIDForUserPlaylist(String PUID){
+    public static ArrayList<String> ListingVPCIDOf_UserVideoPlaylist(String PUID){
         return null;
     }
 
