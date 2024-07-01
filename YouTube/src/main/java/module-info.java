@@ -7,4 +7,8 @@ module com.example.youtube {
 
     opens com.example.youtube to javafx.fxml;
     exports com.example.youtube;
+    exports com.example.youtube.Server;
+    opens com.example.youtube.Server to javafx.fxml;
+    exports com.example.youtube.Client;
+    opens com.example.youtube.Client to javafx.fxml;
 }
