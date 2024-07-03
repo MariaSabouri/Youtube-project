@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.HomePageController">
+    <top>
+        <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: #ffffff;">
+            <TextField fx:id="searchField" promptText="Search..." HBox.hgrow="ALWAYS"/>
+            <Button text="Search" style="-fx-background-color: #dc3545; -fx-text-fill: white;"/>
+        </HBox>
+    </top>
+    <left>
+        <VBox spacing="10">
+            <Button text="Home" fx:id="homeButton"/>
+            <Button text="Your Channel" fx:id="yourChannel"/>
+            <Button text="Subscriptions" fx:id="subscriptionsButton"/>
+
+        </VBox>
+
+    </left>
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true">
+            <VBox fx:id="videoListContainer" spacing="10">
+                <!-- Video items will be added dynamically -->
+                <HBox spacing="10">
+                    <VBox alignment="CENTER" spacing="5">
+                        <Label text="Video 1"/>
+                        <Label text="Description 1"/>
+                    </VBox>
+                    <VBox alignment="CENTER" spacing="5">
+                        <Label text="Video 2"/>
+                        <Label text="Description 2"/>
+                    </VBox>
+                    <VBox alignment="CENTER" spacing="5">
+                        <Label text="Video 3"/>
+                        <Label text="Description 3"/>
+                    </VBox>
+                    <VBox alignment="CENTER" spacing="5">
+                        <Label text="Video 4"/>
+                        <Label text="Description 4"/>
+                    </VBox>
+                </HBox>
+                <HBox spacing="10">
+                    <VBox alignment="CENTER" spacing="5">
+                        <Label text="Video 5"/>
+                        <Label text="Description 5"/>
+                    </VBox>
+                    <VBox alignment="CENTER" spacing="5">
+                        <Label text="Video 6"/>
+                        <Label text="Description 6"/>
+                    </VBox>
+                    <VBox alignment="CENTER" spacing="5">
+                        <Label text="Video 7"/>
+                        <Label text="Description 7"/>
+                    </VBox>
+                    <VBox alignment="CENTER" spacing="5">
+                        <Label text="Video 8"/>
+                        <Label text="Description 8"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>
