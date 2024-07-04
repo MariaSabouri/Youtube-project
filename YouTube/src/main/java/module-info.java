@@ -11,4 +11,6 @@ module com.example.youtube {
     opens com.example.youtube.Server to javafx.fxml;
     exports com.example.youtube.Client;
     opens com.example.youtube.Client to javafx.fxml;
+//    exports com.example.youtube.Client.Controllers;
+//    opens com.example.youtube.Client.Controllers to javafx.fxml;
 }

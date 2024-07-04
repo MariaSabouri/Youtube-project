@@ -20,9 +20,9 @@ public class DataManager {
      * "true" is sent.
      */
 
-    public static Boolean SignUp(String Username,Integer Password){
+    public static Boolean SignUp(String Username,String email,String Password){
         //TODO
-        return null;
+        return true;
     }
     /**
      * this method returns "true" if this user exist;else it returns false
@@ -31,7 +31,7 @@ public class DataManager {
 
     public static Boolean LogIn(String username,String password){
         //TODO
-        return null;
+        return true;
     }
 
 
