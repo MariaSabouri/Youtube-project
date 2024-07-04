@@ -4,10 +4,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class Server {
     private ServerSocket ss;
@@ -47,8 +50,5 @@ public class Server {
         ServerSocket serverSocket=new ServerSocket(6669);
         Server server=new Server(serverSocket);
         server.startServer();
-
-
-
     }
 }

@@ -24,7 +24,6 @@ public class UiController {
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
-    public static ActionEvent event;
     public static void SetiMessage(String m){Message=m;}
 
     public UiController() {
@@ -92,16 +91,21 @@ public class UiController {
 
 
     private void OrientingToAClassBuyServerResponse(String messageToRead) {
+
         JSONObject jsonObject = new JSONObject(messageToRead);
+
         String UiClass=jsonObject.getString("Class");
         if (UiClass.equals("LoginController")){
             if (jsonObject.getBoolean("Response")==true){
                 LoginController.goHomeView();
-            }
+            }else {}
         } else if (UiClass.equals("SignUpController")) {
             if (jsonObject.getBoolean("Response")==true){
                 SignUpController.goHomeView();
-            }
+            }else{}
+
+        } else if (UiClass.equals("commonToolSearchBar")) {
+            CommonTools.goSeachview(jsonObject.getJSONArray("Response"));
 
         }
 
@@ -121,7 +125,8 @@ public class UiController {
 
             stage.show();
         }catch (IOException e){
-            System.out.println("There is an error in changing scene");}
+            System.out.println("There is an error in changing scene");
+        e.printStackTrace();}
         });
     }
 

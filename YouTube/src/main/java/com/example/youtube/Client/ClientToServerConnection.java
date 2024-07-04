@@ -23,9 +23,12 @@ public class ClientToServerConnection extends Application  {
         stage.setScene(scene);
         stage.show();
     }
+    public static void creatNewUiController(){
+        uiController=new UiController();
+    }
 
     public static void main(String[] args) throws IOException {
-        uiController=new UiController();
+        creatNewUiController();
         launch(args);
     }
 }

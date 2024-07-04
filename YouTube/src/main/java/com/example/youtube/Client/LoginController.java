@@ -28,7 +28,7 @@ public class LoginController implements Initializable {
 
     @FXML
     private Button signUpButton;
-    public static Stage stage;
+    private static Stage stage;
     private static Node source;
 
 

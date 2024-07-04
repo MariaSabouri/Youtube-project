@@ -32,7 +32,8 @@ public class ClientHandler implements Runnable{
                 String read=bufferedReader.readLine();
                 JSONObject jsonObject = new JSONObject(read);
                 System.out.println(jsonObject);
-                bufferedWriter.write(RequestHandeling.JsonHanldler(jsonObject));
+                JSONObject jsonObject1 = RequestHandeling.JsonHanldler(jsonObject);
+                bufferedWriter.write(jsonObject1.toString());
                 bufferedWriter.newLine();
                 bufferedWriter.flush();
 
