@@ -1,17 +1,17 @@
 package com.example.youtube.Client;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,23 +28,41 @@ public class LoginController implements Initializable {
 
     @FXML
     private Button signUpButton;
+    private static Stage stage;
+    private static Node source;
 
-    private Stage stage;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loginButton.setOnAction(event -> handleLogin());
         signUpButton.setOnAction(event -> handleSignUp());
+        loginButton.setOnAction(event -> {handleLogin();
+            source = (Node) event.getSource();
+        });
     }
 
     @FXML
     private void handleLogin() {
+        stage = (Stage) signUpButton.getScene().getWindow();
         String email = emailField.getText();
         String password = passwordField.getText();
+        String jsonString = "{\"DataManager\":\"LogIn\",\"Parameter1\":\"" + email + "\",\"Parameter2\":\"" + password + "\"}";
+        ClientToServerConnection.uiController.SetiMessage(jsonString);
+
+        emailField.clear();
+        passwordField.clear();
+
     }
+    public static void goHomeView() {
+        Stage stage = (Stage) source.getScene().getWindow();
+        UiController.changingscene(stage,"homePage-view.fxml");
+    }
+
 
     @FXML
     private void handleSignUp() {
-
+        stage = (Stage) signUpButton.getScene().getWindow();
+        UiController.changingscene(stage,"signUp-view.fxml");
     }
 }

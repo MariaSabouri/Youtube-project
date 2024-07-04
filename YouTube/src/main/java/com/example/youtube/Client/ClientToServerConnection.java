@@ -7,21 +7,28 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.Socket;
+import java.util.Scanner;
 
-public class ClientToServerConnection extends Application {
+public class ClientToServerConnection extends Application  {
+    public static UiController uiController;
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(FXML_Loader.loadURL("login-view.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setTitle("YouTube");
-//        stage. setResizable(false);
+        stage. setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
+    public static void creatNewUiController(){
+        uiController=new UiController();
+    }
 
     public static void main(String[] args) throws IOException {
-        launch();
+        creatNewUiController();
+        launch(args);
     }
 }
