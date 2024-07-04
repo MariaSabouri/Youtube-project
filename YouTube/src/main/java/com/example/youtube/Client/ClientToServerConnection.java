@@ -12,7 +12,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class ClientToServerConnection extends Application  {
-
+    public static UiController uiController;
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(FXML_Loader.loadURL("login-view.fxml"));
@@ -24,5 +24,8 @@ public class ClientToServerConnection extends Application  {
         stage.show();
     }
 
-    public static void main(String[] args) throws IOException {launch(args);}
+    public static void main(String[] args) throws IOException {
+        uiController=new UiController();
+        launch(args);
+    }
 }

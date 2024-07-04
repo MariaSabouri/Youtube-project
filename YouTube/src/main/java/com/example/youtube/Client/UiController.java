@@ -2,8 +2,11 @@ package com.example.youtube.Client;
 
 import com.example.youtube.FXML_Loader;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
@@ -21,17 +24,23 @@ public class UiController {
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
+    public static ActionEvent event;
     public static void SetiMessage(String m){Message=m;}
 
-    public UiController(Socket socket) {
+    public UiController() {
         try {
+            try {
+                // Connecting Client to the server
+                this.socket= new Socket("localhost", 6669);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
-            this.socket=socket;
+
             this.bufferedWriter=new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             this.bufferedReader=new BufferedReader(new InputStreamReader(socket.getInputStream()));
             recieveMessage();
             sendingrequest();
-
 
         }catch (IOException e){
             CloseEveryThing(socket,bufferedReader,bufferedWriter);
@@ -45,13 +54,14 @@ public class UiController {
                 @Override
                 public void run() {
                     try {
-                        while (socket.isConnected()&&Message!=null){
-
-                            bufferedWriter.write(Message);
-                            bufferedWriter.newLine();
-                            bufferedWriter.flush();
-                            System.out.println("Server: sended");
-                            Message=null;
+                        while (socket.isConnected()){
+                            while (Message!=null){
+                                bufferedWriter.write(Message);
+                                bufferedWriter.newLine();
+                                bufferedWriter.flush();
+                                System.out.println("Server: sended");
+                                Message=null;
+                            }
 
                         }
                     }catch (IOException e){
@@ -80,13 +90,19 @@ public class UiController {
 
     }
 
+
     private void OrientingToAClassBuyServerResponse(String messageToRead) {
         JSONObject jsonObject = new JSONObject(messageToRead);
         String UiClass=jsonObject.getString("Class");
         if (UiClass.equals("LoginController")){
-            LoginController.SetServerResponseToLogin(jsonObject);
+            if (jsonObject.getBoolean("Response")==true){
+                LoginController.goHomeView();
+            }
         } else if (UiClass.equals("SignUpController")) {
-            SignUpController.SetServerResponseToSignUp(jsonObject);
+            if (jsonObject.getBoolean("Response")==true){
+                SignUpController.goHomeView();
+            }
+
         }
 
     }
@@ -94,6 +110,7 @@ public class UiController {
 
     @FXML
     public static void changingscene(Stage stage,String fxml){
+        Platform.runLater(() -> {
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(FXML_Loader.loadURL(fxml));
@@ -105,6 +122,7 @@ public class UiController {
             stage.show();
         }catch (IOException e){
             System.out.println("There is an error in changing scene");}
+        });
     }
 
 

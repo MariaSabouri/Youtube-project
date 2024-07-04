@@ -3,6 +3,7 @@ package com.example.youtube.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -31,24 +32,16 @@ public class SignUpController implements Initializable {
     @FXML
     private Button loginButton;
     private static Stage stage;
-    private static UiController uicontroller;
-    public static void setUiController(UiController uiController){uicontroller=uiController;}
-
-    static Boolean Serverresponse=null;
+    private static Node source;
 
 
-    public static void SetServerResponseToSignUp(JSONObject jsonObject) {
-        Serverresponse=jsonObject.getBoolean("Response");
-    }
 
-    private static ActionEvent Event;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         signUpButton.setOnAction(event -> {handleSignUp();
-            Event=event;
-        });
-        loginButton.setOnAction(event -> {handleLogin();
-        Event=event;});
+            source = (Node) event.getSource();});
+        loginButton.setOnAction(event -> {handleLogin();});
 
     }
 
@@ -60,24 +53,18 @@ public class SignUpController implements Initializable {
         String email = emailField.getText();
         String password = passwordField.getText();
         String jsonString = "{\"DataManager\":\"SignUp\",\"Parameter1\":\"" + username + "\",\"Parameter2\":\"" + email + "\",\"Parameter3\":\""+password+"\"}";
-        uicontroller.SetiMessage(jsonString);
-        uicontroller.sendingrequest();
-//        gohomeview(Event);
-        signUpButton.setOnAction(event -> gohomeview(event));
+        ClientToServerConnection.uiController.SetiMessage(jsonString);
+        usernameField.clear();
+        emailField.clear();
+        passwordField.clear();
+
 
     }
-    @FXML
-    private void gohomeview(ActionEvent event) {
-        if (SignUpController.Serverresponse){
-            UiController.changingscene(stage,"homePage-view.fxml");
-
-        }else {
-            usernameField.clear();
-            emailField.clear();
-            passwordField.clear();
-
-        }
+    public static void goHomeView() {
+        Stage stage = (Stage) source.getScene().getWindow();
+        UiController.changingscene(stage,"homePage-view.fxml");
     }
+
 
     @FXML
     private void handleLogin(){

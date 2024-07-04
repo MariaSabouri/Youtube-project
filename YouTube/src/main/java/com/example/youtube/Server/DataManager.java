@@ -22,7 +22,7 @@ public class DataManager {
 
     public static Boolean SignUp(String Username,String email,String Password){
         //TODO
-        return true;
+        return false;
     }
     /**
      * this method returns "true" if this user exist;else it returns false
