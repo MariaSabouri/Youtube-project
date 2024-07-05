@@ -52,19 +52,49 @@ public class DataManager {
 
         return jsonArray;
     }
+    public static JSONObject VPCIDInfo(String VPCID,String Username){
+        //{"Username":---,"VPCID":---,"VideoName":---,"ChannelName":---,"NumberOfView":---,"NumberOfLike":---,"NumberOfDislike":---,"DateOfIllustration":---,"LikeOfThisUser":---,"DislikeOfThisUser":---
+        // ,"Comments":[{messageId(With No reply To any messageId):[list of messageIds which reply this messageId]},{},{},...]}
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("Username",Username);
+        jsonObject.put("VPCID",VPCID);
+        jsonObject.put("VideoName","kakak");
+        jsonObject.put("ChannelName","kjdsfnsdjfn");
+        jsonObject.put("NumberOfView",34);
+        jsonObject.put("NumberOfLike",23);
+        jsonObject.put("NumberOfDislike",2);
+        jsonObject.put("DateOfIllustration","april");
+        jsonObject.put("LikeOfThisUser",true);
+        jsonObject.put("DislikeOfThisUser",false);
+//        jsonObject.put("Comments",CommentJsonArray());
+        return jsonObject;
+    }
+    public static JSONArray CommentJsonArray(){
+        JSONArray MajorJsonArray=new JSONArray();
+
+        JSONObject jsonObject=new JSONObject();
+        JSONArray jsonArray=new JSONArray();
+        jsonArray.put(1);
+        jsonArray.put(23);
+        jsonObject.put("345",jsonArray);
+
+        jsonArray=new JSONArray();
+        jsonArray.put(54);
+        jsonArray.put(99);
+        jsonObject.put("675",jsonArray);
+
+
+        jsonArray.put(jsonObject);
+        return jsonArray;};
+    public static String GettingCommentViaMessageId(String messageId){
+        return null;
+    }
 
     public static ArrayList<JSONObject> TrendVPCIDForHomePage(){
         //[{"VPCID":---,"VideoName":---,"ChannelName":---,"NumberOfView":---},{},{},...]
         return null;}
 
-    public static JSONObject VPCIDInfo(String VPCID,String Username){
-        //{"VideoName":---,"ChannelName":---,"NumberOfView":---,"NumberOfLike":---,"NumberOfDislike":---,"DateOfIllustration":---,"LikeOfThisUser":---,"DislikeOfThisUser":---
-        // ,"Comments":[{messageId(With No reply To any messageId):[list of messageIds which reply this messageId]},{},{},...]}
-        return null;
-    }
-    public static String GettingCommentViaMessageId(String messageId){
-        return null;
-    }
+
     public static void InsertingNewMessageForAVPC(String VPCID,String username,String MessageIdToReply,String Message){}
     public static void creatingARowForAUserWhoWhatchAVPCIn_ATable_(String username,String VPCID){}
     public static void LikeDislikeActionForAVPC(String Username,String VPCID,Boolean Like,Boolean Dislike){

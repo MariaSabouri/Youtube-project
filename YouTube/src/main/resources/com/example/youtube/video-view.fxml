@@ -9,41 +9,41 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.VideoController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.example.youtube.Client.VideoController">
     <top>
         <HBox spacing="10" style="-fx-padding: 10;">
-            <TextField fx:id="searchField" promptText="Search..." HBox.hgrow="ALWAYS"/>
-            <Button text="Search" style="-fx-background-color: #dc3545; -fx-text-fill: white;"/>
+            <TextField fx:id="searchField" promptText="Search..." HBox.hgrow="ALWAYS" />
+            <Button style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Search" />
         </HBox>
     </top>
     <center>
         <VBox spacing="10" style="-fx-padding: 10;">
-            <Label fx:id="video" text="Video" style="-fx-font-size: 24px;"/>
-            <Label fx:id="titleLabel" text="Video Title" style="-fx-wrap-text: true;"/>
-            <Label fx:id="descriptionLabel" text="Video Description" style="-fx-wrap-text: true;"/>
+            <Label fx:id="video" style="-fx-font-size: 24px;" text="Video" />
+            <Label fx:id="titleLabel" style="-fx-wrap-text: true;" text="Video Title" />
+            <Label fx:id="descriptionLabel" style="-fx-wrap-text: true;" text="Video Description" />
             <HBox spacing="10">
-                <Label fx:id="publishingDate" text="publishingDate" style="-fx-wrap-text: true;"/>
-                <Label fx:id="views" text="views" style="-fx-wrap-text: true;"/>
+                <Label fx:id="publishingDate" style="-fx-wrap-text: true;" text="publishingDate" />
+                <Label fx:id="views" style="-fx-wrap-text: true;" text="views" />
             </HBox>
             <HBox spacing="10">
-                <Button fx:id="likeButton" text="Like" style="-fx-background-color: #dc3545; -fx-text-fill: white;"/>
-                <Button fx:id="dislikeButton" text="Dislike" style="-fx-background-color: #dc3545; -fx-text-fill: white;"/>
-                <Button fx:id="addToWatchLaterButton" text="Add to Watch Later" style="-fx-background-color: #dc3545; -fx-text-fill: white;"/>
+                <Button fx:id="likeButton" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Like" />
+                <Button fx:id="dislikeButton" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Dislike" />
+                <Button fx:id="addToWatchLaterButton" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Add to Watch Later" />
             </HBox>
             <HBox spacing="10">
-                <Button fx:id="channelButton" text="Channel" style="-fx-background-color: #dc3545; -fx-text-fill: white;"/>
-                <Button fx:id="subscribe" text="subscribe" style="-fx-background-color: #dc3545; -fx-text-fill: white;"/>
+                <Button fx:id="channelButton" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Channel" />
+                <Button fx:id="subscribe" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="subscribe" />
             </HBox>
         </VBox>
     </center>
     <bottom>
         <VBox spacing="10" style="-fx-padding: 10;">
             <HBox spacing="10">
-                <TextArea fx:id="commentInput" promptText="Add a comment..." HBox.hgrow="ALWAYS"/>
-                <Button text="Post" onAction="#handlePostComment" style="-fx-background-color: #dc3545; -fx-text-fill: white;"/>
+                <TextArea fx:id="commentInput" promptText="Add a comment..." HBox.hgrow="ALWAYS" />
+                <Button onAction="#handlePostComment" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Post" />
             </HBox>
-            <Label text="Comments" style="-fx-font-size: 18px;"/>
-            <ScrollPane fitToWidth="true" fitToHeight="true" maxHeight="200">
+            <Label style="-fx-font-size: 18px;" text="Comments" />
+            <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="200">
                 <VBox fx:id="commentsBox" spacing="5" style="-fx-padding: 10;">
                     <!-- comments -->
                 </VBox>

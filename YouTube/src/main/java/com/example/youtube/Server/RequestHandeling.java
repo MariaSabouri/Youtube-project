@@ -26,6 +26,14 @@ public class RequestHandeling {
             JsonObject.put("Class","commonToolSearchBar");
             JsonObject.put("Response",ResultVideo);
             return JsonObject;
+        } else if (Objects.equals(databasefunction, "VPCIDInfo")) {
+            JSONObject VPCResult=DataManager.VPCIDInfo(jsonObject.getString("Parameter1"),jsonObject.getString("Parameter2"));
+            JSONObject jsonObject1=new JSONObject();
+            jsonObject1.put("Class","video");
+            jsonObject1.put("Response",VPCResult);
+
+            return jsonObject1;
+
         }
         return null;
 

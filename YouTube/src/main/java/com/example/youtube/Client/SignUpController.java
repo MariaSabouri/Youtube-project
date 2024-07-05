@@ -33,6 +33,16 @@ public class SignUpController implements Initializable {
     private Button loginButton;
     private static Stage stage;
     private static Node source;
+    private static String Username;
+    public static String getUsername() {
+        return Username;
+    }
+
+    public static void setUsername(String username) {
+        Username = username;
+        UiController.setUsername(username);
+    }
+
 
 
 
@@ -50,6 +60,7 @@ public class SignUpController implements Initializable {
     private void handleSignUp() {
         stage = (Stage) signUpButton.getScene().getWindow();
         String username = usernameField.getText();
+        setUsername(username);
         String email = emailField.getText();
         String password = passwordField.getText();
         String jsonString = "{\"DataManager\":\"SignUp\",\"Parameter1\":\"" + username + "\",\"Parameter2\":\"" + email + "\",\"Parameter3\":\""+password+"\"}";
