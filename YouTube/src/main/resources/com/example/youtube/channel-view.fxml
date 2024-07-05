@@ -9,42 +9,33 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.ChannelController">
+<BorderPane style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.ChannelController">
     <top>
-        <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: #ffffff;">
-            <TextField fx:id="searchField" promptText="Search..." HBox.hgrow="ALWAYS"/>
-            <Button text="Search" style="-fx-background-color: #dc3545; -fx-text-fill: white;"/>
+        <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: black;">
+            <TextField fx:id="searchField" promptText="Search..." style="-fx-background-radius: 20;" HBox.hgrow="ALWAYS" />
+            <Button fx:id="searchButton" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 20;" text="Search" />
         </HBox>
     </top>
     <left>
-        <VBox spacing="10" style="-fx-padding: 10; -fx-background-color: #ffffff;">
-            <Button text="Home" style="-fx-background-color: #dc3545; -fx-text-fill: white;"/>
-            <Button text="Subscriptions" style="-fx-background-color: #dc3545; -fx-text-fill: white;"/>
-            <Button text="Your Channel" style="-fx-background-color: #dc3545; -fx-text-fill: white;"/>
+        <VBox spacing="10" style="-fx-padding: 10; -fx-background-color: black;">
+            <Button fx:id="homeButton" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Home" />
+            <Button fx:id="subscriptionButton" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Subscriptions" />
+            <Button fx:id="yourChannelButton" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Your Channel" />
         </VBox>
     </left>
     <center>
-        <VBox spacing="10" style="-fx-padding: 10; -fx-background-color: #ffffff;">
-            <Label fx:id="channelNameLabel" text="Channel Name" style="-fx-font-size: 24px;"/>
+        <VBox spacing="10" style="-fx-padding: 10; -fx-background-color: black;">
+            <Label fx:id="channelNameLabel" style="-fx-font-size: 24px;" text="Channel Name" textFill="WHITE" />
             <HBox spacing="10" style="-fx-padding: 10;">
-                <Label fx:id="description" text="description" style="-fx-font-weight: bold;"/>
+                <Label fx:id="description" style="-fx-font-weight: bold;" text="description" textFill="WHITE" />
             </HBox>
-            <HBox spacing="10" style="-fx-padding: 10;">
-                <Label fx:id="subscribersLabel" text="Subscribers: 100K" style="-fx-font-weight: bold;"/>
-                <Label fx:id="videosLabel" text="Videos: 50" style="-fx-font-weight: bold;"/>
-                <Button text="Subscribe" style="-fx-background-color: #dc3545; -fx-text-fill: white;"/>
+            <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: black;">
+                <Label fx:id="subscribersLabel" style="-fx-font-weight: bold;" text="Subscribers: 100K" textFill="WHITE" />
+                <Label fx:id="videosLabel" style="-fx-font-weight: bold;" text="Videos: 50" textFill="WHITE" />
+                <Button fx:id="subscribeButton" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Subscribe" />
             </HBox>
-            <ScrollPane fitToWidth="true" fitToHeight="true">
-                <FlowPane fx:id="videoFlowPane" vgap="10" hgap="10" style="-fx-padding: 10;">
-                    <Button text="Video 1" style="-fx-min-width: 150px;"/>
-                    <Button text="Video 2" style="-fx-min-width: 150px;"/>
-                    <Button text="Video 3" style="-fx-min-width: 150px;"/>
-                    <Button text="Video 4" style="-fx-min-width: 150px;"/>
-                    <Button text="Video 5" style="-fx-min-width: 150px;"/>
-                    <Button text="Video 6" style="-fx-min-width: 150px;"/>
-                    <Button text="Video 7" style="-fx-min-width: 150px;"/>
-                    <Button text="Video 8" style="-fx-min-width: 150px;"/>
-                </FlowPane>
+            <ScrollPane fitToHeight="true" fitToWidth="true">
+                <FlowPane fx:id="videoFlowPane" hgap="10" style="-fx-padding: 10; -fx-background-color: black;" vgap="10" />
             </ScrollPane>
         </VBox>
     </center>

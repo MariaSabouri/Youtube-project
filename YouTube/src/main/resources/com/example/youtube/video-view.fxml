@@ -9,10 +9,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.example.youtube.Client.VideoController">
+<BorderPane style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.VideoController">
     <top>
         <HBox spacing="10" style="-fx-padding: 10;">
-            <TextField fx:id="searchField" promptText="Search..." HBox.hgrow="ALWAYS" />
+            <TextField fx:id="searchField" promptText="Search" style="-fx-background-radius: 100;" HBox.hgrow="ALWAYS" />
             <Button style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Search" />
         </HBox>
     </top>
@@ -26,13 +26,13 @@
                 <Label fx:id="views" style="-fx-wrap-text: true;" text="views" />
             </HBox>
             <HBox spacing="10">
-                <Button fx:id="likeButton" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Like" />
-                <Button fx:id="dislikeButton" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Dislike" />
-                <Button fx:id="addToWatchLaterButton" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Add to Watch Later" />
+                <Button fx:id="likeButton" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 20;" text="Like" />
+                <Button fx:id="dislikeButton" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 20;" text="Dislike" />
+                <Button fx:id="addToWatchLaterButton" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 20;" text="Add to Watch Later" />
             </HBox>
             <HBox spacing="10">
-                <Button fx:id="channelButton" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Channel" />
-                <Button fx:id="subscribe" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="subscribe" />
+                <Button fx:id="channelButton" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 20;" text="Channel" />
+                <Button fx:id="subscribe" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 20;" text="subscribe" />
             </HBox>
         </VBox>
     </center>
