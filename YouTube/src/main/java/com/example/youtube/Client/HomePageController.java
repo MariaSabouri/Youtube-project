@@ -6,7 +6,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -33,6 +36,9 @@ public class HomePageController implements Initializable {
     @FXML
     private VBox videoListContainer;
     private static Stage stage;
+
+    @FXML
+    private FlowPane videoFlowPane;
     private static Node source;
 
     @Override
@@ -45,7 +51,20 @@ public class HomePageController implements Initializable {
             handleSearch();
             source = (Node) event.getSource();
         });
-
+        for (int i = 1; i <= 8; i++) {
+            Image image = new Image("C:\\Users\\BEROOZ\\Desktop\\Final project\\YouTube\\src\\main\\resources\\com\\example\\youtube\\pic.jpg");
+            ImageView imageView = new ImageView(image);
+//            Button videoButton = new Button("Video " + i);
+//            videoButton.setStyle("-fx-min-width: 150px;");
+//            videoFlowPane.getChildren().add(videoButton);
+            imageView.setFitWidth(100); // Set the width
+            imageView.setFitHeight(50);
+            Button button = new Button();
+            button.setGraphic(new ImageView(image));
+            button.setPrefWidth(100); // Preferred width
+            button.setPrefHeight(50);
+            videoFlowPane.getChildren().add(button);
+        }
 
     }
 
