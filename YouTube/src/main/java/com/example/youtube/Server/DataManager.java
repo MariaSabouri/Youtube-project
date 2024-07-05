@@ -419,10 +419,10 @@ public class DataManager {
         }
         return VPCIDs;
     }
-    public static void main(String args[]) {
-        openConnection();
-        UploadingVideoForAChannelInSpecialPlaylist("String Username","String VideoName","String PCID");
-    }
+//    public static void main(String args[]) {
+//        openConnection();
+//        UploadingVideoForAChannelInSpecialPlaylist("String Username","String VideoName","String PCID");
+//    }
 
 
 

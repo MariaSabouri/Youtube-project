@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
 
     @FXML
-    private TextField emailField;
+    private TextField UsernameField;
 
     @FXML
     private PasswordField passwordField;
@@ -30,7 +30,15 @@ public class LoginController implements Initializable {
     private Button signUpButton;
     private static Stage stage;
     private static Node source;
+    private static String Username;
+    public static String getUsername() {
+        return Username;
+    }
 
+    public static void setUsername(String username) {
+        Username = username;
+        UiController.setUsername(username);
+    }
 
 
 
@@ -45,12 +53,14 @@ public class LoginController implements Initializable {
     @FXML
     private void handleLogin() {
         stage = (Stage) signUpButton.getScene().getWindow();
-        String email = emailField.getText();
+        String username = UsernameField.getText();
+        setUsername(username);
+
         String password = passwordField.getText();
-        String jsonString = "{\"DataManager\":\"LogIn\",\"Parameter1\":\"" + email + "\",\"Parameter2\":\"" + password + "\"}";
+        String jsonString = "{\"DataManager\":\"LogIn\",\"Parameter1\":\"" + username + "\",\"Parameter2\":\"" + password + "\"}";
         ClientToServerConnection.uiController.SetiMessage(jsonString);
 
-        emailField.clear();
+        UsernameField.clear();
         passwordField.clear();
 
     }

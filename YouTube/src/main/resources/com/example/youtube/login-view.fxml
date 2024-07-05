@@ -15,7 +15,7 @@
     </padding>
 
     <Label text="Username:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-    <TextField fx:id="emailField" style="-fx-pref-width: 200px;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+    <TextField fx:id="UsernameField" style="-fx-pref-width: 200px;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
     <Label text="Password:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1" />
     <PasswordField fx:id="passwordField" style="-fx-pref-width: 200px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />

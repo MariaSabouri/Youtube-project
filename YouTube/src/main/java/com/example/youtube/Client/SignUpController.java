@@ -20,8 +20,6 @@ public class SignUpController implements Initializable {
     @FXML
     private TextField usernameField;
 
-    @FXML
-    private TextField emailField;
 
     @FXML
     private PasswordField passwordField;
@@ -33,6 +31,16 @@ public class SignUpController implements Initializable {
     private Button loginButton;
     private static Stage stage;
     private static Node source;
+    private static String Username;
+    public static String getUsername() {
+        return Username;
+    }
+
+    public static void setUsername(String username) {
+        Username = username;
+        UiController.setUsername(username);
+    }
+
 
 
 
@@ -50,12 +58,11 @@ public class SignUpController implements Initializable {
     private void handleSignUp() {
         stage = (Stage) signUpButton.getScene().getWindow();
         String username = usernameField.getText();
-        String email = emailField.getText();
+        setUsername(username);
         String password = passwordField.getText();
-        String jsonString = "{\"DataManager\":\"SignUp\",\"Parameter1\":\"" + username + "\",\"Parameter2\":\"" + email + "\",\"Parameter3\":\""+password+"\"}";
+        String jsonString = "{\"DataManager\":\"SignUp\",\"Parameter1\":\"" + username + "\",\"Parameter2\":\"" + password + "\"}";
         ClientToServerConnection.uiController.SetiMessage(jsonString);
         usernameField.clear();
-        emailField.clear();
         passwordField.clear();
 
 
@@ -68,7 +75,7 @@ public class SignUpController implements Initializable {
 
     @FXML
     private void handleLogin(){
-        stage = (Stage) signUpButton.getScene().getWindow();
+        stage = (Stage) loginButton.getScene().getWindow();
         UiController.changingscene(stage,"login-view.fxml");
 
 

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.ChannelController">
+<BorderPane style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.ChannelController">
     <top>
         <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: black;">
             <TextField fx:id="searchField" promptText="Search..." style="-fx-background-radius: 20;" HBox.hgrow="ALWAYS" />

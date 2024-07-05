@@ -20,7 +20,6 @@ public class CommonTools {
     public static void goSeachview(JSONArray jsonArray){
         UiController.changingscene(Currentstage,"SearchbarResullt-view.fxml");
         SearchbarController.setResuluJsonArray(jsonArray);
-
     }
 
 

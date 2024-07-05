@@ -45,14 +45,14 @@ public class HomePageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         homeButton.setOnAction(event -> {handlehomeButton();
             source = (Node) event.getSource();});
-        yourChannel.setOnAction(event -> {hadleYourChannel();
+        yourChannel.setOnAction(event -> {handleYourChannel();
             source = (Node) event.getSource();});
         SearchButton.setOnAction(event -> {
             handleSearch();
             source = (Node) event.getSource();
         });
         for (int i = 1; i <= 8; i++) {
-            Image image = new Image("C:\\Users\\BEROOZ\\Desktop\\Final project\\YouTube\\src\\main\\resources\\com\\example\\youtube\\pic.jpg");
+            Image image = new Image("D:\\Maria\\term4\\computer science\\java_programing\\HW\\Youtube-project\\YouTube\\src\\main\\resources\\com\\example\\youtube\\pic.jpg");
             ImageView imageView = new ImageView(image);
 //            Button videoButton = new Button("Video " + i);
 //            videoButton.setStyle("-fx-min-width: 150px;");
@@ -69,8 +69,8 @@ public class HomePageController implements Initializable {
     }
 
     @FXML
-    private void hadleYourChannel() {
-        stage = (Stage) homeButton.getScene().getWindow();
+    private void handleYourChannel() {
+        stage = (Stage) yourChannel.getScene().getWindow();
         UiController.changingscene(stage,"channel-view.fxml");
 
 

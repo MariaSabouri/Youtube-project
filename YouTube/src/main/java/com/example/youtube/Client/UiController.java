@@ -24,6 +24,12 @@ public class UiController {
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
+
+    public static String getUsername() {
+        return Username;
+    }
+
+    private static String Username;
     public static void SetiMessage(String m){Message=m;}
 
     public UiController() {
@@ -44,6 +50,10 @@ public class UiController {
         }catch (IOException e){
             CloseEveryThing(socket,bufferedReader,bufferedWriter);
         }
+    }
+
+    public static void setUsername(String username) {
+        Username=username;
     }
 
 
@@ -106,6 +116,10 @@ public class UiController {
 
         } else if (UiClass.equals("commonToolSearchBar")) {
             CommonTools.goSeachview(jsonObject.getJSONArray("Response"));
+
+        } else if (UiClass.equals("video")) {
+
+            SearchbarController.goVideoView(jsonObject.getJSONObject("Response"));
 
         }
 
