@@ -3,6 +3,7 @@ module com.example.youtube {
     requires javafx.fxml;
     requires java.sql;
     requires org.json;
+    requires javafx.media;
 
 
     opens com.example.youtube to javafx.fxml;
