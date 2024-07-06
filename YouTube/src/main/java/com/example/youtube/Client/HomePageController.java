@@ -4,13 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -52,7 +49,7 @@ public class HomePageController implements Initializable {
             source = (Node) event.getSource();
         });
         for (int i = 1; i <= 8; i++) {
-            Image image = new Image("C:\\Users\\BEROOZ\\Desktop\\Final project\\YouTube\\src\\main\\resources\\com\\example\\youtube\\pic.jpg");
+            Image image = new Image(String.valueOf(getClass().getResource("/com/example/youtube/ProjectPlans/pic.jpg")));
             ImageView imageView = new ImageView(image);
 //            Button videoButton = new Button("Video " + i);
 //            videoButton.setStyle("-fx-min-width: 150px;");

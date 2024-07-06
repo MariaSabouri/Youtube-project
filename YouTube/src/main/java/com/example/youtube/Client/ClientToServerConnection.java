@@ -8,8 +8,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.net.Socket;
-import java.util.Scanner;
 
 public class ClientToServerConnection extends Application  {
     public static UiController uiController;

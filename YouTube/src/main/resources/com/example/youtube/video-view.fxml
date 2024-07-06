@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.VideoController">
+<BorderPane style="-fx-background-color: with;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.VideoController">
     <top>
         <HBox spacing="10" style="-fx-padding: 10;">
             <TextField fx:id="searchField" promptText="Search" style="-fx-background-radius: 100;" HBox.hgrow="ALWAYS" />
@@ -17,7 +21,71 @@
         </HBox>
     </top>
     <center>
-        <VBox spacing="10" style="-fx-padding: 10;">
+        <VBox fx:id="vboxParent" alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 10;">
+         <HBox fx:id="hboxControls" alignment="CENTER">
+            <children>
+               <MediaView fx:id="mvVideo" fitWidth="500.0" />
+            </children>
+         </HBox>
+         <Slider fx:id="sliderTime">
+            <padding>
+               <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+            </padding>
+         </Slider>
+         <HBox alignment="CENTER_LEFT">
+            <children>
+               <Button fx:id="buttonPPR" mnemonicParsing="false" />
+               <HBox fx:id="hboxVolume">
+                  <HBox.margin>
+                     <Insets left="5.0" />
+                  </HBox.margin>
+                  <children>
+                     <Label fx:id="labelVolume" style="-fx-cursor: hand;">
+                        <HBox.margin>
+                           <Insets left="10.0" right="10.0" />
+                        </HBox.margin>
+                     </Label>
+                     <Slider fx:id="sliderVolume" max="1.0" style="-fx-cursor: hand;" />
+                  </children>
+               </HBox>
+               <Label fx:id="labelCurrentTime">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets left="10.0" />
+                  </HBox.margin>
+               </Label>
+               <Label fx:id="labelTotalTime">
+                  <font>
+                     <Font name="System Bold" size="18.0" />
+                  </font>
+                  <padding>
+                     <Insets right="10.0" />
+                  </padding>
+               </Label>
+               <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                  <children>
+                     <Label fx:id="lableSpeed">
+                        <font>
+                           <Font name="System Bold" size="18.0" />
+                        </font>
+                        <HBox.margin>
+                           <Insets right="10.0" />
+                        </HBox.margin>
+                     </Label>
+                     <Label fx:id="labelfullScreen" style="-fx-cursor: hand;">
+                        <HBox.margin>
+                           <Insets />
+                        </HBox.margin>
+                        <padding>
+                           <Insets right="10.0" />
+                        </padding>
+                     </Label>
+                  </children>
+               </HBox>
+            </children>
+         </HBox>
             <Label fx:id="video" style="-fx-font-size: 24px;" text="Video" />
             <Label fx:id="titleLabel" style="-fx-wrap-text: true;" text="Video Title" />
             <Label fx:id="descriptionLabel" style="-fx-wrap-text: true;" text="Video Description" />
@@ -39,15 +107,21 @@
     <bottom>
         <VBox spacing="10" style="-fx-padding: 10;">
             <HBox spacing="10">
-                <TextArea fx:id="commentInput" promptText="Add a comment..." HBox.hgrow="ALWAYS" />
+                <TextArea fx:id="commentInput" prefHeight="36.0" prefWidth="502.0" promptText="Add a comment..." HBox.hgrow="ALWAYS" />
                 <Button onAction="#handlePostComment" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Post" />
             </HBox>
             <Label style="-fx-font-size: 18px;" text="Comments" />
-            <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="200">
+            <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="211.0" prefHeight="211.0" prefWidth="552.0">
                 <VBox fx:id="commentsBox" spacing="5" style="-fx-padding: 10;">
                     <!-- comments -->
                 </VBox>
             </ScrollPane>
         </VBox>
     </bottom>
+   <left>
+      <Button fx:id="home_button" mnemonicParsing="false" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="home" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="5.0" />
+         </BorderPane.margin></Button>
+   </left>
 </BorderPane>
