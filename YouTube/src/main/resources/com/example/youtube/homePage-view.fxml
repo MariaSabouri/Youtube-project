@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
@@ -10,13 +12,13 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.HomePageController">
     <top>
-        <HBox alignment="TOP_CENTER" spacing="10" style="-fx-padding: 10; -fx-background-color: black;">
+        <HBox alignment="TOP_CENTER" spacing="10" style="-fx-padding: 10;">
             <TextField fx:id="searchField" prefHeight="16.0" prefWidth="295.0" promptText="Search" style="-fx-background-radius: 20;" HBox.hgrow="ALWAYS" />
             <Button fx:id="SearchButton" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 20;" text="Search" />
         </HBox>
     </top>
     <left>
-        <VBox spacing="10" style="-fx-background-color: black;">
+        <VBox spacing="10">
             <Button fx:id="homeButton" style="-fx-background-color: #dc3545;" text="LogOut" />
             <Button fx:id="yourChannel" style="-fx-background-color: #dc3545;" text="Your Channel" />
             <Button fx:id="subscriptionsButton" style="-fx-background-color: #dc3545;" text="Subscriptions" />
@@ -25,10 +27,102 @@
 
     </left>
     <center>
-        <ScrollPane fitToHeight="true" fitToWidth="true">
+        <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: black;">
          <content>
             <FlowPane fx:id="videoFlowPane" hgap="10" prefHeight="49.0" prefWidth="420.0" style="-fx-padding: 10; -fx-background-color: black;" vgap="10" />
          </content>
+        </ScrollPane>
+        <ScrollPane BorderPane.alignment="CENTER">
+            <content>
+                <VBox fx:id="SearchResultVbox" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="110.0" prefWidth="498.0">
+                    <children>
+                        <BorderPane prefHeight="150.0" prefWidth="451.0">
+                            <left>
+                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                            </left>
+                            <center>
+                                <VBox alignment="CENTER" prefHeight="150.0" prefWidth="273.0" spacing="20.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Label fx:id="video1" text="VideoName" />
+                                        <Label fx:id="channel1" text="Channel Name" />
+                                        <Label fx:id="view1" text="Number of view" />
+                                    </children>
+                                </VBox>
+                            </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                            <left>
+                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                            </left>
+                            <center>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Label fx:id="video2" text="Label" />
+                                        <Label fx:id="channel2" text="Label" />
+                                        <Label fx:id="view2" text="Label" />
+                                    </children>
+                                </VBox>
+                            </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                            <left>
+                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                            </left>
+                            <center>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Label fx:id="video3" text="Label" />
+                                        <Label fx:id="channel3" text="Label" />
+                                        <Label fx:id="view3" text="Label" />
+                                    </children>
+                                </VBox>
+                            </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                            <left>
+                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                            </left>
+                            <center>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Label fx:id="video4" text="Label" />
+                                        <Label fx:id="channel4" text="Label" />
+                                        <Label fx:id="view4" text="Label" />
+                                    </children>
+                                </VBox>
+                            </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                            <left>
+                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                            </left>
+                            <center>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Label fx:id="video5" text="Label" />
+                                        <Label fx:id="channel5" text="Label" />
+                                        <Label fx:id="view5" text="Label" />
+                                    </children>
+                                </VBox>
+                            </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                            <left>
+                                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                            </left>
+                            <center>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Label fx:id="video6" text="Label" />
+                                        <Label fx:id="channel6" text="Label" />
+                                        <Label fx:id="view6" text="Label" />
+                                    </children>
+                                </VBox>
+                            </center>
+                        </BorderPane>
+                    </children>
+                </VBox>
+            </content>
         </ScrollPane>
     </center>
 </BorderPane>
