@@ -13,7 +13,7 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.VideoController">
+<BorderPane style="-fx-background-color: with;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.VideoController">
     <top>
         <HBox spacing="10" style="-fx-padding: 10;">
             <TextField fx:id="searchField" promptText="Search" style="-fx-background-radius: 100;" HBox.hgrow="ALWAYS" />
@@ -34,11 +34,7 @@
          </Slider>
          <HBox alignment="CENTER_LEFT">
             <children>
-               <Button fx:id="buttonPPR" mnemonicParsing="false" style="-fx-cursor: hand;">
-                  <HBox.margin>
-                     <Insets left="15.0" />
-                  </HBox.margin>
-               </Button>
+               <Button fx:id="buttonPPR" mnemonicParsing="false" />
                <HBox fx:id="hboxVolume">
                   <HBox.margin>
                      <Insets left="5.0" />
@@ -111,11 +107,11 @@
     <bottom>
         <VBox spacing="10" style="-fx-padding: 10;">
             <HBox spacing="10">
-                <TextArea fx:id="commentInput" promptText="Add a comment..." HBox.hgrow="ALWAYS" />
+                <TextArea fx:id="commentInput" prefHeight="36.0" prefWidth="502.0" promptText="Add a comment..." HBox.hgrow="ALWAYS" />
                 <Button onAction="#handlePostComment" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Post" />
             </HBox>
             <Label style="-fx-font-size: 18px;" text="Comments" />
-            <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="200">
+            <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="211.0" prefHeight="211.0" prefWidth="552.0">
                 <VBox fx:id="commentsBox" spacing="5" style="-fx-padding: 10;">
                     <!-- comments -->
                 </VBox>

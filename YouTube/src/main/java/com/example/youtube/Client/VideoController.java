@@ -78,6 +78,7 @@ public class VideoController implements Initializable {
     private HBox hboxVolume;
     @FXML
     private Button buttonPPR;
+
     @FXML
     private Label labelCurrentTime;
     @FXML
@@ -96,7 +97,7 @@ public class VideoController implements Initializable {
     @FXML
     private Slider sliderVolume;
     private Boolean atEndOfVideo=false;
-    private Boolean isPlaying=true;
+    private Boolean isPlaying=false;
     private Boolean isMuted=true;
 
     private ImageView ivPlay;
@@ -151,19 +152,23 @@ public class VideoController implements Initializable {
         ivExit.setFitWidth(IV_SIZE);
         ivExit.setFitHeight(IV_SIZE);
 
-        buttonPPR.setGraphic(ivPause);
+        buttonPPR.setGraphic(ivPlay);
         labelVolume.setGraphic(ivMute);
         lableSpeed.setText("1X");
         labelfullScreen.setGraphic(ivFullScreen);
 
         buttonPPR.setOnAction(new EventHandler<ActionEvent>() {
+
             @Override
             public void handle(ActionEvent event) {
+                bindCurrentTimeLabel();
                 Button buttonPlay=(Button) event.getSource();
                 if (atEndOfVideo){
                     sliderTime.setValue(0);
                     atEndOfVideo=false;
                     isPlaying=false;
+
+
                 }
                 if (isPlaying){
                     buttonPlay.setGraphic(ivPlay);
@@ -276,6 +281,7 @@ public class VideoController implements Initializable {
         mpVideo.totalDurationProperty().addListener(new ChangeListener<Duration>() {
             @Override
             public void changed(ObservableValue<? extends Duration> observableValue, Duration oldDuration, Duration newDuration) {
+                bindCurrentTimeLabel();
                 sliderTime.setMax(newDuration.toSeconds());
                 labelTotalTime.setText(getTime(newDuration));
             }
@@ -284,6 +290,7 @@ public class VideoController implements Initializable {
         sliderTime.valueChangingProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean wasChanging, Boolean isChanging) {
+                bindCurrentTimeLabel();
                 if (!isChanging){
                     mpVideo.seek(Duration.seconds(sliderTime.getValue()));
                 }
@@ -293,6 +300,7 @@ public class VideoController implements Initializable {
         sliderTime.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
+                bindCurrentTimeLabel();
                 double currentTime=mpVideo.getCurrentTime().toSeconds();
                 if (Math.abs(currentTime-newValue.doubleValue())>0.5){
                     mpVideo.seek(Duration.seconds(newValue.doubleValue()));
@@ -303,6 +311,7 @@ public class VideoController implements Initializable {
         mpVideo.currentTimeProperty().addListener(new ChangeListener<Duration>() {
             @Override
             public void changed(ObservableValue<? extends Duration> observableValue, Duration oldTime, Duration newTime) {
+                bindCurrentTimeLabel();
                 if (!sliderTime.isValueChanging()){
                     sliderTime.setValue(newTime.toSeconds());
                 }
