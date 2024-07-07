@@ -32,7 +32,19 @@ import java.util.concurrent.Callable;
 public class VideoController implements Initializable {
 
     @FXML
+    private Button postComment;
+
+    @FXML
+    private Label numOfLiksLabel;
+
+    @FXML
     private Button home_button;
+
+    @FXML
+    private Button searchButton;
+
+    @FXML
+    private Label UsernameLeterLabel;
 
     @FXML
     private TextField searchField;
