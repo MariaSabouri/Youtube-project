@@ -1,5 +1,6 @@
-package com.example.youtube.Client.Controllers.VideoViewControllers;
+package com.example.youtube.Client.Controllers.Channels.VideoViewControllers;
 
+import com.example.youtube.Client.Controllers.Channels.ChannelInterface;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
@@ -23,12 +24,13 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
 
-public class VideoController implements Initializable {
+public class VideoController implements Initializable, ChannelInterface {
 
     @FXML
     private Button home_button;
@@ -106,6 +108,17 @@ public class VideoController implements Initializable {
     private ImageView ivFullScreen;
     private ImageView ivMute;
     private ImageView ivExit;
+
+
+    private static JSONObject UserInfo;
+    public static void setUserInfo(JSONObject userInfo) {
+        UserInfo = userInfo;
+    }
+
+    private static String getVPCID;
+    public static void setGetVPCID(String getVPCID) {
+        VideoController.getVPCID = getVPCID;
+    }
 
 
     @Override
@@ -427,9 +440,15 @@ public class VideoController implements Initializable {
             commentInput.clear();
         }
     }
-    private void handleSearch() {
+
+
+    @Override
+    public void homeButtonhandler() {
 
     }
 
+    @Override
+    public void searchButtonhandler() {
 
+    }
 }

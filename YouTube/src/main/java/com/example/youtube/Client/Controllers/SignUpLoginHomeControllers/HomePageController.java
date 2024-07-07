@@ -1,20 +1,25 @@
 package com.example.youtube.Client.Controllers.SignUpLoginHomeControllers;
 
 import com.example.youtube.Client.ClientToServerConnection;
+import com.example.youtube.Client.Controllers.Channels.VideoViewControllers.VideoController;
 import com.example.youtube.Client.Controllers.CommonTools;
 import com.example.youtube.Client.UiController;
 import com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers.ChannelPlaylistsController;
 import com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers.CreateChannelController;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.URL;
@@ -45,7 +50,7 @@ public class HomePageController implements Initializable {
     @FXML
     private TextField searchField;
     @FXML
-    private List<BorderPane> borders = new ArrayList<>();
+    private static List<BorderPane> borders = new ArrayList<>();
 
 
     @FXML
@@ -58,19 +63,66 @@ public class HomePageController implements Initializable {
     @FXML
     private Button subscriptionsButton;
     private static Stage stage;
-    private static Node source;
+
+    private static JSONObject UserInfo;
+    public static void setUserInfo(JSONObject userInfo) {
+        UserInfo = userInfo;
+    }
+
+    private static JSONArray HomepageTrendVideos;
+
+    public static void setHomepageTrendVideos(JSONArray homepageTrendVideos) {
+        HomepageTrendVideos = homepageTrendVideos;
+        setViewForTrendVideos();
+
+    }
+    @FXML
+    private static void setViewForTrendVideos() {
+
+        int i=0;
+        for (BorderPane borderPane : borders) {
+            JSONObject jsonObject1= (JSONObject) HomepageTrendVideos.get(i);
+            borderPane.setId(String.valueOf(jsonObject1.getInt("VPCID")));
+
+            Image image=new Image(HomePageController.class.getResource("/com/example/youtube/videoTools/VideoImage.png").toString());
+            ImageView imageView = (ImageView) borderPane.getCenter();
+            imageView.setImage(image);
+
+            VBox bottomVBox = (VBox) borderPane.getBottom();
+
+            ((Label) bottomVBox.getChildren().get(0)).setText(jsonObject1.getString("VideoName"));
+            ((Label) bottomVBox.getChildren().get(1)).setText(jsonObject1.getString("ChannelName"));
+            ((Label) bottomVBox.getChildren().get(2)).setText(String.valueOf(jsonObject1.getInt("NumberOfView")));
+
+            borderPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    stage = (Stage) borderPane.getScene().getWindow();
+                    VideoController.setUserInfo(UserInfo);
+                    VideoController.setGetVPCID(borderPane.getId());
+                    UiController.changingscene(stage,"video-view.fxml");
+                }
+            });
+
+
+
+            i++;
+            if (i==HomepageTrendVideos.length()){
+                break;
+            }
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        homeButton.setOnAction(event -> {handlehomeButton();
-            source = (Node) event.getSource();});
-        yourChannel.setOnAction(event -> {handleYourChannel();
-            source = (Node) event.getSource();});
-        SearchButton.setOnAction(event -> {
-            handleSearch();
-            source = (Node) event.getSource();
-        });
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("DataManager","TrendVPCIDForHomePage");
+        ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
 
+
+        homeButton.setOnAction(event -> handlehomeButton());
+        yourChannel.setOnAction(event -> handleYourChannel());
+        SearchButton.setOnAction(event -> handleSearch());
 
         borders.add(border1);
         borders.add(border2);
@@ -81,21 +133,6 @@ public class HomePageController implements Initializable {
         borders.add(border7);
         borders.add(border8);
         borders.add(border9);
-
-        for (BorderPane borderPane : borders) {
-            ImageView imageView = (ImageView) borderPane.getCenter();
-            VBox bottomVBox = (VBox) borderPane.getBottom();
-
-            // Access and manipulate the nodes within each BorderPane
-            String videoName = ((Label) bottomVBox.getChildren().get(0)).getText();
-            String channelName = ((Label) bottomVBox.getChildren().get(1)).getText();
-            String viewCount = ((Label) bottomVBox.getChildren().get(2)).getText();
-
-            // Perform operations on the accessed nodes
-            System.out.println("Video Name: " + videoName);
-            System.out.println("Channel Name: " + channelName);
-            System.out.println("View Count: " + viewCount);
-        }
 
     }
 
@@ -113,6 +150,8 @@ public class HomePageController implements Initializable {
 
         }
     }
+
+
     @FXML
     private void handleYourChannel() {
         stage = (Stage) yourChannel.getScene().getWindow();

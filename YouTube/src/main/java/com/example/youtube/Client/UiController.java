@@ -128,6 +128,9 @@ public class UiController {
 
         } else if (UiClass.equals("ChannelPlaylistsController/SettingNameForPlaylist")) {
             CreatePlaylist.SettingNameForPlaylist(jsonObject.getBoolean("Response"));
+        } else if (UiClass.equals("HomePageController/setHomepageTrendVideos")) {
+            HomePageController.setHomepageTrendVideos(jsonObject.getJSONArray("Response"));
+
         }
 
     }

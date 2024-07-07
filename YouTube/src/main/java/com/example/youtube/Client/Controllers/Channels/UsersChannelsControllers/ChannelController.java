@@ -51,17 +51,23 @@ public class ChannelController implements ChannelInterface {
     @FXML
     private FlowPane videoFlowPane;
     private static JSONObject UserInfo;
+    private static String playlistName;
     private static Stage stage;
     public static void setUserInfo(JSONObject userInfo) {
         UserInfo = userInfo;
     }
 
+    public static void setPlaylistChoosen(String id) {
+        playlistName=id;
+    }
+
     @FXML
     private void initialize() {
-        channelNameLabel.setText("Channel Name");
+        channelNameLabel.setText(UserInfo.getString("ChannelName"));
         subscribersLabel.setText("Subscribers: ");
         searchButton.setOnAction(event -> searchButtonhandler());
         homeButton.setOnAction(event -> homeButtonhandler());
+
 
     }
 
