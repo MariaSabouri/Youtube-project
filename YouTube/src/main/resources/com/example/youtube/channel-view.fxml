@@ -41,7 +41,7 @@
             </HBox>
             <ScrollPane prefHeight="317.0" prefWidth="502.0" BorderPane.alignment="CENTER">
                 <content>
-                    <VBox fx:id="SearchResultVbox" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" />
+                    <VBox fx:id="SearchResultVbox" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="278.0" prefWidth="501.0" />
                 </content>
             </ScrollPane>
         </VBox>

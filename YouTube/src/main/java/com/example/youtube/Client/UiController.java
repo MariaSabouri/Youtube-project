@@ -1,5 +1,6 @@
 package com.example.youtube.Client;
 
+import com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers.ChannelController;
 import com.example.youtube.Client.Controllers.CommonTools;
 import com.example.youtube.Client.Controllers.SearchbarController.SearchbarController;
 import com.example.youtube.Client.Controllers.SignUpLoginHomeControllers.HomePageController;
@@ -130,6 +131,9 @@ public class UiController {
             CreatePlaylist.SettingNameForPlaylist(jsonObject.getBoolean("Response"));
         } else if (UiClass.equals("HomePageController/setHomepageTrendVideos")) {
             HomePageController.setHomepageTrendVideos(jsonObject.getJSONArray("Response"));
+
+        } else if (UiClass.equals("ChannelController/VideosForThisPlaylist")) {
+            ChannelController.VideosForThisPlaylist(jsonObject.getJSONArray("Response"));
 
         }
 

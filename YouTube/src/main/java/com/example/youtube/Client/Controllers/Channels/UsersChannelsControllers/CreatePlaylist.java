@@ -44,7 +44,10 @@ public class CreatePlaylist implements Initializable {
                 throw new IllegalArgumentException("Textfield is empty");
             }
             String jsonString = "{\"DataManager\":\"CreatingPlaylist\",\"Parameter1\":\"" + ClientToServerConnection.uiController.getUsername() + "\",\"Parameter2\":\"" + PLaylistNameDecided + "\"}";
+            JSONObject jsonObject=new JSONObject(jsonString);
+            jsonObject.put("Class","database");
             ClientToServerConnection.uiController.SetiMessage(jsonString);
+
             PlaylistNameField.clear();
         }catch (IllegalArgumentException e){
             CommonTools.showingError();

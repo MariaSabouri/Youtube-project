@@ -14,16 +14,18 @@
         <Insets bottom="25" left="25" right="25" top="25" />
     </padding>
 
-    <Label text="Username:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-    <TextField fx:id="usernameField" style="-fx-pref-width: 200px;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+    <Label text="Username:" textFill="WHITE" GridPane.rowIndex="2" />
+    <TextField fx:id="usernameField" style="-fx-pref-width: 200px;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-    <Label text="Password:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-    <PasswordField fx:id="passwordField" style="-fx-pref-width: 200px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Label text="Password:" textFill="WHITE" GridPane.rowIndex="7" />
+    <PasswordField fx:id="passwordField" style="-fx-pref-width: 200px;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
 
-    <Button fx:id="signUpButton" style="-fx-background-color: #ff0000; -fx-text-fill: white; -fx-font-size: 14px;" text="Sign Up" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <Button fx:id="signUpButton" style="-fx-background-color: #ff0000; -fx-text-fill: white; -fx-font-size: 14px;" text="Sign Up" GridPane.columnIndex="1" GridPane.rowIndex="9" />
 
-    <Label text="Already have an account?" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-    <Button fx:id="loginButton" style="-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-underline: true;" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <Label text="Already have an account?" textFill="WHITE" GridPane.rowIndex="10" />
+    <Button fx:id="loginButton" style="-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-underline: true;" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+   <Label text="Name" textFill="WHITE" />
+   <TextField fx:id="NameField" style="-fx-pref-width: 200px;" GridPane.columnIndex="1" />
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints />
@@ -34,5 +36,11 @@
         <RowConstraints />
         <RowConstraints />
         <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
     </rowConstraints>
 </GridPane>

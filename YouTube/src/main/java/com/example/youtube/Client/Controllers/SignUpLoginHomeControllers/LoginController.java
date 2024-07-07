@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -61,7 +62,9 @@ public class LoginController implements Initializable {
             }
             setUsername(username);
             String jsonString = "{\"DataManager\":\"LogIn\",\"Parameter1\":\"" + username + "\",\"Parameter2\":\"" + password + "\"}";
-            ClientToServerConnection.uiController.SetiMessage(jsonString);
+            JSONObject jsonObject=new JSONObject(jsonString);
+            jsonObject.put("Class","database");
+            ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
 
             UsernameField.clear();
             passwordField.clear();

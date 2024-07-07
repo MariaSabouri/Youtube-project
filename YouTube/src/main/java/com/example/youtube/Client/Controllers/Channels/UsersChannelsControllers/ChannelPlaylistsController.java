@@ -1,14 +1,13 @@
 package com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers;
 
-import com.example.youtube.Client.Controllers.Channels.ChannelInterface;
-import com.example.youtube.Client.Controllers.Channels.VideoViewControllers.VideoController;
+import com.example.youtube.Client.ClientToServerConnection;
+import com.example.youtube.Client.Controllers.ChannelInterface;
 import com.example.youtube.Client.Controllers.CommonTools;
 import com.example.youtube.Client.UiController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -81,10 +80,9 @@ public class ChannelPlaylistsController implements Initializable, ChannelInterfa
             ImageView newImageView = new ImageView(getClass().getResource("/com/example/youtube/videoTools/playlist_image.jpg").toString());
             newImageView.setFitWidth(IV_SIZE);
             newImageView.setFitHeight(IV_SIZE);
+            newBorderPane.setLeft(newImageView);
 
             Label newLabel = new Label(jsonArray.getString(i));
-
-            newBorderPane.setLeft(newImageView);
 
             VBox centerVBox = new VBox();
             newLabel.setFont(new Font(14));
@@ -98,7 +96,15 @@ public class ChannelPlaylistsController implements Initializable, ChannelInterfa
                 public void handle(MouseEvent mouseEvent) {
                     stage = (Stage) newBorderPane.getScene().getWindow();
                     ChannelController.setUserInfo(UserInfo);
-                    ChannelController.setPlaylistChoosen(borderPane.getId());
+                    ChannelController.setPlaylistChoosen(newBorderPane.getId());
+
+                    JSONObject jsonObject=new JSONObject();
+                    jsonObject.put("Class","database");
+                    jsonObject.put("DataManager","gettingAllUserVPCID");
+                    jsonObject.put("Parameter1",UserInfo.getString("Username"));
+                    jsonObject.put("Parameter2",newBorderPane.getId());
+                    ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
+
                     UiController.changingscene(stage,"channel-view.fxml");
                 }
             });

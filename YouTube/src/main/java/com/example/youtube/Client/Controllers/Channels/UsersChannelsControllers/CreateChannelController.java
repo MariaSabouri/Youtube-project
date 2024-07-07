@@ -50,8 +50,12 @@ public class CreateChannelController implements Initializable {
             throw new IllegalArgumentException("Textfield is empty");
         }
         UserInfo.put("ChannelName",channelNameDecided);
+
         String jsonString = "{\"DataManager\":\"CreatingChannel\",\"Parameter1\":\"" + ClientToServerConnection.uiController.getUsername() + "\",\"Parameter2\":\"" + channelNameDecided + "\"}";
-        ClientToServerConnection.uiController.SetiMessage(jsonString);
+        JSONObject jsonObject=new JSONObject(jsonString);
+        jsonObject.put("Class","database");
+        ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
+
         ChannelNameField.clear();
         }catch (IllegalArgumentException e){
             CommonTools.showingError();
@@ -67,6 +71,13 @@ public class CreateChannelController implements Initializable {
         }else {
             UserInfo.put("ChannelName",channelNameDecided);
             HomePageController.setGetUserInfo(UserInfo);
+
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("Class","database");
+            jsonObject.put("videoHandeling","CreateFolder");
+            jsonObject.put("Parameter1",UserInfo.getString("Username"));
+            ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
+
             UiController.changingscene(stage,"homePage-view.fxml");
 
         }

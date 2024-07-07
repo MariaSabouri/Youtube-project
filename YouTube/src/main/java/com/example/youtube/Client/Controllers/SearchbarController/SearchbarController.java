@@ -1,6 +1,7 @@
 package com.example.youtube.Client.Controllers.SearchbarController;
 
 import com.example.youtube.Client.ClientToServerConnection;
+import com.example.youtube.Client.Controllers.SignUpLoginHomeControllers.HomePageController;
 import com.example.youtube.Client.UiController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -9,6 +10,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -47,9 +50,11 @@ public class SearchbarController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        SearchResultVbox.setSpacing(10);
         JSONArray jsonArray=getResuluJsonArray();
         int i = 1;
         for (Object child : SearchResultVbox.getChildren()) {
+            final int IV_SIZE=105;
             if (child instanceof BorderPane) {
                 JSONObject jsonObject;
                 BorderPane borderPane = (BorderPane) child;
@@ -60,16 +65,28 @@ public class SearchbarController implements Initializable {
                     Label videoNameLabel = (Label) borderPane.getCenter().lookup("#video"+String.valueOf(i));
                     Label channelNameLabel = (Label) borderPane.getCenter().lookup("#channel"+String.valueOf(i));
                     Label viewCountLabel = (Label) borderPane.getCenter().lookup("#view"+String.valueOf(i));
+
                     jsonObject=(JSONObject) jsonArray.get(i-1);
+
                     videoNameLabel.setText(jsonObject.getString("VideoName"));
                     channelNameLabel.setText(jsonObject.getString("ChannelName"));
                     viewCountLabel.setText(String.valueOf(jsonObject.getInt("NumberOfView")));
+
+                    Image image=new Image(HomePageController.class.getResource("/com/example/youtube/videoTools/VideoImage.png").toString());
+                    ImageView imageView = (ImageView) borderPane.getLeft();
+                    imageView.setFitWidth(IV_SIZE);
+                    imageView.setFitHeight(IV_SIZE);
+                    imageView.setImage(image);
+
                     videoNameLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             source = (Node) event.getSource();
+
                             String jsonString = "{\"DataManager\":\"VPCIDInfo\",\"Parameter1\":\"" + jsonObject.getInt("VPCID") + "\",\"Parameter2\":\""+UiController.getUsername()+"\"}";
-                            ClientToServerConnection.uiController.SetiMessage(jsonString);
+                            JSONObject jsonObject1=new JSONObject(jsonString);
+                            jsonObject1.put("Class","database");
+                            ClientToServerConnection.uiController.SetiMessage(jsonObject1.toString());
                         }
                     });
                 }

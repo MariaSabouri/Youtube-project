@@ -1,4 +1,4 @@
-package com.example.youtube.Client.Controllers.Channels;
+package com.example.youtube.Client.Controllers;
 
 public interface ChannelInterface {
     public void homeButtonhandler();

@@ -1,6 +1,6 @@
 package com.example.youtube.Client.Controllers.Channels.ChannelsConltrollers;
 
-import com.example.youtube.Client.Controllers.Channels.ChannelInterface;
+import com.example.youtube.Client.Controllers.ChannelInterface;
 import javafx.fxml.Initializable;
 
 import java.net.URL;

@@ -11,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.Window;
+import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,9 +29,14 @@ public class SignUpController implements Initializable {
     private Button signUpButton;
 
     @FXML
-    private Button loginButton;
+    private TextField NameField;
+
+
+    @FXML
+    private  Button loginButton;
     private static Stage stage;
-    private static Node source;
+
+
     private static String Username;
     public static String getUsername() {
         return Username;
@@ -46,9 +53,9 @@ public class SignUpController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        signUpButton.setOnAction(event -> {handleSignUp();
-            source = (Node) event.getSource();});
-        loginButton.setOnAction(event -> {handleLogin();});
+        signUpButton.setOnAction(event -> handleSignUp());
+        loginButton.setOnAction(event -> {handleLogin();
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();});
 
     }
 
@@ -57,14 +64,22 @@ public class SignUpController implements Initializable {
     private void handleSignUp() {
         try {
             stage = (Stage) signUpButton.getScene().getWindow();
+            String Name=NameField.getText();
             String username = usernameField.getText();
             String password = passwordField.getText();
             if (username.isEmpty()|| password.isEmpty()){
                 throw new IllegalArgumentException("Textfield is empty");
             }
             setUsername(username);
-            String jsonString = "{\"DataManager\":\"SignUp\",\"Parameter1\":\"" + username + "\",\"Parameter2\":\"" + password + "\"}";
-            ClientToServerConnection.uiController.SetiMessage(jsonString);
+
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("Class","database");
+            jsonObject.put("DataManager","SignUp");
+            jsonObject.put("Parameter1",Name);
+            jsonObject.put("Parameter2",username);
+            jsonObject.put("Parameter3",password);
+            ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
+
             usernameField.clear();
             passwordField.clear();
 
@@ -80,7 +95,13 @@ public class SignUpController implements Initializable {
                 CommonTools.showingError();
             });
         }else {
-//            Stage stage = (Stage) source.getScene().getWindow();
+
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("Class","videoHandeling");
+            jsonObject.put("videoHandelingFuctions","createUserFolder");
+            jsonObject.put("Username",Username);
+            ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
+
             UiController.changingscene(stage,"homePage-view.fxml");
         }
     }

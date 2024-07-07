@@ -1,6 +1,6 @@
 package com.example.youtube.Client.Controllers.Channels.VideoViewControllers;
 
-import com.example.youtube.Client.Controllers.Channels.ChannelInterface;
+import com.example.youtube.Client.Controllers.ChannelInterface;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
@@ -30,7 +30,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
 
-public class VideoController implements Initializable, ChannelInterface {
+public class VideoController implements Initializable,ChannelInterface {
 
     @FXML
     private Button home_button;
@@ -396,7 +396,7 @@ public class VideoController implements Initializable, ChannelInterface {
 
     public void initialize() {
         titleLabel.setText("Video Title");
-        descriptionLabel.setText("Video Description");
+        descriptionLabel.setText("");
         likeButton.setOnAction(event -> handleLike());
         dislikeButton.setOnAction(event -> handleDislike());
         addToWatchLaterButton.setOnAction(event -> handleAddToWatchLater());

@@ -13,7 +13,7 @@ public class expextedDatabase {
     public static void openConnection(){
         //TODO
     }
-    public static Boolean SignUp(String Username, String Password){
+    public static Boolean SignUp(String Name,String Username, String Password){
         //if everything is okay
         return true;
         //return true;
@@ -23,12 +23,23 @@ public class expextedDatabase {
     public static JSONObject gettingUserInfo(String username){
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("Username","Ali");
+        jsonObject.put("Name","sala");
         jsonObject.put("ChannelName","asdasd");
         jsonObject.put("Subscribers",23);
+
+        JSONArray Subscriptions=SubscriptionsJsonArray(username);
+        jsonObject.put("subscriptions",Subscriptions);
 
         JSONArray PlaylistNamejsonArray=GettingJsonArrayOfPlaylistNames(username);
         jsonObject.put("Playlists",PlaylistNamejsonArray);
       return jsonObject;
+    }
+
+    private static JSONArray SubscriptionsJsonArray(String username) {
+        JSONArray jsonArray=new JSONArray();
+        jsonArray.put("lala");
+        jsonArray.put("jj");
+        return jsonArray;
     }
 
     private static JSONArray GettingJsonArrayOfPlaylistNames(String username) {
@@ -177,7 +188,7 @@ public class expextedDatabase {
 
         return jsonArray;
     }
-    public static JSONArray gettingAllVPCI(String channelName,String playlistName){
+    public static JSONArray gettingAllUserVPCID(String Username,String playlistName){
         //[{"VPCID":---,"VideoName":---,"ChannelName":---,"NumberOfView":---},{},{},...]
         JSONArray jsonArray=new JSONArray();
 
