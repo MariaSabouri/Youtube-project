@@ -51,9 +51,14 @@ public class ChannelController implements ChannelInterface {
     @FXML
     private FlowPane videoFlowPane;
     private static JSONObject UserInfo;
+    private static String playlistName;
     private static Stage stage;
     public static void setUserInfo(JSONObject userInfo) {
         UserInfo = userInfo;
+    }
+
+    public static void setPlaylistChoosen(String id) {
+        playlistName=id;
     }
 
     @FXML

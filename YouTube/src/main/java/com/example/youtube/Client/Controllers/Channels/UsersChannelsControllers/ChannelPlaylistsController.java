@@ -1,26 +1,35 @@
 package com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers;
 
 import com.example.youtube.Client.Controllers.Channels.ChannelInterface;
+import com.example.youtube.Client.Controllers.Channels.VideoViewControllers.VideoController;
 import com.example.youtube.Client.Controllers.CommonTools;
 import com.example.youtube.Client.UiController;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import org.json.JSONArray;
 import org.json.JSONObject;
+import javafx.scene.control.ScrollPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ChannelPlaylistsController implements Initializable, ChannelInterface {
     @FXML
-    private VBox SearchResultVbox;
-
-    @FXML
     private Label channelNameLabel;
+    @FXML
+    private VBox SearchResultVbox;
 
     @FXML
     private Button homeButton;
@@ -30,6 +39,12 @@ public class ChannelPlaylistsController implements Initializable, ChannelInterfa
 
     @FXML
     private TextField searchField;
+    @FXML
+    private BorderPane borderPane;
+
+    @FXML
+    private ScrollPane ScrollPane;
+
 
     @FXML
     private Label subscribersLabel;
@@ -51,6 +66,49 @@ public class ChannelPlaylistsController implements Initializable, ChannelInterfa
         homeButton.setOnAction(event -> homeButtonhandler());
         searchButton.setOnAction(event -> searchButtonhandler());
         creatPlaylist.setOnAction(event -> creatPlaylisthandler());
+
+        JSONArray jsonArray=UserInfo.getJSONArray("Playlists");
+
+        channelNameLabel.setText(UserInfo.getString("ChannelName"));
+
+        final int IV_SIZE=105;
+
+        SearchResultVbox.setSpacing(10);
+        for (int i=0;i<jsonArray.length();i++){
+            BorderPane newBorderPane = new BorderPane();
+            newBorderPane.setId(jsonArray.getString(i));
+
+            ImageView newImageView = new ImageView(getClass().getResource("/com/example/youtube/videoTools/playlist_image.jpg").toString());
+            newImageView.setFitWidth(IV_SIZE);
+            newImageView.setFitHeight(IV_SIZE);
+
+            Label newLabel = new Label(jsonArray.getString(i));
+
+            newBorderPane.setLeft(newImageView);
+
+            VBox centerVBox = new VBox();
+            newLabel.setFont(new Font(14));
+            newLabel.setPadding(new Insets(20,0,0,40));
+            centerVBox.getChildren().add(newLabel);
+            newBorderPane.setCenter(centerVBox);
+
+            SearchResultVbox.getChildren().add(newBorderPane);
+            newBorderPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    stage = (Stage) newBorderPane.getScene().getWindow();
+                    ChannelController.setUserInfo(UserInfo);
+                    ChannelController.setPlaylistChoosen(borderPane.getId());
+                    UiController.changingscene(stage,"channel-view.fxml");
+                }
+            });
+
+
+
+        }
+
+
+
 
     }
 

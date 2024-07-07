@@ -53,6 +53,13 @@ public class RequestHandeling {
             jsonObject1.put("Response",b);
             return jsonObject1;
 
+        } else if (Objects.equals(databasefunction,"TrendVPCIDForHomePage")) {
+            JSONArray jsonArray=expextedDatabase.TrendVPCIDForHomePage();
+            JSONObject jsonObject1=new JSONObject();
+            jsonObject1.put("Class","HomePageController/setHomepageTrendVideos");
+            jsonObject1.put("Response",jsonArray);
+            return jsonObject1;
+
         }
         return null;
 
