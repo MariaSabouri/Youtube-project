@@ -117,7 +117,7 @@ public class expextedDatabase {
     public static Boolean CreatingPlaylist(String parameter1, String parameter2) {return false;}
     public static JSONArray TrendVPCIDForHomePage(){
         //give top 9 trend Video:
-        //        //[{"VPCID":---,"VideoName":---,"ChannelName":---,"NumberOfView":---},{},{},...]
+        //[{"VPCID":---,"VideoName":---,"ChannelName":---,"NumberOfView":---},{},{},...]
         JSONArray jsonArray=new JSONArray();
 
         JSONObject o1=new JSONObject();
@@ -174,6 +174,37 @@ public class expextedDatabase {
         o9.put("ChannelName","bad boys");
         o9.put("NumberOfView",23);
         jsonArray.put(o9);
+
+        return jsonArray;
+    }
+    public static JSONArray gettingAllVPCI(String channelName,String playlistName){
+        //[{"VPCID":---,"VideoName":---,"ChannelName":---,"NumberOfView":---},{},{},...]
+        JSONArray jsonArray=new JSONArray();
+
+        JSONObject o1=new JSONObject();
+        o1.put("VPCID",987);
+        o1.put("VideoName","alex in heaven");
+        o1.put("ChannelName","sd");
+        o1.put("NumberOfView",23);
+        jsonArray.put(o1);
+        JSONObject o2=new JSONObject();
+        o2.put("VPCID",987);
+        o2.put("VideoName","alex in heaven");
+        o2.put("ChannelName","sd");
+        o2.put("NumberOfView",23);
+        jsonArray.put(o2);
+        JSONObject o3=new JSONObject();
+        o3.put("VPCID",987);
+        o3.put("VideoName","alex in heaven");
+        o3.put("ChannelName","sd");
+        o3.put("NumberOfView",23);
+        jsonArray.put(o3);
+        JSONObject o4=new JSONObject();
+        o4.put("VPCID",987);
+        o4.put("VideoName","alex in heaven");
+        o4.put("ChannelName","sd");
+        o4.put("NumberOfView",23);
+        jsonArray.put(o4);
 
         return jsonArray;
     }

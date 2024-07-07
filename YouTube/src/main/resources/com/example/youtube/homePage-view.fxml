@@ -43,9 +43,9 @@
                            <bottom>
                               <VBox alignment="CENTER" prefHeight="42.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Label fx:id="VideoName1" text="Label" />
-                                    <Label fx:id="ChannelName1" text="Label" />
-                                    <Label fx:id="View1" text="Label" />
+                                    <Label fx:id="VideoName1" />
+                                    <Label fx:id="ChannelName1" />
+                                    <Label fx:id="View1" />
                                  </children>
                               </VBox>
                            </bottom>
@@ -57,9 +57,9 @@
                            <bottom>
                               <VBox alignment="CENTER" prefHeight="42.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Label fx:id="VideoName2" text="Label" />
-                                    <Label fx:id="ChannelName2" text="Label" />
-                                    <Label fx:id="View2" text="Label" />
+                                    <Label fx:id="VideoName2" />
+                                    <Label fx:id="ChannelName2" />
+                                    <Label fx:id="View2" />
                                  </children>
                               </VBox>
                            </bottom>
@@ -71,9 +71,9 @@
                            <bottom>
                               <VBox alignment="CENTER" prefHeight="42.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Label fx:id="VideoName3" text="Label" />
-                                    <Label fx:id="ChannelName3" text="Label" />
-                                    <Label fx:id="View3" text="Label" />
+                                    <Label fx:id="VideoName3" />
+                                    <Label fx:id="ChannelName3" />
+                                    <Label fx:id="View3" />
                                  </children>
                               </VBox>
                            </bottom>
@@ -89,9 +89,9 @@
                            <bottom>
                               <VBox alignment="CENTER" prefHeight="42.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Label fx:id="VideoName4" text="Label" />
-                                    <Label fx:id="ChannelName4" text="Label" />
-                                    <Label fx:id="View4" text="Label" />
+                                    <Label fx:id="VideoName4" />
+                                    <Label fx:id="ChannelName4" />
+                                    <Label fx:id="View4" />
                                  </children>
                               </VBox>
                            </bottom>
@@ -103,9 +103,9 @@
                            <bottom>
                               <VBox alignment="CENTER" prefHeight="42.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Label fx:id="VideoName5" text="Label" />
-                                    <Label fx:id="ChannelName5" text="Label" />
-                                    <Label fx:id="View5" text="Label" />
+                                    <Label fx:id="VideoName5" />
+                                    <Label fx:id="ChannelName5" />
+                                    <Label fx:id="View5" />
                                  </children>
                               </VBox>
                            </bottom>
@@ -117,9 +117,9 @@
                            <bottom>
                               <VBox alignment="CENTER" prefHeight="42.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Label fx:id="VideoName6" text="Label" />
-                                    <Label fx:id="ChannelName6" text="Label" />
-                                    <Label fx:id="View6" text="Label" />
+                                    <Label fx:id="VideoName6" />
+                                    <Label fx:id="ChannelName6" />
+                                    <Label fx:id="View6" />
                                  </children>
                               </VBox>
                            </bottom>
@@ -135,9 +135,9 @@
                            <bottom>
                               <VBox alignment="CENTER" prefHeight="42.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Label fx:id="VideoName7" text="Label" />
-                                    <Label fx:id="ChannelName7" text="Label" />
-                                    <Label fx:id="View7" text="Label" />
+                                    <Label fx:id="VideoName7" />
+                                    <Label fx:id="ChannelName7" />
+                                    <Label fx:id="View7" />
                                  </children>
                               </VBox>
                            </bottom>
@@ -149,9 +149,9 @@
                            <bottom>
                               <VBox alignment="CENTER" prefHeight="42.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Label fx:id="VideoName8" text="Label" />
-                                    <Label fx:id="ChannelName8" text="Label" />
-                                    <Label fx:id="View8" text="Label" />
+                                    <Label fx:id="VideoName8" />
+                                    <Label fx:id="ChannelName8" />
+                                    <Label fx:id="View8" />
                                  </children>
                               </VBox>
                            </bottom>
@@ -163,9 +163,9 @@
                            <bottom>
                               <VBox alignment="CENTER" prefHeight="42.0" prefWidth="200.0" spacing="5.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Label fx:id="VideoName9" text="Label" />
-                                    <Label fx:id="ChannelName9" text="Label" />
-                                    <Label fx:id="View9" text="Label" />
+                                    <Label fx:id="VideoName9" />
+                                    <Label fx:id="ChannelName9" />
+                                    <Label fx:id="View9" />
                                  </children>
                               </VBox>
                            </bottom>

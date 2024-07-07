@@ -63,10 +63,11 @@ public class ChannelController implements ChannelInterface {
 
     @FXML
     private void initialize() {
-        channelNameLabel.setText("Channel Name");
+        channelNameLabel.setText(UserInfo.getString("ChannelName"));
         subscribersLabel.setText("Subscribers: ");
         searchButton.setOnAction(event -> searchButtonhandler());
         homeButton.setOnAction(event -> homeButtonhandler());
+
 
     }
 

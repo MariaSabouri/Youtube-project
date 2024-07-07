@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -82,6 +83,17 @@ public class HomePageController implements Initializable {
         for (BorderPane borderPane : borders) {
             JSONObject jsonObject1= (JSONObject) HomepageTrendVideos.get(i);
             borderPane.setId(String.valueOf(jsonObject1.getInt("VPCID")));
+
+            Image image=new Image(HomePageController.class.getResource("/com/example/youtube/videoTools/VideoImage.png").toString());
+            ImageView imageView = (ImageView) borderPane.getCenter();
+            imageView.setImage(image);
+
+            VBox bottomVBox = (VBox) borderPane.getBottom();
+
+            ((Label) bottomVBox.getChildren().get(0)).setText(jsonObject1.getString("VideoName"));
+            ((Label) bottomVBox.getChildren().get(1)).setText(jsonObject1.getString("ChannelName"));
+            ((Label) bottomVBox.getChildren().get(2)).setText(String.valueOf(jsonObject1.getInt("NumberOfView")));
+
             borderPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
@@ -91,16 +103,13 @@ public class HomePageController implements Initializable {
                     UiController.changingscene(stage,"video-view.fxml");
                 }
             });
-            ImageView imageView = (ImageView) borderPane.getCenter();
-            VBox bottomVBox = (VBox) borderPane.getBottom();
 
-
-            ((Label) bottomVBox.getChildren().get(0)).setText(jsonObject1.getString("VideoName"));
-            ((Label) bottomVBox.getChildren().get(1)).setText(jsonObject1.getString("ChannelName"));
-            ((Label) bottomVBox.getChildren().get(2)).setText(String.valueOf(jsonObject1.getInt("NumberOfView")));
 
 
             i++;
+            if (i==HomepageTrendVideos.length()){
+                break;
+            }
         }
     }
 
