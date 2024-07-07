@@ -14,9 +14,33 @@ public class expextedDatabase {
         //TODO
     }
     public static Boolean SignUp(String Username, String Password){
-        //TODO
-        return false;
+        //if everything is okay
+        return true;
+        //return true;
+        //if somthing goes wrong
+//        return false;
     }
+    public static JSONObject gettingUserInfo(String username){
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("Username","Ali");
+        jsonObject.put("ChannelName","asdasd");
+        jsonObject.put("Subscribers",23);
+
+        JSONArray PlaylistNamejsonArray=GettingJsonArrayOfPlaylistNames(username);
+        jsonObject.put("Playlists",PlaylistNamejsonArray);
+      return jsonObject;
+    }
+
+    private static JSONArray GettingJsonArrayOfPlaylistNames(String username) {
+        JSONArray jsonArray=new JSONArray();
+//        jsonArray.put("dormir");
+//        jsonArray.put("chanter");
+//        jsonArray.put("danser");
+
+        return jsonArray;
+    }
+
+    ;
     public static Boolean LogIn(String username, String password) {
         //TODO
         return true;
@@ -36,8 +60,6 @@ public class expextedDatabase {
         MainJsonObject.put("LikeOfThisUser",true);
         MainJsonObject.put("DislikeOfThisUser",false);
         MainJsonObject.put("Comments",GetJsonArrayOfGettingTheMessageIDsAndTheMessageIDsThatTheyRepliedTo(VPCID, Username));
-
-
         return MainJsonObject;
     }
 
@@ -72,6 +94,7 @@ public class expextedDatabase {
         o1.put("VideoName","alla");
         o1.put("ChannelName","sddsfd");
         o1.put("NumberOfView",2837);
+//        o1.put("CapuredImage",)
         JSONObject o2=new JSONObject();
         o2.put("VPCID",27);
         o2.put("VideoName","afa");
@@ -84,4 +107,10 @@ public class expextedDatabase {
         return jsonArray;
     }
 
+
+    public static Boolean CreatingChannel(String parameter1, String parameter2) {
+        return true;
+    }
+
+    public static Boolean CreatingPlaylist(String parameter1, String parameter2) {return false;}
 }

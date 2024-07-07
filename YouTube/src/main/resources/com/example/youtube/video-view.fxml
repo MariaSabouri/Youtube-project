@@ -13,7 +13,7 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane style="-fx-background-color: with;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.VideoController">
+<BorderPane style="-fx-background-color: with;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.Controllers.VideoViewControllers.VideoController">
     <top>
         <HBox spacing="10" style="-fx-padding: 10;">
             <TextField fx:id="searchField" promptText="Search" style="-fx-background-radius: 100;" HBox.hgrow="ALWAYS" />

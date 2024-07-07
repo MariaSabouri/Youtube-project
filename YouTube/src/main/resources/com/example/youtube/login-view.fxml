@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="10" style="-fx-background-color: black;" vgap="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.LoginController">
+<GridPane alignment="center" hgap="10" style="-fx-background-color: black;" vgap="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.Controllers.SignUpLoginHomeControllers.LoginController">
     <padding>
         <Insets bottom="25" left="25" right="25" top="25" />
     </padding>

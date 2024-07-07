@@ -31,7 +31,26 @@ public class RequestHandeling {
             JSONObject jsonObject1=new JSONObject();
             jsonObject1.put("Class","video");
             jsonObject1.put("Response",VPCResult);
+            return jsonObject1;
+        } else if (Objects.equals(databasefunction,"gettingUserInfo")) {
+            JSONObject UserInfo=expextedDatabase.gettingUserInfo(jsonObject.getString("Parameter1"));
+            JSONObject jsonObject1=new JSONObject();
+            jsonObject1.put("Class","HomePageController/YourChannel");
+            jsonObject1.put("Response",UserInfo);
+            return jsonObject1;
 
+        } else if (Objects.equals(databasefunction,"CreatingChannel")) {
+            Boolean b=expextedDatabase.CreatingChannel(jsonObject.getString("Parameter1"),jsonObject.getString("Parameter2"));
+            JSONObject jsonObject1=new JSONObject();
+            jsonObject1.put("Class","CreateChannelController/SettingNameForChannel");
+            jsonObject1.put("Response",b);
+            return jsonObject1;
+
+        } else if (Objects.equals(databasefunction,"CreatingPlaylist")) {
+            Boolean b=expextedDatabase.CreatingPlaylist(jsonObject.getString("Parameter1"),jsonObject.getString("Parameter2"));
+            JSONObject jsonObject1=new JSONObject();
+            jsonObject1.put("Class","ChannelPlaylistsController/SettingNameForPlaylist");
+            jsonObject1.put("Response",b);
             return jsonObject1;
 
         }

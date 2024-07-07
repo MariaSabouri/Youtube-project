@@ -1,5 +1,12 @@
 package com.example.youtube.Client;
 
+import com.example.youtube.Client.Controllers.CommonTools;
+import com.example.youtube.Client.Controllers.SearchbarController.SearchbarController;
+import com.example.youtube.Client.Controllers.SignUpLoginHomeControllers.HomePageController;
+import com.example.youtube.Client.Controllers.SignUpLoginHomeControllers.LoginController;
+import com.example.youtube.Client.Controllers.SignUpLoginHomeControllers.SignUpController;
+import com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers.CreateChannelController;
+import com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers.CreatePlaylist;
 import com.example.youtube.FXML_Loader;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -35,8 +42,6 @@ public class UiController {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
-
             this.bufferedWriter=new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             this.bufferedReader=new BufferedReader(new InputStreamReader(socket.getInputStream()));
             recieveMessage();
@@ -66,14 +71,12 @@ public class UiController {
                                 System.out.println("Server: sended");
                                 Message=null;
                             }
-
                         }
                     }catch (IOException e){
                         CloseEveryThing(socket,bufferedReader,bufferedWriter);
                     }
                 }
             }).start();
-
     }
     public void recieveMessage(){
         new Thread(new Runnable() {
@@ -100,22 +103,31 @@ public class UiController {
         JSONObject jsonObject = new JSONObject(messageToRead);
 
         String UiClass=jsonObject.getString("Class");
+
         if (UiClass.equals("LoginController")){
             if (jsonObject.getBoolean("Response")==true){
-                LoginController.goHomeView();
-            }else {}
+                LoginController.goHomeView(true);
+            }else {LoginController.goHomeView(false);}
+
         } else if (UiClass.equals("SignUpController")) {
             if (jsonObject.getBoolean("Response")==true){
-                SignUpController.goHomeView();
-            }else{}
+                SignUpController.goHomeView(true);
+            }else{SignUpController.goHomeView(false);}
 
         } else if (UiClass.equals("commonToolSearchBar")) {
             CommonTools.goSeachview(jsonObject.getJSONArray("Response"));
 
         } else if (UiClass.equals("video")) {
-
             SearchbarController.goVideoView(jsonObject.getJSONObject("Response"));
 
+        } else if (UiClass.equals("HomePageController/YourChannel")){
+            HomePageController.setGetUserInfo(jsonObject.getJSONObject("Response"));
+
+        } else if (UiClass.equals("CreateChannelController/SettingNameForChannel")) {
+            CreateChannelController.SettingNameForChannel(jsonObject.getBoolean("Response"));
+
+        } else if (UiClass.equals("ChannelPlaylistsController/SettingNameForPlaylist")) {
+            CreatePlaylist.SettingNameForPlaylist(jsonObject.getBoolean("Response"));
         }
 
     }
