@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="461.0" prefWidth="629.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.Controllers.Channels.ChannelsConltrollers.VisitingChannelPlaylist">
+    <top>
+        <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: white;">
+            <TextField fx:id="searchField" promptText="Search..." style="-fx-background-radius: 20;" HBox.hgrow="ALWAYS" />
+            <Button fx:id="searchButton" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-background-radius: 20;" text="Search" />
+        </HBox>
+    </top>
+    <left>
+        <VBox alignment="CENTER" spacing="10" style="-fx-padding: 10; -fx-background-color: white;">
+            <Button fx:id="homeButton" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Home" />
+            <Button fx:id="subscriptionButton" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Subscriptions" />
+         <Button mnemonicParsing="false" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="CreatePlaylist" />
+        </VBox>
+    </left>
+    <center>
+        <VBox alignment="CENTER" spacing="10" style="-fx-padding: 10; -fx-background-color: white;" BorderPane.alignment="TOP_CENTER">
+            <Label fx:id="channelNameLabel" style="-fx-font-size: 24px;" text="Channel Name">
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+         </Label>
+            <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: bwhitelack;">
+                <Label fx:id="subscribersLabel" style="-fx-font-weight: bold;" text="Subscribers: " />
+            <padding>
+               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+            <VBox.margin>
+               <Insets bottom="20.0" top="5.0" />
+            </VBox.margin>
+            </HBox>
+            <ScrollPane prefHeight="405.0" prefWidth="501.0" BorderPane.alignment="CENTER">
+                <content>
+                    <VBox fx:id="SearchResultVbox" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT">
+                        <children>
+                            <BorderPane prefHeight="150.0" prefWidth="451.0">
+                                <left>
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                                </left>
+                                <center>
+                                    <VBox alignment="CENTER" prefHeight="150.0" prefWidth="273.0" spacing="20.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+                                        <children>
+                                            <Label fx:id="Playlist1" />
+                                        </children>
+                                    </VBox>
+                                </center>
+                        <VBox.margin>
+                           <Insets bottom="5.0" top="5.0" />
+                        </VBox.margin>
+                            </BorderPane>
+                            <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                <left>
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                                </left>
+                                <center>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+                                        <children>
+                                            <Label fx:id="Playlist2" />
+                                        </children>
+                                    </VBox>
+                                </center>
+                            </BorderPane>
+                            <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                <left>
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                                </left>
+                                <center>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+                                        <children>
+                                            <Label fx:id="Playlist3" />
+                                        </children>
+                                    </VBox>
+                                </center>
+                            </BorderPane>
+                            <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                <left>
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                                </left>
+                                <center>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+                                        <children>
+                                            <Label fx:id="Playlist4" />
+                                        </children>
+                                    </VBox>
+                                </center>
+                            </BorderPane>
+                            <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                <left>
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                                </left>
+                                <center>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+                                        <children>
+                                            <Label fx:id="Playlist5" />
+                                        </children>
+                                    </VBox>
+                                </center>
+                            </BorderPane>
+                            <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                <left>
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+                                </left>
+                                <center>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+                                        <children>
+                                            <Label fx:id="Playlist6" />
+                                        </children>
+                                    </VBox>
+                                </center>
+                            </BorderPane>
+                        </children>
+                    </VBox>
+                </content>
+            </ScrollPane>
+        </VBox>
+    </center>
+</BorderPane>

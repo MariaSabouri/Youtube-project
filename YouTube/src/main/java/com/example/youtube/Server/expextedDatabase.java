@@ -14,9 +14,35 @@ public class expextedDatabase {
         //TODO
     }
     public static Boolean SignUp(String Username, String Password){
-        //TODO
-        return false;
+        //if everything is okay
+        return true;
+        //return true;
+        //if somthing goes wrong
+//        return false;
     }
+    public static JSONObject gettingUserInfo(String username){
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("Username","Ali");
+        jsonObject.put("ChannelName","asdasd");
+        jsonObject.put("Subscribers",23);
+
+        JSONArray PlaylistNamejsonArray=GettingJsonArrayOfPlaylistNames(username);
+        jsonObject.put("Playlists",PlaylistNamejsonArray);
+      return jsonObject;
+    }
+
+    private static JSONArray GettingJsonArrayOfPlaylistNames(String username) {
+        JSONArray jsonArray=new JSONArray();
+
+        jsonArray.put("chanter");
+        jsonArray.put("dormir");
+        jsonArray.put("laver");
+        jsonArray.put("coucher");
+
+        return jsonArray;
+    }
+
+    ;
     public static Boolean LogIn(String username, String password) {
         //TODO
         return true;
@@ -36,8 +62,6 @@ public class expextedDatabase {
         MainJsonObject.put("LikeOfThisUser",true);
         MainJsonObject.put("DislikeOfThisUser",false);
         MainJsonObject.put("Comments",GetJsonArrayOfGettingTheMessageIDsAndTheMessageIDsThatTheyRepliedTo(VPCID, Username));
-
-
         return MainJsonObject;
     }
 
@@ -72,6 +96,7 @@ public class expextedDatabase {
         o1.put("VideoName","alla");
         o1.put("ChannelName","sddsfd");
         o1.put("NumberOfView",2837);
+//        o1.put("CapuredImage",)
         JSONObject o2=new JSONObject();
         o2.put("VPCID",27);
         o2.put("VideoName","afa");
@@ -84,4 +109,103 @@ public class expextedDatabase {
         return jsonArray;
     }
 
+
+    public static Boolean CreatingChannel(String parameter1, String parameter2) {
+        return true;
+    }
+
+    public static Boolean CreatingPlaylist(String parameter1, String parameter2) {return false;}
+    public static JSONArray TrendVPCIDForHomePage(){
+        //give top 9 trend Video:
+        //[{"VPCID":---,"VideoName":---,"ChannelName":---,"NumberOfView":---},{},{},...]
+        JSONArray jsonArray=new JSONArray();
+
+        JSONObject o1=new JSONObject();
+        o1.put("VPCID",987);
+        o1.put("VideoName","alex in heaven");
+        o1.put("ChannelName","bad boys");
+        o1.put("NumberOfView",23);
+        jsonArray.put(o1);
+        JSONObject o2=new JSONObject();
+        o2.put("VPCID",987);
+        o2.put("VideoName","alex in heaven");
+        o2.put("ChannelName","bad boys");
+        o2.put("NumberOfView",23);
+        jsonArray.put(o2);
+        JSONObject o3=new JSONObject();
+        o3.put("VPCID",987);
+        o3.put("VideoName","alex in heaven");
+        o3.put("ChannelName","bad boys");
+        o3.put("NumberOfView",23);
+        jsonArray.put(o3);
+        JSONObject o4=new JSONObject();
+        o4.put("VPCID",987);
+        o4.put("VideoName","alex in heaven");
+        o4.put("ChannelName","bad boys");
+        o4.put("NumberOfView",23);
+        jsonArray.put(o4);
+        JSONObject o5=new JSONObject();
+        o5.put("VPCID",987);
+        o5.put("VideoName","alex in heaven");
+        o5.put("ChannelName","bad boys");
+        o5.put("NumberOfView",23);
+        jsonArray.put(o5);
+        JSONObject o6=new JSONObject();
+        o6.put("VPCID",987);
+        o6.put("VideoName","alex in heaven");
+        o6.put("ChannelName","bad boys");
+        o6.put("NumberOfView",23);
+        jsonArray.put(o6);
+        JSONObject o7=new JSONObject();
+        o7.put("VPCID",987);
+        o7.put("VideoName","alex in heaven");
+        o7.put("ChannelName","bad boys");
+        o7.put("NumberOfView",23);
+        jsonArray.put(o7);
+        JSONObject o8=new JSONObject();
+        o8.put("VPCID",987);
+        o8.put("VideoName","alex in heaven");
+        o8.put("ChannelName","bad boys");
+        o8.put("NumberOfView",23);
+        jsonArray.put(o8);
+        JSONObject o9=new JSONObject();
+        o9.put("VPCID",987);
+        o9.put("VideoName","alex in heaven");
+        o9.put("ChannelName","bad boys");
+        o9.put("NumberOfView",23);
+        jsonArray.put(o9);
+
+        return jsonArray;
+    }
+    public static JSONArray gettingAllVPCI(String channelName,String playlistName){
+        //[{"VPCID":---,"VideoName":---,"ChannelName":---,"NumberOfView":---},{},{},...]
+        JSONArray jsonArray=new JSONArray();
+
+        JSONObject o1=new JSONObject();
+        o1.put("VPCID",987);
+        o1.put("VideoName","alex in heaven");
+        o1.put("ChannelName","sd");
+        o1.put("NumberOfView",23);
+        jsonArray.put(o1);
+        JSONObject o2=new JSONObject();
+        o2.put("VPCID",987);
+        o2.put("VideoName","alex in heaven");
+        o2.put("ChannelName","sd");
+        o2.put("NumberOfView",23);
+        jsonArray.put(o2);
+        JSONObject o3=new JSONObject();
+        o3.put("VPCID",987);
+        o3.put("VideoName","alex in heaven");
+        o3.put("ChannelName","sd");
+        o3.put("NumberOfView",23);
+        jsonArray.put(o3);
+        JSONObject o4=new JSONObject();
+        o4.put("VPCID",987);
+        o4.put("VideoName","alex in heaven");
+        o4.put("ChannelName","sd");
+        o4.put("NumberOfView",23);
+        jsonArray.put(o4);
+
+        return jsonArray;
+    }
 }

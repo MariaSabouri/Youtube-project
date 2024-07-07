@@ -8,22 +8,39 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" style="-fx-background-color: black;" vgap="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.SignUpController">
+<GridPane alignment="center" hgap="10" prefHeight="540.0" prefWidth="860.0" style="-fx-background-color: white;" vgap="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.Controllers.SignUpLoginHomeControllers.SignUpController">
     <padding>
         <Insets bottom="25" left="25" right="25" top="25" />
     </padding>
 
-    <Label text="Username:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-    <TextField fx:id="usernameField" style="-fx-pref-width: 200px;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+          <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <font>
+         <Font name="System Bold" size="17.0" />
+      </font>
+   </Label>
+    <TextField fx:id="usernameField" prefHeight="39.0" style="-fx-pref-width: 200px; -fx-pref-height: 40;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-    <Label text="Password:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-    <PasswordField fx:id="passwordField" style="-fx-pref-width: 200px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+      <font>
+         <Font name="System Bold" size="17.0" />
+      </font></Label>
+    <PasswordField fx:id="passwordField" prefHeight="44.0" style="-fx-pref-width: 200px; -fx-pref-height: 40;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-    <Button fx:id="signUpButton" style="-fx-background-color: #ff0000; -fx-text-fill: white; -fx-font-size: 14px;" text="Sign Up" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <Button fx:id="signUpButton" prefWidth="81.0" style="-fx-background-color: #ff0000; -fx-text-fill: white;" text="Sign Up" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <font>
+         <Font name="System Bold" size="16.0" />
+      </font></Button>
 
-    <Label text="Already have an account?" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-    <Button fx:id="loginButton" style="-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-underline: true;" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <Label text="Already have an account?" GridPane.columnIndex="0" GridPane.rowIndex="4">
+      <font>
+         <Font size="13.0" />
+      </font></Label>
+    <Button fx:id="loginButton" style="-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-underline: true;" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <font>
+         <Font size="13.0" />
+      </font></Button>
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints />

@@ -12,6 +12,17 @@ module com.example.youtube {
     opens com.example.youtube.Server to javafx.fxml;
     exports com.example.youtube.Client;
     opens com.example.youtube.Client to javafx.fxml;
-//    exports com.example.youtube.Client.Controllers;
-//    opens com.example.youtube.Client.Controllers to javafx.fxml;
+    exports com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers;
+    opens com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers to javafx.fxml;
+    exports com.example.youtube.Client.Controllers.Channels.ChannelsConltrollers;
+    opens com.example.youtube.Client.Controllers.Channels.ChannelsConltrollers to javafx.fxml;
+    exports com.example.youtube.Client.Controllers.SearchbarController;
+    opens com.example.youtube.Client.Controllers.SearchbarController to javafx.fxml;
+    exports com.example.youtube.Client.Controllers.SignUpLoginHomeControllers;
+    opens com.example.youtube.Client.Controllers.SignUpLoginHomeControllers to javafx.fxml;
+    exports com.example.youtube.Client.Controllers.Channels.VideoViewControllers;
+    opens com.example.youtube.Client.Controllers.Channels.VideoViewControllers to javafx.fxml;
+    exports com.example.youtube.Client.Controllers;
+    opens com.example.youtube.Client.Controllers to javafx.fxml;
+
 }

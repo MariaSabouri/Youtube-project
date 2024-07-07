@@ -1,5 +1,7 @@
-package com.example.youtube.Client;
+package com.example.youtube.Client.Controllers.SearchbarController;
 
+import com.example.youtube.Client.ClientToServerConnection;
+import com.example.youtube.Client.UiController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
