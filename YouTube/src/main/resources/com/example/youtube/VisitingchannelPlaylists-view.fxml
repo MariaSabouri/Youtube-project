@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="461.0" prefWidth="629.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers.ChannelController">
+<BorderPane prefHeight="461.0" prefWidth="629.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.Controllers.Channels.ChannelsConltrollers.VisitingChannelPlaylist">
     <top>
         <HBox spacing="10" style="-fx-padding: 10; -fx-background-color: white;">
             <TextField fx:id="searchField" promptText="Search..." style="-fx-background-radius: 20;" HBox.hgrow="ALWAYS" />
@@ -16,7 +21,7 @@
         <VBox alignment="CENTER" spacing="10" style="-fx-padding: 10; -fx-background-color: white;">
             <Button fx:id="homeButton" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Home" />
             <Button fx:id="subscriptionButton" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Subscriptions" />
-         <Button mnemonicParsing="false" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="UploadVideo" />
+         <Button mnemonicParsing="false" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="CreatePlaylist" />
         </VBox>
     </left>
     <center>
@@ -46,8 +51,7 @@
                                 <center>
                                     <VBox alignment="CENTER" prefHeight="150.0" prefWidth="273.0" spacing="20.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
                                         <children>
-                                            <Label fx:id="video1" text="VideoName" />
-                                            <Label fx:id="view1" text="Number of view" />
+                                            <Label fx:id="Playlist1" />
                                         </children>
                                     </VBox>
                                 </center>
@@ -62,8 +66,7 @@
                                 <center>
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
                                         <children>
-                                            <Label fx:id="video2" text="Label" />
-                                            <Label fx:id="view2" text="Label" />
+                                            <Label fx:id="Playlist2" />
                                         </children>
                                     </VBox>
                                 </center>
@@ -75,8 +78,7 @@
                                 <center>
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
                                         <children>
-                                            <Label fx:id="video3" text="Label" />
-                                            <Label fx:id="view3" text="Label" />
+                                            <Label fx:id="Playlist3" />
                                         </children>
                                     </VBox>
                                 </center>
@@ -88,8 +90,7 @@
                                 <center>
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
                                         <children>
-                                            <Label fx:id="video4" text="Label" />
-                                            <Label fx:id="view4" text="Label" />
+                                            <Label fx:id="Playlist4" />
                                         </children>
                                     </VBox>
                                 </center>
@@ -101,8 +102,7 @@
                                 <center>
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
                                         <children>
-                                            <Label fx:id="video5" text="Label" />
-                                            <Label fx:id="view5" text="Label" />
+                                            <Label fx:id="Playlist5" />
                                         </children>
                                     </VBox>
                                 </center>
@@ -114,8 +114,7 @@
                                 <center>
                                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
                                         <children>
-                                            <Label fx:id="video6" text="Label" />
-                                            <Label fx:id="view6" text="Label" />
+                                            <Label fx:id="Playlist6" />
                                         </children>
                                     </VBox>
                                 </center>

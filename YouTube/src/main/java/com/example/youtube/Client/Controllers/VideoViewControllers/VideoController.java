@@ -1,4 +1,4 @@
-package com.example.youtube.Client;
+package com.example.youtube.Client.Controllers.VideoViewControllers;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -24,7 +24,6 @@ import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
@@ -385,12 +384,12 @@ public class VideoController implements Initializable {
     public void initialize() {
         titleLabel.setText("Video Title");
         descriptionLabel.setText("Video Description");
-
         likeButton.setOnAction(event -> handleLike());
         dislikeButton.setOnAction(event -> handleDislike());
         addToWatchLaterButton.setOnAction(event -> handleAddToWatchLater());
         channelButton.setOnAction(event -> handleShowChannel());
         subscribe.setOnAction(event -> handleSubscribe());
+
     }
 
     @FXML

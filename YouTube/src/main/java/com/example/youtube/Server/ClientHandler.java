@@ -27,7 +27,6 @@ public class ClientHandler implements Runnable{
     @Override
     public void run() {
         while (s.isConnected()){
-
             try {
                 String read=bufferedReader.readLine();
                 JSONObject jsonObject = new JSONObject(read);
