@@ -30,10 +30,11 @@ public class DataManager {
         int hashedInt = myUuid.hashCode();
         // Store hashedInt in an INT column in your database
         try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO VideoTable (VId, UserTable_UName, VName) VALUES (?, ?, ?)")) {
+
             stmt.setInt(1, hashedInt);
             stmt.setString(2, Username);
             stmt.setString(3, videoName);
-
+            System.out.println(stmt.toString());
             // Check if a video with the same name already exists for the user
             try (PreparedStatement checkStmt = conn.prepareStatement("SELECT COUNT(*) FROM VideoTable WHERE UserTable_UName = ? AND VName = ?")) {
                 checkStmt.setString(1, Username);
@@ -63,59 +64,60 @@ public class DataManager {
      * "true" is sent.
      */
 ///////INTEGER PASSWORD
-    public static Boolean SignUp(String Username,String email, String Password){
+    public static Boolean SignUp(String Username,String email, int Password){
         //TODO
-//        try (PreparedStatement checkStmt = conn.prepareStatement("SELECT COUNT(*) FROM UserTable WHERE UName = ?")) {
-//            checkStmt.setString(1, Username);
-//            try (ResultSet checkResult = checkStmt.executeQuery()) {
-//                if (checkResult.next() && checkResult.getInt(1) > 0) {
-//                    System.err.println("Error: Username already exists.");
-//                    return false; // Username already exists
-//                } else {
-//                    try (PreparedStatement insertStmt = conn.prepareStatement("INSERT INTO UserTable (UName, Pass) VALUES (?, ?)")) {
-//                        insertStmt.setString(1, Username);
-//                        insertStmt.setInt(2, Password);
-//                        int rowsAffected = insertStmt.executeUpdate();
-//                        if (rowsAffected > 0) {
-//                            System.out.println("User created successfully.");
-//                            return true; // User successfully created
-//                        } else {
-//                            System.err.println("Error: Unable to create user.");
-//                            return false;
-//                        }
-//                    }
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.err.println("Error during signup: " + e.getMessage());
-//        }
-//        return null; // Return null if there's an error
-        return false;
+        try (PreparedStatement checkStmt = conn.prepareStatement("SELECT COUNT(*) FROM UserTable WHERE UName = ?")) {
+            checkStmt.setString(1, Username);
+            try (ResultSet checkResult = checkStmt.executeQuery()) {
+                if (checkResult.next() && checkResult.getInt(1) > 0) {
+                    System.err.println("Error: Username already exists.");
+                    return false; // Username already exists
+                } else {
+                    try (PreparedStatement insertStmt = conn.prepareStatement("INSERT INTO UserTable (UName, Pass,channelName) VALUES (?, ?, ?)")) {
+                        insertStmt.setString(1, Username);
+                        insertStmt.setInt(2, Password);
+                        insertStmt.setString(3, email);
+                        int rowsAffected = insertStmt.executeUpdate();
+                        if (rowsAffected > 0) {
+                            System.out.println("User created successfully.");
+                            return true; // User successfully created
+                        } else {
+                            System.err.println("Error: Unable to create user.");
+                            return false;
+                        }
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error during signup: " + e.getMessage());
+        }
+        return null; // Return null if there's an error
+        //return false;
     }
     /**
      * this method returns "true" if this user exist;else it returns false
      * @param password this parameter is converting to Integer for fetching data in database
      */
 
-    public static Boolean LogIn(String username, String password) {
+    public static Boolean LogIn(String username, int password) {
         //TODO
-//        try (PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) FROM UserTable WHERE UName = ? AND Pass = ?")) {
-//            stmt.setString(1, username);
-//            stmt.setInt(2, Integer.parseInt(password)); // Assuming password is a string, convert to integer
-//
-//            try (ResultSet result = stmt.executeQuery()) {
-//                if (result.next() && result.getInt(1) > 0) {
-//                    System.out.println("Login successful.");
-//                    return true; // User exists
-//                } else {
-//                    System.out.println("Login failed: Invalid username or password.");
-//                    return false; // User does not exist
-//                }
-//            }
-//        } catch (SQLException e) {
-//            System.err.println("Error during login: " + e.getMessage());
-//        }
-//        return null; // Return null if there's an error
+        try (PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(*) FROM UserTable WHERE UName = ? AND Pass = ?")) {
+            stmt.setString(1, username);
+            stmt.setInt(2, password); // Assuming password is a string, convert to integer
+
+            try (ResultSet result = stmt.executeQuery()) {
+                if (result.next() && result.getInt(1) > 0) {
+                    System.out.println("Login successful.");
+                    return true; // User exists
+                } else {
+                    System.out.println("Login failed: Invalid username or password.");
+                    return false; // User does not exist
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error during login: " + e.getMessage());
+        }
+       // Return null if there's an error
         return true;
     }
 
@@ -294,11 +296,14 @@ public class DataManager {
 //        //[{"PUID":---,"PUName":---},{},{},---]
 //        return null;
 //    }
-    public static void CreatNewPlaylistForAUser(String Username,String PUName){
-        try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO UserPlaylistTable (UserTable_UName, UserTable_ChannelName, PUName) VALUES (?, ?, ?)")) {
+    public static void CreatNewPlaylistForAUser(String Username,String CName,String PUName){
+        UUID myUuid = UUID.randomUUID();
+        int hashedInt = myUuid.hashCode();
+        try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO UserPlaylistTable (UserTable_UName, UserTable_ChannelName, PUName, PUID) VALUES (?, ?, ?, ?)")) {
             stmt.setString(1, Username);
-            stmt.setString(2, Username); // Assuming Username is also the channel name
+            stmt.setString(2, CName); // Assuming Username is also the channel name
             stmt.setString(3, PUName);
+            stmt.setInt(4,hashedInt);
 
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
@@ -311,9 +316,12 @@ public class DataManager {
         }
     }
     public static void insertAVPCIDToUserPlaylist(String PUID,String VPCID){
-        try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO UserVideoPlaylist (UserPlaylistTable_PUId, PlaylistChannelVideoTable_VPCId) VALUES (?, ?)")) {
+        UUID myUuid = UUID.randomUUID();
+        int hashedInt = myUuid.hashCode();
+        try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO UserVideoPlaylist (UserPlaylistTable_PUId, PlaylistChannelVideoTable_VPCId, VPUID ) VALUES (?, ?, ?)")) {
             stmt.setInt(1, Integer.parseInt(PUID)); // Assuming PUID is a string, convert to integer
             stmt.setInt(2, Integer.parseInt(VPCID)); // Assuming VPCID is a string, convert to integer
+            stmt.setInt(3,hashedInt);
 
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
@@ -357,11 +365,14 @@ public class DataManager {
             System.err.println("Error creating channel: " + e.getMessage());
         }
     }
-    public static void CreatingAplaylistForAChannel(String ChannelName,String PCName){
-        try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO ChannelPlaylistsTable (UserTable_UName, UserTable_ChannelName, PCName) VALUES (?, ?, ?)")) {
-            stmt.setString(1, ChannelName); // Assuming ChannelName is also the username
+    public static void CreatingAplaylistForAChannel(String ChannelName,String PCName, String UName){
+        UUID myUuid = UUID.randomUUID();
+        int hashedInt = myUuid.hashCode();
+        try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO ChannelPlaylistsTable (UserTable_UName, UserTable_ChannelName, PCName, PCID) VALUES (?, ?, ?, ?)")) {
+            stmt.setString(1, UName); // Assuming ChannelName is also the username
             stmt.setString(2, ChannelName);
             stmt.setString(3, PCName);
+            stmt.setInt(4,hashedInt);
 
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
@@ -419,10 +430,17 @@ public class DataManager {
         }
         return VPCIDs;
     }
-//    public static void main(String args[]) {
-//        openConnection();
-//        UploadingVideoForAChannelInSpecialPlaylist("String Username","String VideoName","String PCID");
-//    }
+    public static void main(String args[]) {
+        openConnection();
+        //InsertingVideoTo_VideoTable("l","String VideoName");
+        //System.out.println(LogIn("l",99));
+        //InsertingNewMessageForAVPC("VPCID", String username, String MessageIdToReply, String Message)
+        //CreatingAplaylistForAChannel("ll","ss", "l");
+        //CreatNewPlaylistForAUser("l","ll","hh");
+        //insertAVPCIDToUserPlaylist("11","22");
+       // ListingVPCIDForUserPlaylist("192577626");
+        CreatingAChannel("p","lll");
+    }
 
 
 
