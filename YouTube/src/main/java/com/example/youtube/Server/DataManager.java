@@ -8,14 +8,12 @@ import java.util.*;
 
 public class DataManager {
     //When Calling openConnection method,the connection with database will be connected
-    private static Connection conn; // Static variable to hold the connection
+    private static Connection conn;
     public static void openConnection(){
-        //TODO
         try {
-            // Replace with your actual database connection details
-            String url = "jdbc:postgresql://localhost:5432/postgres"; // PostgreSQL connection URL
-            String user = "postgres"; // Your PostgreSQL username
-            String password = "Faezeh@84"; // Your PostgreSQL password
+            String url = "jdbc:postgresql://localhost:5432/postgres";
+            String user = "postgres";
+            String password = "Faezeh@84";
 
             conn = DriverManager.getConnection(url, user, password);
             System.out.println("Database connection successful.");
