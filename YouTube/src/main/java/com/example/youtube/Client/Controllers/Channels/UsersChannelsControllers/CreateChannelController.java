@@ -76,6 +76,7 @@ public class CreateChannelController implements Initializable {
             jsonObject.put("Class","videoHandeling");
             jsonObject.put("videoHandelingFuctions","createUserFolder");
             jsonObject.put("Parameter1",UserInfo.getString("Username"));
+
             ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
 
             UiController.changingscene(stage,"homePage-view.fxml");

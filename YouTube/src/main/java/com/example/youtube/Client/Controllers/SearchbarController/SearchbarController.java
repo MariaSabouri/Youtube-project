@@ -49,6 +49,7 @@ public class SearchbarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SearchResultVbox.setSpacing(10);
+
         JSONArray jsonArray=getResuluJsonArray();
         int i = 1;
         for (Object child : SearchResultVbox.getChildren()) {
@@ -93,6 +94,8 @@ public class SearchbarController implements Initializable {
                 i++;
             }
         }
+
+
 
 
 

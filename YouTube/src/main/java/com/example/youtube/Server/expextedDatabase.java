@@ -50,7 +50,7 @@ public class expextedDatabase {
         jsonArray.put("laver");
         jsonArray.put("coucher");
 
-        return jsonArray;
+        return null;
     }
 
     ;
@@ -187,7 +187,7 @@ public class expextedDatabase {
         o9.put("NumberOfView",23);
         jsonArray.put(o9);
 
-        return jsonArray;
+        return null;
     }
     public static JSONArray gettingAllUserVPCID(String Username,String playlistName){
         //[{"VPCID":---,"VideoName":---,"ChannelName":---,"NumberOfView":---},{},{},...]
@@ -223,7 +223,7 @@ public class expextedDatabase {
 
     public static void uploadindVideo(String Username, String PlaylistName, String VideoName) {
         //here for each record , we create a VPCID !!!!
-        //check if there exists suck VideoName,don't add a record in database
+        //check if there exists suck VideoName,don't add this record in database
     }
 
 }

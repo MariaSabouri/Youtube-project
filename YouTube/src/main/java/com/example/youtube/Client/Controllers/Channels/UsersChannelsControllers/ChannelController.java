@@ -84,47 +84,51 @@ public class ChannelController implements Initializable,ChannelInterface {
 
         final int IV_SIZE=105;
 
+        try {
+            for (int i=0;i<Array_videosForThisPlaylist.length();i++){
+                JSONObject jsonObject=Array_videosForThisPlaylist.getJSONObject(i);
+                BorderPane newBorderPane = new BorderPane();
 
-        for (int i=0;i<Array_videosForThisPlaylist.length();i++){
-            JSONObject jsonObject=Array_videosForThisPlaylist.getJSONObject(i);
-            BorderPane newBorderPane = new BorderPane();
+                newBorderPane.setId(String.valueOf(jsonObject.getInt("VPCID")));
 
-            newBorderPane.setId(String.valueOf(jsonObject.getInt("VPCID")));
+                ImageView newImageView = new ImageView(ChannelController.class.getResource("/com/example/youtube/videoTools/VideoImage.png").toString());
+                newImageView.setFitWidth(IV_SIZE);
+                newImageView.setFitHeight(IV_SIZE);
+                newBorderPane.setLeft(newImageView);
 
-            ImageView newImageView = new ImageView(ChannelController.class.getResource("/com/example/youtube/videoTools/VideoImage.png").toString());
-            newImageView.setFitWidth(IV_SIZE);
-            newImageView.setFitHeight(IV_SIZE);
-            newBorderPane.setLeft(newImageView);
+                Label videoName=new Label(jsonObject.getString("VideoName"));
+                videoName.setFont(new Font(14));
+                videoName.setPadding(new Insets(20,0,0,40));
+                Label numberOfView=new Label(String.valueOf(jsonObject.getInt("NumberOfView")));
+                numberOfView.setFont(new Font(14));
+                numberOfView.setPadding(new Insets(20,0,0,40));
 
-            Label videoName=new Label(jsonObject.getString("VideoName"));
-            videoName.setFont(new Font(14));
-            videoName.setPadding(new Insets(20,0,0,40));
-            Label numberOfView=new Label(String.valueOf(jsonObject.getInt("NumberOfView")));
-            numberOfView.setFont(new Font(14));
-            numberOfView.setPadding(new Insets(20,0,0,40));
+                VBox centerVBox = new VBox();
+                centerVBox.getChildren().add(videoName);
+                centerVBox.getChildren().add(numberOfView);
 
-            VBox centerVBox = new VBox();
-            centerVBox.getChildren().add(videoName);
-            centerVBox.getChildren().add(numberOfView);
+                newBorderPane.setCenter(centerVBox);
 
-            newBorderPane.setCenter(centerVBox);
+                SearchResultVbox.getChildren().add(newBorderPane);
 
-            SearchResultVbox.getChildren().add(newBorderPane);
+                newBorderPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        stage = (Stage) newBorderPane.getScene().getWindow();
 
-            newBorderPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    stage = (Stage) newBorderPane.getScene().getWindow();
-
-                    String jsonString = "{\"DataManager\":\"VPCIDInfo\",\"Parameter1\":\"" + jsonObject.getInt("VPCID") + "\",\"Parameter2\":\""+UiController.getUsername()+"\"}";
-                    JSONObject jsonObject=new JSONObject(jsonString);
-                    jsonObject.put("Class","database");
-                    CommonTools.setCurrentstage(stage);
-                    ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
-                }
-            });
+                        String jsonString = "{\"DataManager\":\"VPCIDInfo\",\"Parameter1\":\"" + jsonObject.getInt("VPCID") + "\",\"Parameter2\":\""+UiController.getUsername()+"\"}";
+                        JSONObject jsonObject=new JSONObject(jsonString);
+                        jsonObject.put("Class","database");
+                        CommonTools.setCurrentstage(stage);
+                        ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
+                    }
+                });
 
 
+            }
+
+        }catch (Exception e){
+            System.out.println("User does not have any video for this playlist");
         }
 
     }

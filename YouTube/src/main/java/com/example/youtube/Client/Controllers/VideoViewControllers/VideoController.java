@@ -1,6 +1,8 @@
 package com.example.youtube.Client.Controllers.VideoViewControllers;
 
 import com.example.youtube.Client.Controllers.ChannelInterface;
+import com.example.youtube.Client.Controllers.CommonTools;
+import com.example.youtube.Client.UiController;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
@@ -36,6 +38,7 @@ import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
 
 public class VideoController implements Initializable,ChannelInterface {
+    private static Stage stage;
 
     @FXML
     private Button postComment;
@@ -126,6 +129,12 @@ public class VideoController implements Initializable,ChannelInterface {
     private ImageView ivMute;
     private ImageView ivExit;
 
+    @FXML
+    private Label DisLikeLabel;
+
+    @FXML
+    private Label LikeLabel;
+
 
     private static JSONObject UserInfo;
     public static void setUserInfo(JSONObject userInfo) {
@@ -159,6 +168,21 @@ public class VideoController implements Initializable,ChannelInterface {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        titleLabel.setText(GetVPCIfo.getString("VideoName"));
+        LikeLabel.setText(String.valueOf(GetVPCIfo.getInt("NumberOfLike")));
+        DisLikeLabel.setText(String.valueOf(GetVPCIfo.getInt("NumberOfDislike")));
+
+        descriptionLabel.setText("");
+        likeButton.setOnAction(event -> handleLike());
+        dislikeButton.setOnAction(event -> handleDislike());
+        channelButton.setOnAction(event -> handleShowChannel());
+        subscribe.setOnAction(event -> handleSubscribe());
+
+
+
+
+
         final int IV_SIZE=25;
 
         mediaVideo=new Media(tempFile.toURI().toString());
@@ -430,19 +454,12 @@ public class VideoController implements Initializable,ChannelInterface {
     }
 
 
-    public void initialize() {
-        titleLabel.setText("Video Title");
-        descriptionLabel.setText("");
-        likeButton.setOnAction(event -> handleLike());
-        dislikeButton.setOnAction(event -> handleDislike());
-        addToWatchLaterButton.setOnAction(event -> handleAddToWatchLater());
-        channelButton.setOnAction(event -> handleShowChannel());
-        subscribe.setOnAction(event -> handleSubscribe());
-
-    }
 
     @FXML
     private void handleLike() {
+
+
+
         System.out.println("Liked!");
     }
 
@@ -451,15 +468,13 @@ public class VideoController implements Initializable,ChannelInterface {
         System.out.println("Disliked!");
     }
 
-    @FXML
-    private void handleAddToWatchLater() {
-        System.out.println("Added to Watch Later!");
-    }
+
 
     @FXML
     private void handleShowChannel() {
         System.out.println("Show Channel!");
     }
+
     @FXML
     private void handleSubscribe() {
         System.out.println("Subscribed!");
@@ -480,11 +495,24 @@ public class VideoController implements Initializable,ChannelInterface {
 
     @Override
     public void homeButtonhandler() {
+        stage = (Stage) home_button.getScene().getWindow();
+        UiController.changingscene(stage,"homePage-view.fxml");
 
     }
 
     @Override
     public void searchButtonhandler() {
+        stage = (Stage) searchButton.getScene().getWindow();
+        try {
+            String searchText = searchField.getText();
+            if (searchText.isEmpty()){
+                throw new IllegalArgumentException("Search Textfield is empty");
+            }
+            CommonTools.searchbarToll(searchText,stage);
+            searchField.clear();
+        }catch (IllegalArgumentException e){
+            CommonTools.showingError();
 
+        }
     }
 }

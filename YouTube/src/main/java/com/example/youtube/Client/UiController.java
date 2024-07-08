@@ -106,47 +106,52 @@ public class UiController {
 
 
     private void OrientingToAClassBuyServerResponse(String messageToRead) {
+        try {
+            JSONObject jsonObject = new JSONObject(messageToRead);
 
-        JSONObject jsonObject = new JSONObject(messageToRead);
+            String UiClass=jsonObject.getString("Class");
 
-        String UiClass=jsonObject.getString("Class");
+            if (UiClass.equals("LoginController")){
+                if (jsonObject.getBoolean("Response")==true){
+                    LoginController.goHomeView(true);
+                }else {LoginController.goHomeView(false);}
 
-        if (UiClass.equals("LoginController")){
-            if (jsonObject.getBoolean("Response")==true){
-                LoginController.goHomeView(true);
-            }else {LoginController.goHomeView(false);}
+            } else if (UiClass.equals("SignUpController")) {
+                if (jsonObject.getBoolean("Response")==true){
+                    SignUpController.goHomeView(true);
+                }else{SignUpController.goHomeView(false);}
 
-        } else if (UiClass.equals("SignUpController")) {
-            if (jsonObject.getBoolean("Response")==true){
-                SignUpController.goHomeView(true);
-            }else{SignUpController.goHomeView(false);}
+            } else if (UiClass.equals("commonToolSearchBar")) {
+                CommonTools.goSeachview(jsonObject.getJSONArray("Response"));
 
-        } else if (UiClass.equals("commonToolSearchBar")) {
-            CommonTools.goSeachview(jsonObject.getJSONArray("Response"));
+            }else if (UiClass.equals("CommonTools/goVideoView")) {
+                CommonTools.goVideoView(jsonObject.getJSONObject("Response"));
 
-        }else if (UiClass.equals("CommonTools/goVideoView")) {
-            CommonTools.goVideoView(jsonObject.getJSONObject("Response"));
+            }  else if (UiClass.equals("HomePageController/YourChannel")){
+                HomePageController.setGetUserInfo(jsonObject.getJSONObject("Response"));
 
-        }  else if (UiClass.equals("HomePageController/YourChannel")){
-            HomePageController.setGetUserInfo(jsonObject.getJSONObject("Response"));
+            } else if (UiClass.equals("CreateChannelController/SettingNameForChannel")) {
+                CreateChannelController.SettingNameForChannel(jsonObject.getBoolean("Response"));
 
-        } else if (UiClass.equals("CreateChannelController/SettingNameForChannel")) {
-            CreateChannelController.SettingNameForChannel(jsonObject.getBoolean("Response"));
+            } else if (UiClass.equals("ChannelPlaylistsController/SettingNameForPlaylist")) {
+                CreatePlaylist.SettingNameForPlaylist(jsonObject.getBoolean("Response"));
 
-        } else if (UiClass.equals("ChannelPlaylistsController/SettingNameForPlaylist")) {
-            CreatePlaylist.SettingNameForPlaylist(jsonObject.getBoolean("Response"));
+            } else if (UiClass.equals("HomePageController/setHomepageTrendVideos")) {
+                HomePageController.setHomepageTrendVideos(jsonObject.getJSONArray("Response"));
 
-        } else if (UiClass.equals("HomePageController/setHomepageTrendVideos")) {
-            HomePageController.setHomepageTrendVideos(jsonObject.getJSONArray("Response"));
+            }else if (UiClass.equals("ChannelController/VideosForThisPlaylist")) {
+                ChannelController.VideosForThisPlaylist(jsonObject.getJSONArray("Response"));
 
-        }else if (UiClass.equals("ChannelController/VideosForThisPlaylist")) {
-            ChannelController.VideosForThisPlaylist(jsonObject.getJSONArray("Response"));
+            } else if (UiClass.equals("CommonTools/getVideo")) {
+                System.out.println("sdfbb");
+                CommonTools.getVideo(jsonObject.getString("Response"));
+                System.out.println("sdf");
+            }
 
-        } else if (UiClass.equals("CommonTools/getVideo")) {
-            System.out.println("sdfbb");
-            CommonTools.getVideo(jsonObject.getString("Response"));
-            System.out.println("sdf");
+        }catch (Exception e){
+            System.out.println("May got null answer!");
         }
+
 
     }
 

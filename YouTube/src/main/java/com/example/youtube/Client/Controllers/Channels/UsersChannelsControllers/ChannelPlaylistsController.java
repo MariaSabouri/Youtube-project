@@ -68,49 +68,54 @@ public class ChannelPlaylistsController implements Initializable, ChannelInterfa
         searchButton.setOnAction(event -> searchButtonhandler());
         creatPlaylist.setOnAction(event -> creatPlaylisthandler());
 
-        JSONArray jsonArray=UserInfo.getJSONArray("Playlists");
+        try {
+            JSONArray jsonArray=UserInfo.getJSONArray("Playlists");
+            channelNameLabel.setText(UserInfo.getString("ChannelName"));
 
-        channelNameLabel.setText(UserInfo.getString("ChannelName"));
+            final int IV_SIZE=105;
 
-        final int IV_SIZE=105;
+            SearchResultVbox.setSpacing(10);
+            for (int i=0;i<jsonArray.length();i++){
+                BorderPane newBorderPane = new BorderPane();
+                newBorderPane.setId(jsonArray.getString(i));
 
-        SearchResultVbox.setSpacing(10);
-        for (int i=0;i<jsonArray.length();i++){
-            BorderPane newBorderPane = new BorderPane();
-            newBorderPane.setId(jsonArray.getString(i));
+                ImageView newImageView = new ImageView(getClass().getResource("/com/example/youtube/videoTools/playlist_image.jpg").toString());
+                newImageView.setFitWidth(IV_SIZE);
+                newImageView.setFitHeight(IV_SIZE);
+                newBorderPane.setLeft(newImageView);
 
-            ImageView newImageView = new ImageView(getClass().getResource("/com/example/youtube/videoTools/playlist_image.jpg").toString());
-            newImageView.setFitWidth(IV_SIZE);
-            newImageView.setFitHeight(IV_SIZE);
-            newBorderPane.setLeft(newImageView);
+                Label newLabel = new Label(jsonArray.getString(i));
 
-            Label newLabel = new Label(jsonArray.getString(i));
+                VBox centerVBox = new VBox();
+                newLabel.setFont(new Font(14));
+                newLabel.setPadding(new Insets(20,0,0,40));
+                centerVBox.getChildren().add(newLabel);
+                newBorderPane.setCenter(centerVBox);
 
-            VBox centerVBox = new VBox();
-            newLabel.setFont(new Font(14));
-            newLabel.setPadding(new Insets(20,0,0,40));
-            centerVBox.getChildren().add(newLabel);
-            newBorderPane.setCenter(centerVBox);
+                SearchResultVbox.getChildren().add(newBorderPane);
+                newBorderPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        stage = (Stage) newBorderPane.getScene().getWindow();
+                        ChannelController.setUserInfo(UserInfo);
+                        ChannelController.setPlaylistChoosen(newBorderPane.getId());
 
-            SearchResultVbox.getChildren().add(newBorderPane);
-            newBorderPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    stage = (Stage) newBorderPane.getScene().getWindow();
-                    ChannelController.setUserInfo(UserInfo);
-                    ChannelController.setPlaylistChoosen(newBorderPane.getId());
+                        JSONObject jsonObject=new JSONObject();
+                        jsonObject.put("Class","database");
+                        jsonObject.put("DataManager","gettingAllUserVPCID");
+                        jsonObject.put("Parameter1",UserInfo.getString("Username"));
+                        jsonObject.put("Parameter2",newBorderPane.getId());
+                        ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
 
-                    JSONObject jsonObject=new JSONObject();
-                    jsonObject.put("Class","database");
-                    jsonObject.put("DataManager","gettingAllUserVPCID");
-                    jsonObject.put("Parameter1",UserInfo.getString("Username"));
-                    jsonObject.put("Parameter2",newBorderPane.getId());
-                    ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
+                        UiController.changingscene(stage,"channel-view.fxml");
+                    }
+                });
+            }
+        }catch (Exception e){
+            System.out.println("User don't have any playlist!");
 
-                    UiController.changingscene(stage,"channel-view.fxml");
-                }
-            });
         }
+
     }
 
 

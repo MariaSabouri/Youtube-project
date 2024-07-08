@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.URL;
@@ -60,20 +61,27 @@ public class CreatePlaylist implements Initializable {
                 CommonTools.showingError();
             });
         }else {
-            UserInfo.getJSONArray("Playlists").put(PLaylistNameDecided);
-            System.out.println(UserInfo);
-            HomePageController.setGetUserInfo(UserInfo);
+            try {
+                UserInfo.getJSONArray("Playlists").put(PLaylistNameDecided);
+            }catch (Exception e){
+                JSONArray jsonArray=new JSONArray();
+                jsonArray.put(PLaylistNameDecided);
+                UserInfo.put("Playlists",jsonArray);
+            }finally {
+                HomePageController.setGetUserInfo(UserInfo);
 
 
-            JSONObject jsonObject=new JSONObject();
-            jsonObject.put("Class","videoHandeling");
-            jsonObject.put("videoHandelingFuctions","createUserPlaylistFolder");
-            jsonObject.put("Parameter1",UserInfo.getString("Username"));
-            jsonObject.put("Parameter2",PLaylistNameDecided);
-            ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
+                JSONObject jsonObject=new JSONObject();
+                jsonObject.put("Class","videoHandeling");
+                jsonObject.put("videoHandelingFuctions","createUserPlaylistFolder");
+                jsonObject.put("Parameter1",UserInfo.getString("Username"));
+                jsonObject.put("Parameter2",PLaylistNameDecided);
+                ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
 
 
-            UiController.changingscene(stage,"channelPlaylists-view.fxml");
+                UiController.changingscene(stage,"channelPlaylists-view.fxml");
+            }
+
 
         }
 
