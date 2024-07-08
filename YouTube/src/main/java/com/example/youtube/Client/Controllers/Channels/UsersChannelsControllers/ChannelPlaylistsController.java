@@ -4,6 +4,7 @@ import com.example.youtube.Client.ClientToServerConnection;
 import com.example.youtube.Client.Controllers.ChannelInterface;
 import com.example.youtube.Client.Controllers.CommonTools;
 import com.example.youtube.Client.UiController;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,11 +17,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import javafx.scene.control.ScrollPane;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -43,7 +46,6 @@ public class ChannelPlaylistsController implements Initializable, ChannelInterfa
 
     @FXML
     private ScrollPane ScrollPane;
-
 
     @FXML
     private Label subscribersLabel;
@@ -108,15 +110,10 @@ public class ChannelPlaylistsController implements Initializable, ChannelInterfa
                     UiController.changingscene(stage,"channel-view.fxml");
                 }
             });
-
-
-
         }
-
-
-
-
     }
+
+
 
     private void creatPlaylisthandler() {
         stage=(Stage) creatPlaylist.getScene().getWindow();

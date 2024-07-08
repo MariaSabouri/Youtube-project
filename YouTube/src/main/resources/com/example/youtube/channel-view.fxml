@@ -105,7 +105,7 @@
                         </font>
                      </Button>
                      <HBox prefHeight="11.0" prefWidth="157.0" />
-                     <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="185.0" style="-fx-background-color: white; -fx-border-color: silver;" text="UploadVideo">
+                     <Button fx:id="uploadVideo" mnemonicParsing="false" prefHeight="38.0" prefWidth="185.0" style="-fx-background-color: white; -fx-border-color: silver;" text="UploadVideo">
                         <font>
                            <Font name="System Bold" size="15.0" />
                         </font>

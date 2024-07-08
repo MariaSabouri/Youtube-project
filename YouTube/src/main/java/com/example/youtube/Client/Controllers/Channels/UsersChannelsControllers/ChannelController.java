@@ -16,10 +16,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -33,6 +35,9 @@ public class ChannelController implements Initializable,ChannelInterface {
 
     @FXML
     private Button searchButton;
+
+    @FXML
+    private Button uploadVideo;
 
     @FXML
     private Button subscriptionButton;
@@ -65,6 +70,7 @@ public class ChannelController implements Initializable,ChannelInterface {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         searchButton.setOnAction(event -> searchButtonhandler());
         homeButton.setOnAction(event -> homeButtonhandler());
+        uploadVideo.setOnAction(event -> uploadVideoHandler());
 
         channelNameLabel.setText(UserInfo.getString("ChannelName"));
         subscribersLabel.setText("Subscribers: ");
@@ -111,6 +117,25 @@ public class ChannelController implements Initializable,ChannelInterface {
 
 
         }
+
+    }
+
+    private void uploadVideoHandler() {
+        stage = (Stage) uploadVideo.getScene().getWindow();
+        final File[] fileToSend=new File[1];
+        uploadVideo.setOnAction(e->{
+
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open Resource File");
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("MP4 Files", "*.mp4"));
+
+            File selectedFile = fileChooser.showOpenDialog(stage);
+            if (selectedFile != null) {
+                fileToSend[0] = selectedFile;
+                System.out.println("File selected: " + fileToSend[0].getAbsolutePath());
+            }
+        });
+
 
     }
 
