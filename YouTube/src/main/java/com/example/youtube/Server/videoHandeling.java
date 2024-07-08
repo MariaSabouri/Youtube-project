@@ -1,8 +1,11 @@
 package com.example.youtube.Server;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.IOException;
+import java.util.Base64;
 
 public class videoHandeling {
     private static String basePath="D:\\Maria\\term4\\computer science\\java_programing\\HW\\YoutubeVideos";
@@ -39,5 +42,24 @@ public class videoHandeling {
     }
 
 
+    public static void UploadVideo(String username, String playlistName, String fileName, String fileContentBase64) {
+        try {
+            byte[] fileContentBytes = Base64.getDecoder().decode(fileContentBase64);
+            String filePath = basePath + "\\" + username + "\\" + playlistName + "\\" + fileName;
 
+            // Ensure the directory exists
+            File directory = new File(basePath + "\\" + username + "\\" + playlistName);
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+
+            try (FileOutputStream fileOutputStream = new FileOutputStream(filePath)) {
+                fileOutputStream.write(fileContentBytes);
+            }
+
+            System.out.println("File saved: " + filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

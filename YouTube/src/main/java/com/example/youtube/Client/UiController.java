@@ -24,6 +24,12 @@ import java.net.Socket;
 public class UiController {
     public static String Message;
 
+    private static int Port=6669;
+
+    public static int getPort() {
+        return Port;
+    }
+
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
@@ -39,7 +45,7 @@ public class UiController {
         try {
             try {
                 // Connecting Client to the server
-                this.socket= new Socket("localhost", 6669);
+                this.socket= new Socket("localhost", Port);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -79,14 +79,18 @@ public class RequestHandeling {
 
 
         else if (jsonObject.getString("Class").equals("videoHandeling")) {
-            String dvideoHandelingFuctions=jsonObject.getString("videoHandelingFuctions");
+            String videoHandelingFuctions=jsonObject.getString("videoHandelingFuctions");
 
-            if (Objects.equals(dvideoHandelingFuctions,"createUserFolder")){
+            if (Objects.equals(videoHandelingFuctions,"createUserFolder")){
                 videoHandeling.createUserFolder(jsonObject.getString("Parameter1"));
                 return null;
 
-            } else if (Objects.equals(dvideoHandelingFuctions,"createUserPlaylistFolder")) {
+            } else if (Objects.equals(videoHandelingFuctions,"createUserPlaylistFolder")) {
                 videoHandeling.createUserPlaylistFolder(jsonObject.getString("Parameter1"),jsonObject.getString("Parameter2"));
+                return null;
+
+            } else if (Objects.equals(videoHandelingFuctions,"UploadVideo")) {
+                videoHandeling.UploadVideo(jsonObject.getString("Parameter1"),jsonObject.getString("Parameter2"),jsonObject.getString("Parameter3"),jsonObject.getString("Parameter4"));
                 return null;
 
             }

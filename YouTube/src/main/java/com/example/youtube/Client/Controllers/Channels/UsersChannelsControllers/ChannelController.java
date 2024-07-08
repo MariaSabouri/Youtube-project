@@ -1,5 +1,6 @@
 package com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers;
 
+import com.example.youtube.Client.ClientToServerConnection;
 import com.example.youtube.Client.Controllers.ChannelInterface;
 import com.example.youtube.Client.Controllers.Channels.VideoViewControllers.VideoController;
 import com.example.youtube.Client.Controllers.CommonTools;
@@ -21,8 +22,13 @@ import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
+import java.util.Base64;
 import java.util.ResourceBundle;
 
 public class ChannelController implements Initializable,ChannelInterface {
@@ -109,7 +115,6 @@ public class ChannelController implements Initializable,ChannelInterface {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     stage = (Stage) newBorderPane.getScene().getWindow();
-                    ChannelController.setUserInfo(UserInfo);
                     VideoController.setGetVPCID(newBorderPane.getId());
                     UiController.changingscene(stage,"video-view.fxml");
                 }
@@ -133,16 +138,40 @@ public class ChannelController implements Initializable,ChannelInterface {
             if (selectedFile != null) {
                 fileToSend[0] = selectedFile;
                 System.out.println("File selected: " + fileToSend[0].getAbsolutePath());
+                SendingFileToServer(fileToSend[0]);
             }
         });
 
 
     }
 
+    private void SendingFileToServer(File file) {
+        try {
+            FileInputStream fileInputStream=new FileInputStream(file.getAbsoluteFile());
+            Socket socket=new Socket("localhost",UiController.getPort());
+
+            DataOutputStream dataOutputStream=new DataOutputStream(socket. getOutputStream());
+
+            String fileName=file.getName();
+
+            byte[] fileContentBytes = new byte[(int) file.length()];
+            fileInputStream.read(fileContentBytes);
+            String fileContentBase64 = Base64.getEncoder().encodeToString(fileContentBytes);
+
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("Class","videoHandeling");
+            jsonObject.put("videoHandelingFuctions","UploadVideo");
+            jsonObject.put("Parameter1",UserInfo.getString("Username"));
+            jsonObject.put("Parameter2",playlistName);
+            jsonObject.put("Parameter3",fileName);
+            jsonObject.put("Parameter4",fileContentBase64);
+            ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
 
 
-
-
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
 
     @Override
