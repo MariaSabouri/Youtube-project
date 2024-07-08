@@ -1,4 +1,4 @@
-package com.example.youtube.Client.Controllers.Channels.VideoViewControllers;
+package com.example.youtube.Client.Controllers.VideoViewControllers;
 
 import com.example.youtube.Client.Controllers.ChannelInterface;
 import javafx.beans.InvalidationListener;
@@ -26,7 +26,12 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
+import java.util.Base64;
 import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
 
@@ -127,9 +132,28 @@ public class VideoController implements Initializable,ChannelInterface {
         UserInfo = userInfo;
     }
 
-    private static String getVPCID;
-    public static void setGetVPCID(String getVPCID) {
-        VideoController.getVPCID = getVPCID;
+    private static JSONObject GetVPCIfo;
+    public static void setGetVPCID(JSONObject getVPCID) {
+        GetVPCIfo = getVPCID;
+//        System.out.println(getVPCID);
+    }
+
+
+    private static File tempFile;
+    public static void ReadfileContentBase64(String video){
+        byte[] fileContentBytes = Base64.getDecoder().decode(video);
+        try {
+            tempFile = File.createTempFile("tempvideo", ".mp4");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try (FileOutputStream fos = new FileOutputStream(tempFile)) {
+            fos.write(fileContentBytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -137,7 +161,7 @@ public class VideoController implements Initializable,ChannelInterface {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         final int IV_SIZE=25;
 
-        mediaVideo=new Media(getClass().getResource("/com/example/youtube/Videos/La Panthère rose.mp4").toString());
+        mediaVideo=new Media(tempFile.toURI().toString());
         mpVideo=new MediaPlayer(mediaVideo);
         mvVideo.setMediaPlayer(mpVideo);
 

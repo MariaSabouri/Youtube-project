@@ -1,7 +1,9 @@
 package com.example.youtube.Client.Controllers.SearchbarController;
 
 import com.example.youtube.Client.ClientToServerConnection;
+import com.example.youtube.Client.Controllers.CommonTools;
 import com.example.youtube.Client.Controllers.SignUpLoginHomeControllers.HomePageController;
+import com.example.youtube.Client.Controllers.VideoViewControllers.VideoController;
 import com.example.youtube.Client.UiController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -35,18 +37,14 @@ public class SearchbarController implements Initializable {
 
     @FXML
     private TextField searchField;
-    private static Node source;
+    private static Stage stage;
 
     public static void setResuluJsonArray(JSONArray jsonArray) {
         JsonArray=jsonArray;
     }
     private static JSONArray getResuluJsonArray(){return JsonArray;}
 
-    public static void goVideoView(JSONObject response) {
-        Stage stage = (Stage) source.getScene().getWindow();
-        UiController.changingscene(stage,"video-view.fxml");
 
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -81,11 +79,12 @@ public class SearchbarController implements Initializable {
                     videoNameLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
-                            source = (Node) event.getSource();
+                            stage=(Stage) videoNameLabel.getScene().getWindow();
 
                             String jsonString = "{\"DataManager\":\"VPCIDInfo\",\"Parameter1\":\"" + jsonObject.getInt("VPCID") + "\",\"Parameter2\":\""+UiController.getUsername()+"\"}";
                             JSONObject jsonObject1=new JSONObject(jsonString);
                             jsonObject1.put("Class","database");
+                            CommonTools.setCurrentstage(stage);
                             ClientToServerConnection.uiController.SetiMessage(jsonObject1.toString());
                         }
                     });

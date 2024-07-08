@@ -105,8 +105,6 @@ public class SignUpController implements Initializable {
     private void handleLogin(){
         stage = (Stage) loginButton.getScene().getWindow();
         UiController.changingscene(stage,"login-view.fxml");
-
-
     }
 
 }

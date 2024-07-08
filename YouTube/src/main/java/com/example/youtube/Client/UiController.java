@@ -124,10 +124,10 @@ public class UiController {
         } else if (UiClass.equals("commonToolSearchBar")) {
             CommonTools.goSeachview(jsonObject.getJSONArray("Response"));
 
-        } else if (UiClass.equals("video")) {
-            SearchbarController.goVideoView(jsonObject.getJSONObject("Response"));
+        }else if (UiClass.equals("CommonTools/goVideoView")) {
+            CommonTools.goVideoView(jsonObject.getJSONObject("Response"));
 
-        } else if (UiClass.equals("HomePageController/YourChannel")){
+        }  else if (UiClass.equals("HomePageController/YourChannel")){
             HomePageController.setGetUserInfo(jsonObject.getJSONObject("Response"));
 
         } else if (UiClass.equals("CreateChannelController/SettingNameForChannel")) {
@@ -135,12 +135,17 @@ public class UiController {
 
         } else if (UiClass.equals("ChannelPlaylistsController/SettingNameForPlaylist")) {
             CreatePlaylist.SettingNameForPlaylist(jsonObject.getBoolean("Response"));
+
         } else if (UiClass.equals("HomePageController/setHomepageTrendVideos")) {
             HomePageController.setHomepageTrendVideos(jsonObject.getJSONArray("Response"));
 
-        } else if (UiClass.equals("ChannelController/VideosForThisPlaylist")) {
+        }else if (UiClass.equals("ChannelController/VideosForThisPlaylist")) {
             ChannelController.VideosForThisPlaylist(jsonObject.getJSONArray("Response"));
 
+        } else if (UiClass.equals("CommonTools/getVideo")) {
+            System.out.println("sdfbb");
+            CommonTools.getVideo(jsonObject.getString("Response"));
+            System.out.println("sdf");
         }
 
     }

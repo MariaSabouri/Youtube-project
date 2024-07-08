@@ -59,13 +59,14 @@ public class expextedDatabase {
         return true;
     }
     public static JSONObject VPCIDInfo(String VPCID, String Username){
-        //{"Username":---,"VPCID":---,"VideoName":---,"ChannelName":---,"NumberOfView":---,"NumberOfLike":---,"NumberOfDislike":---,"DateOfIllustration":---,"LikeOfThisUser":---,"DislikeOfThisUser":---
+        //{"Username":---,"VPCID":---,"VideoName":---,"ChannelName":---,"PlaylistName":---,"NumberOfView":---,"NumberOfLike":---,"NumberOfDislike":---,"DateOfIllustration":---,"LikeOfThisUser":---,"DislikeOfThisUser":---
         // ,"Comments":[{messageId(With No reply To any messageId):[list of messageIds which reply this messageId]},{},{},...]}
         JSONObject MainJsonObject=new JSONObject();
         MainJsonObject.put("Username","lala");
         MainJsonObject.put("VPCID",78);
         MainJsonObject.put("VideoName","kjkj");
         MainJsonObject.put("ChannelName","kn");
+        MainJsonObject.put("PlaylistName","laplap");
         MainJsonObject.put("NumberOfView",324);
         MainJsonObject.put("NumberOfLike",3);
         MainJsonObject.put("NumberOfDislike",44);
@@ -219,4 +220,10 @@ public class expextedDatabase {
 
         return jsonArray;
     }
+
+    public static void uploadindVideo(String Username, String PlaylistName, String VideoName) {
+        //here for each record , we create a VPCID !!!!
+        //check if there exists suck VideoName,don't add a record in database
+    }
+
 }

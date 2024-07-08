@@ -1,5 +1,8 @@
 package com.example.youtube.Server;
+import org.json.JSONObject;
+
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -62,4 +65,33 @@ public class videoHandeling {
             e.printStackTrace();
         }
     }
+
+    public static String gettingVideoViaViedoNamePlaylistNamePublisher(String VideoName,String PlaylistName,String publisher){
+//        String filePath = basePath + "\\" + publisher + "\\" + PlaylistName + "\\" + VideoName;
+        String filePath ="D:\\Maria\\term4\\computer science\\java_programing\\HW\\Youtube-project\\YouTube\\src\\main\\resources\\com\\example\\youtube\\Videos\\La Panthère rose.mp4";
+
+        File file = new File(filePath);
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            byte[] fileContentBytes = new byte[(int) file.length()];
+            fileInputStream.read(fileContentBytes);
+            fileInputStream.close();
+
+            String fileContentBase64 = Base64.getEncoder().encodeToString(fileContentBytes);
+
+            return fileContentBase64;
+
+
+        }catch (IOException e){
+            e.printStackTrace();
+            return null;
+        }
+
+
+    }
+
+
+
+
 }

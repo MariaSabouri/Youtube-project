@@ -2,7 +2,7 @@ package com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers
 
 import com.example.youtube.Client.ClientToServerConnection;
 import com.example.youtube.Client.Controllers.ChannelInterface;
-import com.example.youtube.Client.Controllers.Channels.VideoViewControllers.VideoController;
+import com.example.youtube.Client.Controllers.VideoViewControllers.VideoController;
 import com.example.youtube.Client.Controllers.CommonTools;
 import com.example.youtube.Client.UiController;
 import javafx.event.EventHandler;
@@ -115,8 +115,12 @@ public class ChannelController implements Initializable,ChannelInterface {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     stage = (Stage) newBorderPane.getScene().getWindow();
-                    VideoController.setGetVPCID(newBorderPane.getId());
-                    UiController.changingscene(stage,"video-view.fxml");
+
+                    String jsonString = "{\"DataManager\":\"VPCIDInfo\",\"Parameter1\":\"" + jsonObject.getInt("VPCID") + "\",\"Parameter2\":\""+UiController.getUsername()+"\"}";
+                    JSONObject jsonObject=new JSONObject(jsonString);
+                    jsonObject.put("Class","database");
+                    CommonTools.setCurrentstage(stage);
+                    ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
                 }
             });
 

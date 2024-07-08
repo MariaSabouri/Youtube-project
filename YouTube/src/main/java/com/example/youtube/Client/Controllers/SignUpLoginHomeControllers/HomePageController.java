@@ -2,7 +2,7 @@ package com.example.youtube.Client.Controllers.SignUpLoginHomeControllers;
 
 import com.example.youtube.Client.ClientToServerConnection;
 import com.example.youtube.Client.Controllers.ChannelInterface;
-import com.example.youtube.Client.Controllers.Channels.VideoViewControllers.VideoController;
+import com.example.youtube.Client.Controllers.VideoViewControllers.VideoController;
 import com.example.youtube.Client.Controllers.CommonTools;
 import com.example.youtube.Client.UiController;
 import com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers.ChannelPlaylistsController;
@@ -103,8 +103,13 @@ public class HomePageController implements Initializable, ChannelInterface {
                 public void handle(MouseEvent mouseEvent) {
                     stage = (Stage) borderPane.getScene().getWindow();
                     VideoController.setUserInfo(UserInfo);
-                    VideoController.setGetVPCID(borderPane.getId());
-                    UiController.changingscene(stage,"video-view.fxml");
+
+                    String jsonString = "{\"DataManager\":\"VPCIDInfo\",\"Parameter1\":\"" + jsonObject1.getInt("VPCID") + "\",\"Parameter2\":\""+UiController.getUsername()+"\"}";
+                    JSONObject jsonObject=new JSONObject(jsonString);
+                    jsonObject.put("Class","database");
+
+                    CommonTools.setCurrentstage(stage);
+                    ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
                 }
             });
 
