@@ -17,6 +17,20 @@ public class videoHandeling {
         Path path=Paths.get(basePath,username);
         try {
             Files.createDirectories(path);
+            System.out.println("create a folder for"+username);
+
+        }catch (IOException e){
+            System.err.println("Failed to create directory: " + e.getMessage());
+        }
+
+    }
+    public static void createUserPlaylistFolder(String username,String PlaylistName){
+        Path path=Paths.get(basePath,username);
+        Path path1=Paths.get(String.valueOf(path),PlaylistName);
+
+        try {
+            Files.createDirectories(path1);
+            System.out.println("create a playlist folder for"+username);
 
         }catch (IOException e){
             System.err.println("Failed to create directory: " + e.getMessage());

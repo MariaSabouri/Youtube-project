@@ -151,6 +151,7 @@ public class HomePageController implements Initializable, ChannelInterface {
         if (UserInfo.getString("ChannelName").equals("")){
             CreateChannelController.setUserInfo(getUserInfo);
             UiController.changingscene(stage,"createChannel.fxml");
+
         }else {
             ChannelPlaylistsController.setUserInfo(getUserInfo);
             UiController.changingscene(stage,"channelPlaylists-view.fxml");

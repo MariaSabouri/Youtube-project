@@ -11,6 +11,7 @@ import java.util.Objects;
 public class RequestHandeling {
     public static JSONObject JsonHanldler(JSONObject jsonObject) {
         if (jsonObject.getString("Class").equals("database")){
+
             String databasefunction=jsonObject.getString("DataManager");
 
             if (Objects.equals(databasefunction, "LogIn")){
@@ -70,11 +71,24 @@ public class RequestHandeling {
                 return jsonObject1;
 
             }
-        } else if (jsonObject.getString("Class").equals("videoHandeling")) {
+        }
+
+
+
+
+
+
+        else if (jsonObject.getString("Class").equals("videoHandeling")) {
             String dvideoHandelingFuctions=jsonObject.getString("videoHandelingFuctions");
 
             if (Objects.equals(dvideoHandelingFuctions,"createUserFolder")){
-                videoHandeling.createUserFolder(jsonObject.getString("Username"));
+                videoHandeling.createUserFolder(jsonObject.getString("Parameter1"));
+                return null;
+
+            } else if (Objects.equals(dvideoHandelingFuctions,"createUserPlaylistFolder")) {
+                videoHandeling.createUserPlaylistFolder(jsonObject.getString("Parameter1"),jsonObject.getString("Parameter2"));
+                return null;
+
             }
 
         }

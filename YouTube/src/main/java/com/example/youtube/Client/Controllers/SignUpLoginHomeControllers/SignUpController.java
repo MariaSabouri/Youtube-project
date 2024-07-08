@@ -96,12 +96,6 @@ public class SignUpController implements Initializable {
             });
         }else {
 
-            JSONObject jsonObject=new JSONObject();
-            jsonObject.put("Class","videoHandeling");
-            jsonObject.put("videoHandelingFuctions","createUserFolder");
-            jsonObject.put("Username",Username);
-            ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
-
             UiController.changingscene(stage,"homePage-view.fxml");
         }
     }

@@ -24,7 +24,7 @@ public class expextedDatabase {
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("Username","Ali");
         jsonObject.put("Name","sala");
-        jsonObject.put("ChannelName","asdasd");
+        jsonObject.put("ChannelName","sfd");
         jsonObject.put("Subscribers",23);
 
         JSONArray Subscriptions=SubscriptionsJsonArray(username);
@@ -65,7 +65,7 @@ public class expextedDatabase {
         MainJsonObject.put("Username","lala");
         MainJsonObject.put("VPCID",78);
         MainJsonObject.put("VideoName","kjkj");
-        MainJsonObject.put("ChannelName","jhdskjsd");
+        MainJsonObject.put("ChannelName","kn");
         MainJsonObject.put("NumberOfView",324);
         MainJsonObject.put("NumberOfLike",3);
         MainJsonObject.put("NumberOfDislike",44);
@@ -125,7 +125,7 @@ public class expextedDatabase {
         return true;
     }
 
-    public static Boolean CreatingPlaylist(String parameter1, String parameter2) {return false;}
+    public static Boolean CreatingPlaylist(String parameter1, String parameter2) {return true;}
     public static JSONArray TrendVPCIDForHomePage(){
         //give top 9 trend Video:
         //[{"VPCID":---,"VideoName":---,"ChannelName":---,"NumberOfView":---},{},{},...]

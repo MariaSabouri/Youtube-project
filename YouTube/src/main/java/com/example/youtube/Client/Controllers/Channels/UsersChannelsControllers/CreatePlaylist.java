@@ -46,7 +46,7 @@ public class CreatePlaylist implements Initializable {
             String jsonString = "{\"DataManager\":\"CreatingPlaylist\",\"Parameter1\":\"" + ClientToServerConnection.uiController.getUsername() + "\",\"Parameter2\":\"" + PLaylistNameDecided + "\"}";
             JSONObject jsonObject=new JSONObject(jsonString);
             jsonObject.put("Class","database");
-            ClientToServerConnection.uiController.SetiMessage(jsonString);
+            ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
 
             PlaylistNameField.clear();
         }catch (IllegalArgumentException e){
@@ -63,6 +63,16 @@ public class CreatePlaylist implements Initializable {
             UserInfo.getJSONArray("Playlists").put(PLaylistNameDecided);
             System.out.println(UserInfo);
             HomePageController.setGetUserInfo(UserInfo);
+
+
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("Class","videoHandeling");
+            jsonObject.put("videoHandelingFuctions","createUserPlaylistFolder");
+            jsonObject.put("Parameter1",UserInfo.getString("Username"));
+            jsonObject.put("Parameter2",PLaylistNameDecided);
+            ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
+
+
             UiController.changingscene(stage,"channelPlaylists-view.fxml");
 
         }
