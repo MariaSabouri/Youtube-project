@@ -417,12 +417,6 @@ public class VideoController implements Initializable,ChannelInterface {
                 }
             }
         });
-
-
-
-
-
-
     }
 
     private void bindCurrentTimeLabel() {

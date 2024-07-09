@@ -53,7 +53,7 @@ public class CreateChannelController implements Initializable {
             throw new IllegalArgumentException("Textfield is empty");
         }
 
-        String jsonString = "{\"DataManager\":\"CreatingChannel\",\"Parameter1\":\"" + ClientToServerConnection.uiController.getUsername() + "\",\"Parameter2\":\"" + channelNameDecided + "\"}";
+        String jsonString = "{\"DataManager\":\"CreatingChannel\",\"Parameter1\":\"" + ClientToServerConnection.userInfo.getInfo().getString("Username") + "\",\"Parameter2\":\"" + channelNameDecided + "\"}";
         JSONObject jsonObject=new JSONObject(jsonString);
         jsonObject.put("Class","database");
         ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
@@ -79,7 +79,7 @@ public class CreateChannelController implements Initializable {
             JSONObject jsonObject=new JSONObject();
             jsonObject.put("Class","videoHandeling");
             jsonObject.put("videoHandelingFuctions","createUserFolder");
-            jsonObject.put("Parameter1",ClientToServerConnection.uiController.getUsername());
+            jsonObject.put("Parameter1",ClientToServerConnection.userInfo.getInfo().getString("Username"));
 
             ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
 

@@ -26,6 +26,7 @@ import org.json.JSONObject;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class HomePageController extends CommonTools implements Initializable, ChannelInterface {
@@ -140,19 +141,20 @@ public class HomePageController extends CommonTools implements Initializable, Ch
         SearchButton.setOnAction(event -> searchButtonhandler());
 
 
-
-
     }
-
-
-
-
 
 
     @FXML
     private void handleYourChannel() {
         stage = (Stage) yourChannel.getScene().getWindow();
-        UiController.changingscene(stage,"channelPlaylists-view.fxml");
+        try {
+            if (!Objects.equals(ClientToServerConnection.userInfo.getInfo().getString("ChannelName"), "")){
+                UiController.changingscene(stage,"channelPlaylists-view.fxml");
+            }else {throw new Exception("User doesn't have channel!");}
+
+        }catch (Exception e){
+            UiController.changingscene(stage,"createChannel.fxml");
+        }
 
     }
 

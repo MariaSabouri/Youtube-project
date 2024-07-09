@@ -88,6 +88,9 @@ public class RequestHandeling {
                 System.out.println("sended");
                 return jsonObject2;
 
+            } else if (Objects.equals(databasefunction,"UpdateLikeAndDislikeActionsOnDataBase")) {
+                expextedDatabase.UpdateLikeAndDislikeActionsOnDataBase(jsonObject.getJSONObject("Parameter1"));
+                return  null;
             }
         }
 

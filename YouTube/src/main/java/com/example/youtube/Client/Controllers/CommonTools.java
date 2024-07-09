@@ -111,7 +111,7 @@ public class CommonTools {
     public static void UpdateLikeAndDislikeActionsOnDataBase(JSONObject likeAndDislike) {
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("Class","database");
-        jsonObject.put("databasefunction","UpdateLikeAndDislikeActionsOnDataBase");
+        jsonObject.put("DataManager","UpdateLikeAndDislikeActionsOnDataBase");
         jsonObject.put("Parameter1",likeAndDislike);
         ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
 

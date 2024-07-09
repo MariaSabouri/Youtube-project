@@ -163,6 +163,11 @@ public class ChannelController implements Initializable,ChannelInterface {
 
             String fileName=file.getName();
 
+            long fileSize = file.length();
+            if (fileSize > Integer.MAX_VALUE) {
+                throw new IOException("File is too large to be processed");
+            }
+
             byte[] fileContentBytes = new byte[(int) file.length()];
             fileInputStream.read(fileContentBytes);
             String fileContentBase64 = Base64.getEncoder().encodeToString(fileContentBytes);

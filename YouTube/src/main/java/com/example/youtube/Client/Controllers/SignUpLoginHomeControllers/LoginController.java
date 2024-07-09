@@ -61,9 +61,13 @@ public class LoginController implements Initializable {
                 throw new IllegalArgumentException("Textfield is empty");
             }
             setUsername(username);
-            String jsonString = "{\"DataManager\":\"LogIn\",\"Parameter1\":\"" + username + "\",\"Parameter2\":\"" + password + "\"}";
-            JSONObject jsonObject=new JSONObject(jsonString);
+
+            JSONObject jsonObject=new JSONObject();
             jsonObject.put("Class","database");
+            jsonObject.put("DataManager","LogIn");
+            jsonObject.put("Parameter1",username);
+            jsonObject.put("Parameter2",password);
+
             ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
 
             UsernameField.clear();
@@ -82,6 +86,7 @@ public class LoginController implements Initializable {
             });
         }else {
             CommonTools.setCurrentstage(stage);
+
             JSONObject jsonObject=new JSONObject();
             jsonObject.put("Class","database");
             jsonObject.put("DataManager","gettingUserInfo");

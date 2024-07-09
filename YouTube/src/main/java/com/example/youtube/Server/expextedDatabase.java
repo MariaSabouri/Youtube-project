@@ -4,10 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class expextedDatabase {
     public static void openConnection(){
@@ -24,7 +21,7 @@ public class expextedDatabase {
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("Username","Ali");
         jsonObject.put("Name","sala");
-        jsonObject.put("ChannelName","sfd");
+        jsonObject.put("ChannelName","");
         jsonObject.put("Subscribers",23);
 
         JSONArray Subscriptions=SubscriptionsJsonArray(username);

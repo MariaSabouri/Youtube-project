@@ -96,7 +96,7 @@ public class UiController {
                     try {
                         messageToRead=bufferedReader.readLine();
                         OrientingToAClassBuyServerResponse(messageToRead);
-//                        System.out.println(messageToRead);
+                        System.out.println(messageToRead);
                     }catch (IOException e){
                         CloseEveryThing(socket,bufferedReader,bufferedWriter);
                     }
