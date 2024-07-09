@@ -225,5 +225,8 @@ public class expextedDatabase {
         //here for each record , we create a VPCID !!!!
         //check if there exists suck VideoName,don't add this record in database
     }
+    public static void ViewCounterForVPCID(String VPCID, String Username) {
+        //Add this User To UserLikeAndDislikeAction
+    }
 
 }
