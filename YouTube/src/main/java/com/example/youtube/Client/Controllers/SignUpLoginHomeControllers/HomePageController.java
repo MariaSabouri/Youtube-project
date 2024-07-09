@@ -102,7 +102,7 @@ public class HomePageController extends CommonTools implements Initializable, Ch
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     stage = (Stage) borderPane.getScene().getWindow();
-//                    VideoController.setUserInfo(UserInfo);
+
 
                     String jsonString = "{\"DataManager\":\"VPCIDInfo\",\"Parameter1\":\"" + jsonObject1.getInt("VPCID") + "\",\"Parameter2\":\""+UiController.getUsername()+"\"}";
                     JSONObject jsonObject=new JSONObject(jsonString);

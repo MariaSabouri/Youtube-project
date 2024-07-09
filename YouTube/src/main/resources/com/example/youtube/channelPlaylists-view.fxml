@@ -186,7 +186,7 @@
                     <HBox prefHeight="42.0" prefWidth="663.0">
                         <children>
                             <VBox prefHeight="34.0" prefWidth="66.0" />
-                            <Button fx:id="SubscribeButton" mnemonicParsing="false" style="-fx-background-color: red; -fx-background-radius: 20;" text="Subscribe">
+                            <Button fx:id="SubscribeButton" mnemonicParsing="false" style="-fx-background-color: red; -fx-background-radius: 20;" text="Subscribe" visible="false">
                                 <font>
                                     <Font name="System Bold" size="14.0" />
                                 </font>

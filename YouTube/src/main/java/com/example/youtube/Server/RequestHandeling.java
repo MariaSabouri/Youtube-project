@@ -74,6 +74,11 @@ public class RequestHandeling {
                 jsonObject1.put("Response",jsonArray);
                 return jsonObject1;
 
+            } else if (Objects.equals(databasefunction,"ViewCounterForVPCID")) {
+                DataManager.ViewCounterForVPCID(jsonObject.getString("Parameter1"),jsonObject.getString("Parameter2"));
+                System.out.println("done!");
+                return null;
+
             }
         }
 

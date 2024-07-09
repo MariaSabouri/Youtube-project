@@ -2,6 +2,7 @@ package com.example.youtube.Client.Controllers.VideoViewControllers;
 
 import com.example.youtube.Client.ClientToServerConnection;
 import com.example.youtube.Client.Controllers.ChannelInterface;
+import com.example.youtube.Client.Controllers.Channels.ChannelsConltrollers.VisitingChannelPlaylist;
 import com.example.youtube.Client.Controllers.CommonTools;
 import com.example.youtube.Client.UiController;
 import javafx.beans.InvalidationListener;
@@ -135,9 +136,11 @@ public class VideoController implements Initializable,ChannelInterface {
 
     @FXML
     private Label LikeLabel;
+    @FXML
+    private Label views;
 
 
-    private static JSONObject UserInfo= ClientToServerConnection.userInfo.getInfo();
+    private static JSONObject UserInfo;
 
 
     private static JSONObject GetVPCIfo;
@@ -167,13 +170,17 @@ public class VideoController implements Initializable,ChannelInterface {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ViewCounterForVPCID();
+        UserInfo= ClientToServerConnection.userInfo.getInfo();
 
         titleLabel.setText(GetVPCIfo.getString("VideoName"));
         LikeLabel.setText(String.valueOf(GetVPCIfo.getInt("NumberOfLike")));
         DisLikeLabel.setText(String.valueOf(GetVPCIfo.getInt("NumberOfDislike")));
-
+        channelButton.setText(GetVPCIfo.getString("ChannelName"));
+        views.setText(String.valueOf(1+GetVPCIfo.getInt("NumberOfView")));
         descriptionLabel.setText("");
+
+        home_button.setOnAction(event -> homeButtonhandler());
+        searchButton.setOnAction(event -> searchButtonhandler());
         likeButton.setOnAction(event -> handleLike());
         dislikeButton.setOnAction(event -> handleDislike());
         channelButton.setOnAction(event -> handleShowChannel());
@@ -409,13 +416,6 @@ public class VideoController implements Initializable,ChannelInterface {
 
     }
 
-    private void ViewCounterForVPCID() {
-//        JSONObject jsonObject=new JSONObject();
-//        jsonObject.put("Class","database");
-//        jsonObject.put("DataManager","ViewCounterForVPCID");
-//        jsonObject.put("Parameter1")
-        //todo
-    }
 
     private void bindCurrentTimeLabel() {
         labelCurrentTime.textProperty().bind(Bindings.createStringBinding(new Callable<String>() {
@@ -462,7 +462,6 @@ public class VideoController implements Initializable,ChannelInterface {
     }
 
 
-
     @FXML
     private void handleLike() {
         System.out.println("Liked!");
@@ -478,11 +477,17 @@ public class VideoController implements Initializable,ChannelInterface {
     @FXML
     private void handleShowChannel() {
         System.out.println("Show Channel!");
+//        VisitingChannelPlaylist.
+
     }
 
     @FXML
     private void handleSubscribe() {
         System.out.println("Subscribed!");
+//        JSONObject jsonObject=new JSONObject();
+//        jsonObject.put("Class","database");
+//        jsonObject.put("DataManager",)
+
     }
 
     @FXML

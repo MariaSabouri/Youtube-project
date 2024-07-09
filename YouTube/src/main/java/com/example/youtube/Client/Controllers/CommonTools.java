@@ -24,10 +24,12 @@ public class CommonTools {
         ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
 
     }
+
     public static void goSeachview(JSONArray jsonArray){
         UiController.changingscene(Currentstage,"SearchbarResullt-view.fxml");
         SearchbarController.setResuluJsonArray(jsonArray);
     }
+
     public static void showingError(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -52,29 +54,19 @@ public class CommonTools {
         ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
 
 
-    }
-    public static void getVideo(String video){
+        JSONObject jsonObject1=new JSONObject();
+        jsonObject1.put("Class","database");
+        jsonObject1.put("DataManager","ViewCounterForVPCID");
+        jsonObject1.put("Parameter2",response.getString("VPCID"));
+        jsonObject1.put("Parameter2",ClientToServerConnection.userInfo.getInfo().getString("Username"));
+        ClientToServerConnection.uiController.SetiMessage(jsonObject1.toString());
 
+
+    }
+
+    public static void getVideo(String video){
         VideoController.ReadfileContentBase64(video);
         UiController.changingscene(Currentstage,"video-view.fxml");
     }
-    public static void GetUserInfo(){
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("Class","database");
-        jsonObject.put("DataManager","gettingUserInfo");
-        jsonObject.put("Parameter1", ClientToServerConnection.uiController.getUsername());
-        ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
-
-    }
-
-
-    private static JSONObject UserInfoJson;
-    public static void setUsername(JSONObject jsonObject){
-        ClientToServerConnection.userInfo.setInfo(jsonObject);
-    }
-
-
-
-
 
 }
