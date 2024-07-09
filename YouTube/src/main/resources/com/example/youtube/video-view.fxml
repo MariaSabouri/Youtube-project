@@ -283,24 +283,31 @@
                                             <HBox prefHeight="12.0" prefWidth="39.0" />
                                         </children>
                                     </VBox>
-                                      <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                      <ImageView fx:id="LikeButton" fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                                           <image>
                                               <Image url="@video pics/like_image.jpg" />
                                           </image>
                                       </ImageView>
                                     <Button fx:id="likeButton" prefHeight="38.0" prefWidth="77.0" style="-fx-background-color: white; -fx-text-fill: white; -fx-background-radius: 30; -fx-padding: 0;" text="Like">
                               <graphic>
-                                 <Label fx:id="LikeLabel" prefHeight="44.0" prefWidth="59.0" text="Like" textAlignment="CENTER" />
+                                 <Label fx:id="LikeLabel" prefHeight="44.0" prefWidth="59.0" text="Like" textAlignment="CENTER">
+                                    <font>
+                                       <Font name="System Bold" size="26.0" />
+                                    </font>
+                                 </Label>
                               </graphic>
                                     </Button>
-                                      <ImageView fitHeight="42.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                      <ImageView fx:id="DislikeButton" fitHeight="42.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                                           <image>
                                               <Image url="@video pics/dislike_image.jpg" />
                                           </image>
                                       </ImageView>
                                     <Button fx:id="dislikeButton" prefHeight="42.0" prefWidth="79.0" style="-fx-background-color: white; -fx-text-fill: white; -fx-background-radius: 30; -fx-padding: 0;">
                               <graphic>
-                                 <Label fx:id="DisLikeLabel" prefHeight="42.0" prefWidth="59.0" text="Dislike" />
+                                 <Label fx:id="DisLikeLabel" prefHeight="42.0" prefWidth="59.0" text="Dislike">
+                                    <font>
+                                       <Font name="System Bold" size="26.0" />
+                                    </font></Label>
                               </graphic>
                                     </Button>
                                     <ImageView fitHeight="39.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">

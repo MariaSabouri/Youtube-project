@@ -26,6 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.json.JSONObject;
@@ -119,6 +120,7 @@ public class VideoController implements Initializable,ChannelInterface {
 
     @FXML
     private Slider sliderVolume;
+
     private Boolean atEndOfVideo=false;
     private Boolean isPlaying=false;
     private Boolean isMuted=true;
@@ -142,11 +144,14 @@ public class VideoController implements Initializable,ChannelInterface {
 
     private static JSONObject UserInfo;
 
+    private static JSONObject likeAndDislike;
+    public static void setLikeAndDislikeStatistics(JSONObject likeAndDislikeStatistics) {
+        likeAndDislike=likeAndDislikeStatistics;
+    }
 
     private static JSONObject GetVPCIfo;
     public static void setGetVPCID(JSONObject getVPCID) {
         GetVPCIfo = getVPCID;
-//        System.out.println(getVPCID);
     }
 
 
@@ -166,10 +171,7 @@ public class VideoController implements Initializable,ChannelInterface {
         }
 
     }
-    private static JSONObject likeAndDislike;
-    public static void setLikeAndDislikeStatistics(JSONObject likeAndDislikeStatistics) {
-        likeAndDislike=likeAndDislikeStatistics;
-    }
+
 
 
     @Override
@@ -177,8 +179,11 @@ public class VideoController implements Initializable,ChannelInterface {
         UserInfo= ClientToServerConnection.userInfo.getInfo();
 
         titleLabel.setText(GetVPCIfo.getString("VideoName"));
-        LikeLabel.setText(String.valueOf(GetVPCIfo.getInt("NumberOfLike")));
-        DisLikeLabel.setText(String.valueOf(GetVPCIfo.getInt("NumberOfDislike")));
+
+        LikeLabel.setText(String.valueOf(likeAndDislike.getInt("NumberOfLike")));
+        DisLikeLabel.setText(String.valueOf(likeAndDislike.getInt("NumberOfDislike")));
+        setInitialColorForLikeAndDislike();
+
         channelButton.setText(GetVPCIfo.getString("ChannelName"));
         views.setText(String.valueOf(1+GetVPCIfo.getInt("NumberOfView")));
         descriptionLabel.setText("");
@@ -420,7 +425,6 @@ public class VideoController implements Initializable,ChannelInterface {
 
     }
 
-
     private void bindCurrentTimeLabel() {
         labelCurrentTime.textProperty().bind(Bindings.createStringBinding(new Callable<String>() {
             @Override
@@ -464,16 +468,59 @@ public class VideoController implements Initializable,ChannelInterface {
 
         }
     }
+    private void setInitialColorForLikeAndDislike() {
+        if (likeAndDislike.getBoolean("Like")==true){
+            LikeLabel.setTextFill(Color.GOLD);
+        } else if (likeAndDislike.getBoolean("DisLike")==true) {
+            DisLikeLabel.setTextFill(Color.GOLD);
+        }
+    }
 
 
     @FXML
     private void handleLike() {
-        System.out.println("Liked!");
+        if (!likeAndDislike.getBoolean("Like")){
+            if (likeAndDislike.getBoolean("DisLike")){
+                likeAndDislike.put("DisLike",false);
+                DisLikeLabel.setTextFill(Color.BLACK);
+                DisLikeLabel.setText(String.valueOf(likeAndDislike.getInt("NumberOfDislike")-1));
+                likeAndDislike.put("NumberOfDislike",likeAndDislike.getInt("NumberOfDislike")-1);
+            }
+            LikeLabel.setText(String.valueOf(likeAndDislike.getInt("NumberOfLike")+1));
+            likeAndDislike.put("NumberOfLike",likeAndDislike.getInt("NumberOfLike")+1);
+            LikeLabel.setTextFill(Color.GOLD);
+
+        }else {LikeLabel.setTextFill(Color.BLACK);
+            LikeLabel.setText(String.valueOf(likeAndDislike.getInt("NumberOfLike")-1));
+            likeAndDislike.put("NumberOfLike",likeAndDislike.getInt("NumberOfLike")-1);}
+
+        likeAndDislike.put("Like",!likeAndDislike.getBoolean("Like"));
+
+        CommonTools.UpdateLikeAndDislikeActionsOnDataBase(likeAndDislike);
+        System.out.println(likeAndDislike);
     }
 
     @FXML
     private void handleDislike() {
-        System.out.println("Disliked!");
+        if (!likeAndDislike.getBoolean("DisLike")){
+            if (likeAndDislike.getBoolean("Like")){
+                likeAndDislike.put("Like",false);
+                LikeLabel.setTextFill(Color.BLACK);
+                LikeLabel.setText(String.valueOf(likeAndDislike.getInt("NumberOfLike")-1));
+                likeAndDislike.put("NumberOfLike",likeAndDislike.getInt("NumberOfLike")-1);
+            }
+            DisLikeLabel.setText(String.valueOf(likeAndDislike.getInt("NumberOfDislike")+1));
+            likeAndDislike.put("NumberOfDislike",likeAndDislike.getInt("NumberOfDislike")+1);
+            DisLikeLabel.setTextFill(Color.GOLD);
+
+        }else {DisLikeLabel.setTextFill(Color.BLACK);
+            DisLikeLabel.setText(String.valueOf(likeAndDislike.getInt("NumberOfDislike")-1));
+            likeAndDislike.put("NumberOfDislike",likeAndDislike.getInt("NumberOfDislike")-1);}
+
+        likeAndDislike.put("DisLike",!likeAndDislike.getBoolean("DisLike"));
+
+        CommonTools.UpdateLikeAndDislikeActionsOnDataBase(likeAndDislike);
+        System.out.println(likeAndDislike);
     }
 
 
@@ -486,13 +533,7 @@ public class VideoController implements Initializable,ChannelInterface {
     }
 
     @FXML
-    private void handleSubscribe() {
-        System.out.println("Subscribed!");
-//        JSONObject jsonObject=new JSONObject();
-//        jsonObject.put("Class","database");
-//        jsonObject.put("DataManager",)
-
-    }
+    private void handleSubscribe() {System.out.println("Subscribed!");}
 
     @FXML
     private void handlePostComment() {
@@ -510,6 +551,10 @@ public class VideoController implements Initializable,ChannelInterface {
     @Override
     public void homeButtonhandler() {
         stage = (Stage) home_button.getScene().getWindow();
+        if (mpVideo != null) {
+            mpVideo.stop();
+            mpVideo.dispose();
+        }
         UiController.changingscene(stage,"homePage-view.fxml");
 
     }

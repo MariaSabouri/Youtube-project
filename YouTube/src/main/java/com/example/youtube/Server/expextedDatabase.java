@@ -232,8 +232,18 @@ public class expextedDatabase {
         jsonObject.put("VPCID",22);
         jsonObject.put("UserName","ryan");
         jsonObject.put("Like",true);
+        jsonObject.put("NumberOfLike",2);
         jsonObject.put("DisLike",false);
+        jsonObject.put("NumberOfDislike",3);
         return jsonObject;
+
+    }
+
+    public static void UpdateLikeAndDislikeActionsOnDataBase(JSONObject jsonObject){
+        //jsonObject is like this:
+        //{"VPCID":22,"UserName":"ryan","Like":--,"DisLike":--}
+        //you should update UserLikeAndDislikeAction table
+
 
     }
 

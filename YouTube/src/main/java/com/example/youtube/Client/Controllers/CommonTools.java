@@ -39,6 +39,8 @@ public class CommonTools {
         alert.setContentText("Please fill in the textfield before pressing the button.");
         alert.showAndWait();
     }
+
+
 /////
     private static JSONObject VPCID;
     public static void goVideoView(JSONObject response) {
@@ -106,4 +108,12 @@ public class CommonTools {
     }
 
 
+    public static void UpdateLikeAndDislikeActionsOnDataBase(JSONObject likeAndDislike) {
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("Class","database");
+        jsonObject.put("databasefunction","UpdateLikeAndDislikeActionsOnDataBase");
+        jsonObject.put("Parameter1",likeAndDislike);
+        ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
+
+    }
 }

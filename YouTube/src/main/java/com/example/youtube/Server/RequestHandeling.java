@@ -114,13 +114,11 @@ public class RequestHandeling {
 
             } else if (Objects.equals(videoHandelingFuctions,"gettingVideoViaViedoNamePlaylistNamePublisher")) {
                 String Video=videoHandeling.gettingVideoViaViedoNamePlaylistNamePublisher(jsonObject.getString("Parameter1"),jsonObject.getString("Parameter2"),jsonObject.getString("Parameter3"));
-
                 JSONObject jsonObject1=new JSONObject();
                 jsonObject1.put("Class","CommonTools/getVideo");
                 jsonObject1.put("Response",Video);
                 System.out.println("bebin:"+jsonObject1);
                 return jsonObject1;
-
 
 
             }
