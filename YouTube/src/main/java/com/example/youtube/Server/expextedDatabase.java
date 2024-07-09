@@ -187,7 +187,7 @@ public class expextedDatabase {
         o9.put("NumberOfView",23);
         jsonArray.put(o9);
 
-        return null;
+        return jsonArray;
     }
     public static JSONArray gettingAllUserVPCID(String Username,String playlistName){
         //[{"VPCID":---,"VideoName":---,"ChannelName":---,"NumberOfView":---},{},{},...]

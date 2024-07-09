@@ -57,13 +57,14 @@ public class ChannelPlaylistsController implements Initializable, ChannelInterfa
     private Button creatPlaylist;
     private static JSONObject UserInfo;
     private static Stage stage;
-    public static void setUserInfo(JSONObject userInfo) {
-        UserInfo = userInfo;
-    }
+
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        UserInfo=ClientToServerConnection.userInfo.getInfo();
+
         homeButton.setOnAction(event -> homeButtonhandler());
         searchButton.setOnAction(event -> searchButtonhandler());
         creatPlaylist.setOnAction(event -> creatPlaylisthandler());
@@ -97,7 +98,7 @@ public class ChannelPlaylistsController implements Initializable, ChannelInterfa
                     @Override
                     public void handle(MouseEvent mouseEvent) {
                         stage = (Stage) newBorderPane.getScene().getWindow();
-                        ChannelController.setUserInfo(UserInfo);
+
                         ChannelController.setPlaylistChoosen(newBorderPane.getId());
 
                         JSONObject jsonObject=new JSONObject();
@@ -122,12 +123,13 @@ public class ChannelPlaylistsController implements Initializable, ChannelInterfa
 
     private void creatPlaylisthandler() {
         stage=(Stage) creatPlaylist.getScene().getWindow();
-        CreatePlaylist.setUserInfo(UserInfo);
+
         UiController.changingscene(stage,"creatPlaylist.fxml");
     }
 
     public void searchButtonhandler() {
         stage = (Stage) searchButton.getScene().getWindow();
+
         try {
             String searchText = searchField.getText();
             if (searchText.isEmpty()){

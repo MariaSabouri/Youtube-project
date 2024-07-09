@@ -28,17 +28,18 @@ public class CreatePlaylist implements Initializable {
     private Button createButton;
     private static Stage stage;
     private static JSONObject UserInfo;
-    public static void setUserInfo(JSONObject userInfo) {
-        UserInfo = userInfo;
-    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        UserInfo=ClientToServerConnection.userInfo.getInfo();
+
         homeButton.setOnAction(event -> homeButtonhandler());
         createButton.setOnAction(event -> CreateButtonhandler());
     }
     private static String PLaylistNameDecided;
     private void CreateButtonhandler() {
         stage=(Stage) createButton.getScene().getWindow();
+
         try {
             PLaylistNameDecided = PlaylistNameField.getText();
             if (PLaylistNameDecided.isEmpty()){
@@ -68,7 +69,8 @@ public class CreatePlaylist implements Initializable {
                 jsonArray.put(PLaylistNameDecided);
                 UserInfo.put("Playlists",jsonArray);
             }finally {
-                HomePageController.setGetUserInfo(UserInfo);
+
+                ClientToServerConnection.userInfo.setInfo(UserInfo);
 
 
                 JSONObject jsonObject=new JSONObject();

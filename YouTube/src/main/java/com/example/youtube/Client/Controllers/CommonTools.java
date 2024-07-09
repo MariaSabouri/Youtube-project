@@ -58,6 +58,23 @@ public class CommonTools {
         VideoController.ReadfileContentBase64(video);
         UiController.changingscene(Currentstage,"video-view.fxml");
     }
+    public static void GetUserInfo(){
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("Class","database");
+        jsonObject.put("DataManager","gettingUserInfo");
+        jsonObject.put("Parameter1", ClientToServerConnection.uiController.getUsername());
+        ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
+
+    }
+
+
+    private static JSONObject UserInfoJson;
+    public static void setUsername(JSONObject jsonObject){
+        ClientToServerConnection.userInfo.setInfo(jsonObject);
+    }
+
+
+
 
 
 }

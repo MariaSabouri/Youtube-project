@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class HomePageController implements Initializable, ChannelInterface {
+public class HomePageController extends CommonTools implements Initializable, ChannelInterface {
     @FXML
     private BorderPane border1;
     @FXML
@@ -64,10 +64,10 @@ public class HomePageController implements Initializable, ChannelInterface {
     private Button subscriptionsButton;
     private static Stage stage;
 
-    private static JSONObject UserInfo;
-    public static void setUserInfo(JSONObject userInfo) {
-        UserInfo = userInfo;
-    }
+//    private static JSONObject UserInfo;
+//    public static void setUserInfo(JSONObject userInfo) {
+//        UserInfo = userInfo;
+//    }
 
     private static JSONArray HomepageTrendVideos;
 
@@ -102,7 +102,7 @@ public class HomePageController implements Initializable, ChannelInterface {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     stage = (Stage) borderPane.getScene().getWindow();
-                    VideoController.setUserInfo(UserInfo);
+//                    VideoController.setUserInfo(UserInfo);
 
                     String jsonString = "{\"DataManager\":\"VPCIDInfo\",\"Parameter1\":\"" + jsonObject1.getInt("VPCID") + "\",\"Parameter2\":\""+UiController.getUsername()+"\"}";
                     JSONObject jsonObject=new JSONObject(jsonString);
@@ -150,17 +150,14 @@ public class HomePageController implements Initializable, ChannelInterface {
 
 
 
-
-    public static void setGetUserInfo(JSONObject getUserInfo) {
-        JSONObject UserInfo= getUserInfo;
-        if (UserInfo.getString("ChannelName").equals("")){
-            CreateChannelController.setUserInfo(getUserInfo);
-            UiController.changingscene(stage,"createChannel.fxml");
-
-        }else {
-            ChannelPlaylistsController.setUserInfo(getUserInfo);
+    private static JSONObject UserJson;
+    public static void setUserInfo(JSONObject getUserInfo) {
+        try {
+            ClientToServerConnection.userInfo.setInfo(getUserInfo);
             UiController.changingscene(stage,"channelPlaylists-view.fxml");
 
+        }catch (Exception e){
+            System.out.println("There is an error in HomePageController!");
         }
     }
 
@@ -174,7 +171,6 @@ public class HomePageController implements Initializable, ChannelInterface {
         jsonObject.put("DataManager","gettingUserInfo");
         jsonObject.put("Parameter1", ClientToServerConnection.uiController.getUsername());
         ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
-
 
     }
 
@@ -201,4 +197,5 @@ public class HomePageController implements Initializable, ChannelInterface {
 
         }
     }
+
 }

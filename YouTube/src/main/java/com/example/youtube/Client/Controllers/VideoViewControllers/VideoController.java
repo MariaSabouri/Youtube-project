@@ -1,5 +1,6 @@
 package com.example.youtube.Client.Controllers.VideoViewControllers;
 
+import com.example.youtube.Client.ClientToServerConnection;
 import com.example.youtube.Client.Controllers.ChannelInterface;
 import com.example.youtube.Client.Controllers.CommonTools;
 import com.example.youtube.Client.UiController;
@@ -136,10 +137,8 @@ public class VideoController implements Initializable,ChannelInterface {
     private Label LikeLabel;
 
 
-    private static JSONObject UserInfo;
-    public static void setUserInfo(JSONObject userInfo) {
-        UserInfo = userInfo;
-    }
+    private static JSONObject UserInfo= ClientToServerConnection.userInfo.getInfo();
+
 
     private static JSONObject GetVPCIfo;
     public static void setGetVPCID(JSONObject getVPCID) {
@@ -168,6 +167,7 @@ public class VideoController implements Initializable,ChannelInterface {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ViewCounterForVPCID();
 
         titleLabel.setText(GetVPCIfo.getString("VideoName"));
         LikeLabel.setText(String.valueOf(GetVPCIfo.getInt("NumberOfLike")));
@@ -409,6 +409,14 @@ public class VideoController implements Initializable,ChannelInterface {
 
     }
 
+    private void ViewCounterForVPCID() {
+//        JSONObject jsonObject=new JSONObject();
+//        jsonObject.put("Class","database");
+//        jsonObject.put("DataManager","ViewCounterForVPCID");
+//        jsonObject.put("Parameter1")
+        //todo
+    }
+
     private void bindCurrentTimeLabel() {
         labelCurrentTime.textProperty().bind(Bindings.createStringBinding(new Callable<String>() {
             @Override
@@ -457,9 +465,6 @@ public class VideoController implements Initializable,ChannelInterface {
 
     @FXML
     private void handleLike() {
-
-
-
         System.out.println("Liked!");
     }
 

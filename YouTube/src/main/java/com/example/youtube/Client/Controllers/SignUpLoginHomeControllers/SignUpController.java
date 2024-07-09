@@ -55,7 +55,7 @@ public class SignUpController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         signUpButton.setOnAction(event -> handleSignUp());
         loginButton.setOnAction(event -> {handleLogin();
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();});
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();});
 
     }
 
@@ -64,6 +64,7 @@ public class SignUpController implements Initializable {
     private void handleSignUp() {
         try {
             stage = (Stage) signUpButton.getScene().getWindow();
+
             String Name=NameField.getText();
             String username = usernameField.getText();
             String password = passwordField.getText();

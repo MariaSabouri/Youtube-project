@@ -127,10 +127,10 @@ public class UiController {
             }else if (UiClass.equals("CommonTools/goVideoView")) {
                 CommonTools.goVideoView(jsonObject.getJSONObject("Response"));
 
-            }  else if (UiClass.equals("HomePageController/YourChannel")){
-                HomePageController.setGetUserInfo(jsonObject.getJSONObject("Response"));
+            }else if (UiClass.equals("HomePageController/setUserInfo")){
+                HomePageController.setUserInfo(jsonObject.getJSONObject("Response"));
 
-            } else if (UiClass.equals("CreateChannelController/SettingNameForChannel")) {
+            }else if (UiClass.equals("CreateChannelController/SettingNameForChannel")) {
                 CreateChannelController.SettingNameForChannel(jsonObject.getBoolean("Response"));
 
             } else if (UiClass.equals("ChannelPlaylistsController/SettingNameForPlaylist")) {

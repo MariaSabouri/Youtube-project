@@ -38,12 +38,13 @@ public class RequestHandeling {
                 jsonObject1.put("Response",VPCResult);
                 return jsonObject1;
 
-            } else if (Objects.equals(databasefunction,"gettingUserInfo")) {
+            }else if (Objects.equals(databasefunction,"gettingUserInfo")) {
                 JSONObject UserInfo=expextedDatabase.gettingUserInfo(jsonObject.getString("Parameter1"));
                 JSONObject jsonObject1=new JSONObject();
-                jsonObject1.put("Class","HomePageController/YourChannel");
+                jsonObject1.put("Class","HomePageController/setUserInfo");
                 jsonObject1.put("Response",UserInfo);
                 return jsonObject1;
+
 
             } else if (Objects.equals(databasefunction,"CreatingChannel")) {
                 Boolean b=expextedDatabase.CreatingChannel(jsonObject.getString("Parameter1"),jsonObject.getString("Parameter2"));

@@ -59,10 +59,9 @@ public class ChannelController implements Initializable,ChannelInterface {
 
 
     private static Stage stage;
+
     private static JSONObject UserInfo;
-    public static void setUserInfo(JSONObject userInfo) {
-        UserInfo = userInfo;
-    }
+
     private static String playlistName;
     public static void setPlaylistChoosen(String id) {
         playlistName=id;
@@ -74,6 +73,8 @@ public class ChannelController implements Initializable,ChannelInterface {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        UserInfo=ClientToServerConnection.userInfo.getInfo();
+
         searchButton.setOnAction(event -> searchButtonhandler());
         homeButton.setOnAction(event -> homeButtonhandler());
         uploadVideo.setOnAction(event -> uploadVideoHandler());
