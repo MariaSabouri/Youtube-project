@@ -81,8 +81,12 @@ public class LoginController implements Initializable {
                 CommonTools.showingError();
             });
         }else {
-//            Stage stage = (Stage) source.getScene().getWindow();
-            UiController.changingscene(stage,"homePage-view.fxml");
+            CommonTools.setCurrentstage(stage);
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("Class","database");
+            jsonObject.put("DataManager","gettingUserInfo");
+            jsonObject.put("Parameter1", ClientToServerConnection.uiController.getUsername());
+            ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
         }
     }
 

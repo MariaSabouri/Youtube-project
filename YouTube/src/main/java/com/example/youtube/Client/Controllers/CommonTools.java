@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.concurrent.CountDownLatch;
+
 
 public class CommonTools {
     private static Stage Currentstage;
@@ -37,10 +39,11 @@ public class CommonTools {
         alert.setContentText("Please fill in the textfield before pressing the button.");
         alert.showAndWait();
     }
-
+/////
+    private static JSONObject VPCID;
     public static void goVideoView(JSONObject response) {
+        VPCID=response;
         VideoController.setGetVPCID(response);
-
         String videoName=response.getString("VideoName");
         String playlistName=response.getString("PlaylistName");
         String publisher=response.getString("Username");
@@ -54,19 +57,53 @@ public class CommonTools {
         ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
 
 
-        JSONObject jsonObject1=new JSONObject();
-        jsonObject1.put("Class","database");
-        jsonObject1.put("DataManager","ViewCounterForVPCID");
-        jsonObject1.put("Parameter2",response.getString("VPCID"));
-        jsonObject1.put("Parameter2",ClientToServerConnection.userInfo.getInfo().getString("Username"));
-        ClientToServerConnection.uiController.SetiMessage(jsonObject1.toString());
-
-
     }
 
     public static void getVideo(String video){
         VideoController.ReadfileContentBase64(video);
-        UiController.changingscene(Currentstage,"video-view.fxml");
+
+        JSONObject jsonObject1=new JSONObject();
+        jsonObject1.put("Class","database");
+        jsonObject1.put("DataManager","ViewCounterForVPCID");
+        jsonObject1.put("Parameter1",String.valueOf(VPCID.getInt("VPCID")));
+        jsonObject1.put("Parameter2",ClientToServerConnection.userInfo.getInfo().getString("Username"));
+        ClientToServerConnection.uiController.SetiMessage(jsonObject1.toString());
+
     }
+
+    public static void updateViewsNubmerForVideo(){
+        getLikeAndDislikeStatistics();
+    }
+
+    public static void getLikeAndDislikeStatistics() {
+        JSONObject jsonObject2=new JSONObject();
+        jsonObject2.put("Class","database");
+        jsonObject2.put("DataManager","getUserLikeAndDislikeAction");
+        jsonObject2.put("Parameter1",String.valueOf(VPCID.getInt("VPCID")));
+        jsonObject2.put("Parameter2",ClientToServerConnection.userInfo.getInfo().getString("Username"));
+        ClientToServerConnection.uiController.SetiMessage(jsonObject2.toString());
+    }
+
+    public static void setLikeAndDislikeStatistics(JSONObject jsonObject){
+        VideoController.setLikeAndDislikeStatistics(jsonObject);
+        ClientToServerConnection.uiController.changingscene(Currentstage,"video-view.fxml");
+
+    }
+/////
+
+
+
+
+
+    public static void setUserInfo(JSONObject getUserInfo) {
+        try {
+            ClientToServerConnection.userInfo.setInfo(getUserInfo);
+            UiController.changingscene(Currentstage,"homePage-view.fxml");
+
+        }catch (Exception e){
+            System.out.println("There is an error!");
+        }
+    }
+
 
 }

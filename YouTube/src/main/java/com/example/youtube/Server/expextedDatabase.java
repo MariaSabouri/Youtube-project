@@ -98,7 +98,6 @@ public class expextedDatabase {
         MainjsonArray.put(o2);
 
         return MainjsonArray;
-
     }
 
     public static JSONArray resultVideoFromSearchbar(String videoname){
@@ -223,10 +222,19 @@ public class expextedDatabase {
 
     public static void uploadindVideo(String Username, String PlaylistName, String VideoName) {
         //here for each record , we create a VPCID !!!!
-        //check if there exists suck VideoName,don't add this record in database
+        //check if there exists such VideoName,don't add this record in database
     }
     public static void ViewCounterForVPCID(String VPCID, String Username) {
         //Add this User To UserLikeAndDislikeAction
+    }
+    public static JSONObject getUserLikeAndDislikeAction(String VPCID,String UserName){
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("VPCID",22);
+        jsonObject.put("UserName","ryan");
+        jsonObject.put("Like",true);
+        jsonObject.put("DisLike",false);
+        return jsonObject;
+
     }
 
 }

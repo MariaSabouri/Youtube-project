@@ -166,6 +166,10 @@ public class VideoController implements Initializable,ChannelInterface {
         }
 
     }
+    private static JSONObject likeAndDislike;
+    public static void setLikeAndDislikeStatistics(JSONObject likeAndDislikeStatistics) {
+        likeAndDislike=likeAndDislikeStatistics;
+    }
 
 
     @Override
@@ -476,8 +480,8 @@ public class VideoController implements Initializable,ChannelInterface {
 
     @FXML
     private void handleShowChannel() {
-        System.out.println("Show Channel!");
-//        VisitingChannelPlaylist.
+        stage=(Stage) channelButton.getScene().getWindow();
+
 
     }
 

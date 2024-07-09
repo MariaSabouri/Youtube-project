@@ -96,8 +96,12 @@ public class SignUpController implements Initializable {
                 CommonTools.showingError();
             });
         }else {
-
-            UiController.changingscene(stage,"homePage-view.fxml");
+            CommonTools.setCurrentstage(stage);
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("Class","database");
+            jsonObject.put("DataManager","gettingUserInfo");
+            jsonObject.put("Parameter1", ClientToServerConnection.uiController.getUsername());
+            ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
         }
     }
 

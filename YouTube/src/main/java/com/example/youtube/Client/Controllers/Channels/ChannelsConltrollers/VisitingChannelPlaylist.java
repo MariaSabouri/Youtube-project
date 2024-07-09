@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class VisitingChannelPlaylist implements Initializable, ChannelInterface {
+
     @Override
     public void homeButtonhandler() {
 

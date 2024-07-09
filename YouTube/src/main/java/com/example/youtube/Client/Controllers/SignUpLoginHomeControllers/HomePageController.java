@@ -64,10 +64,6 @@ public class HomePageController extends CommonTools implements Initializable, Ch
     private Button subscriptionsButton;
     private static Stage stage;
 
-//    private static JSONObject UserInfo;
-//    public static void setUserInfo(JSONObject userInfo) {
-//        UserInfo = userInfo;
-//    }
 
     private static JSONArray HomepageTrendVideos;
 
@@ -150,27 +146,13 @@ public class HomePageController extends CommonTools implements Initializable, Ch
 
 
 
-    private static JSONObject UserJson;
-    public static void setUserInfo(JSONObject getUserInfo) {
-        try {
-            ClientToServerConnection.userInfo.setInfo(getUserInfo);
-            UiController.changingscene(stage,"channelPlaylists-view.fxml");
 
-        }catch (Exception e){
-            System.out.println("There is an error in HomePageController!");
-        }
-    }
 
 
     @FXML
     private void handleYourChannel() {
         stage = (Stage) yourChannel.getScene().getWindow();
-
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("Class","database");
-        jsonObject.put("DataManager","gettingUserInfo");
-        jsonObject.put("Parameter1", ClientToServerConnection.uiController.getUsername());
-        ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
+        UiController.changingscene(stage,"channelPlaylists-view.fxml");
 
     }
 

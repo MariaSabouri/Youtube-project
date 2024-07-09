@@ -20,10 +20,11 @@ import org.json.JSONObject;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Semaphore;
 
 public class UiController {
     public static String Message;
-
     private static int Port=6669;
 
     public static int getPort() {
@@ -77,6 +78,7 @@ public class UiController {
                                 bufferedWriter.flush();
                                 System.out.println("Server: sended");
                                 Message=null;
+
                             }
                         }
                     }catch (IOException e){
@@ -94,7 +96,7 @@ public class UiController {
                     try {
                         messageToRead=bufferedReader.readLine();
                         OrientingToAClassBuyServerResponse(messageToRead);
-                        System.out.println(messageToRead);
+//                        System.out.println(messageToRead);
                     }catch (IOException e){
                         CloseEveryThing(socket,bufferedReader,bufferedWriter);
                     }
@@ -127,8 +129,8 @@ public class UiController {
             }else if (UiClass.equals("CommonTools/goVideoView")) {
                 CommonTools.goVideoView(jsonObject.getJSONObject("Response"));
 
-            }else if (UiClass.equals("HomePageController/setUserInfo")){
-                HomePageController.setUserInfo(jsonObject.getJSONObject("Response"));
+            }else if (UiClass.equals("CommonTools/setUserInfo")){
+                CommonTools.setUserInfo(jsonObject.getJSONObject("Response"));
 
             }else if (UiClass.equals("CreateChannelController/SettingNameForChannel")) {
                 CreateChannelController.SettingNameForChannel(jsonObject.getBoolean("Response"));
@@ -143,9 +145,14 @@ public class UiController {
                 ChannelController.VideosForThisPlaylist(jsonObject.getJSONArray("Response"));
 
             } else if (UiClass.equals("CommonTools/getVideo")) {
-                System.out.println("sdfbb");
                 CommonTools.getVideo(jsonObject.getString("Response"));
-                System.out.println("sdf");
+
+            } else if (UiClass.equals("CommonTools/setLikeAndDislikeStatistics")) {
+                CommonTools.setLikeAndDislikeStatistics(jsonObject.getJSONObject("Response"));
+
+            } else if (UiClass.equals("CommonTools/updateViewsNubmerForVideo")) {
+                CommonTools.updateViewsNubmerForVideo();
+
             }
 
         }catch (Exception e){

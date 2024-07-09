@@ -41,7 +41,7 @@ public class RequestHandeling {
             }else if (Objects.equals(databasefunction,"gettingUserInfo")) {
                 JSONObject UserInfo=expextedDatabase.gettingUserInfo(jsonObject.getString("Parameter1"));
                 JSONObject jsonObject1=new JSONObject();
-                jsonObject1.put("Class","HomePageController/setUserInfo");
+                jsonObject1.put("Class","CommonTools/setUserInfo");
                 jsonObject1.put("Response",UserInfo);
                 return jsonObject1;
 
@@ -76,8 +76,17 @@ public class RequestHandeling {
 
             } else if (Objects.equals(databasefunction,"ViewCounterForVPCID")) {
                 expextedDatabase.ViewCounterForVPCID(jsonObject.getString("Parameter1"),jsonObject.getString("Parameter2"));
-                System.out.println("done!");
-                return null;
+                JSONObject jsonObject1=new JSONObject();
+                jsonObject1.put("Class","CommonTools/updateViewsNubmerForVideo");
+                return jsonObject1;
+
+            } else if (Objects.equals(databasefunction,"getUserLikeAndDislikeAction")) {
+                JSONObject jsonObject1=expextedDatabase.getUserLikeAndDislikeAction(jsonObject.getString("Parameter1"),jsonObject.getString("Parameter2"));
+                JSONObject jsonObject2=new JSONObject();
+                jsonObject2.put("Class","CommonTools/setLikeAndDislikeStatistics");
+                jsonObject2.put("Response",jsonObject1);
+                System.out.println("sended");
+                return jsonObject2;
 
             }
         }
