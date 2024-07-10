@@ -72,6 +72,7 @@ public class ChannelPlaylistsController implements Initializable, ChannelInterfa
         try {
             JSONArray jsonArray=UserInfo.getJSONArray("Playlists");
             channelNameLabel.setText(UserInfo.getString("ChannelName"));
+            System.out.println(jsonArray);
 
             final int IV_SIZE=105;
 
@@ -113,7 +114,9 @@ public class ChannelPlaylistsController implements Initializable, ChannelInterfa
                 });
             }
         }catch (Exception e){
+            e.printStackTrace();
             System.out.println("User don't have any playlist!");
+
 
         }
 

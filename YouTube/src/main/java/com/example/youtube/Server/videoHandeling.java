@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Base64;
 
 public class videoHandeling {
-    private static String basePath="D:\\Maria\\term4\\computer science\\java_programing\\HW\\YoutubeVideos";
+    private static String basePath="C:\\Users\\BEROOZ\\Desktop\\youtubeVideo";
 
     private static String videoIv;
     public static void setVideoIv(String videoId) {
@@ -67,8 +67,8 @@ public class videoHandeling {
     }
 
     public static String gettingVideoViaViedoNamePlaylistNamePublisher(String VideoName,String PlaylistName,String publisher){
-//        String filePath = basePath + "\\" + publisher + "\\" + PlaylistName + "\\" + VideoName;
-        String filePath ="D:\\Maria\\term4\\computer science\\java_programing\\HW\\Youtube-project\\YouTube\\src\\main\\resources\\com\\example\\youtube\\Videos\\La Panthère rose.mp4";
+        String filePath = basePath + "\\" + publisher + "\\" + PlaylistName + "\\" + VideoName;
+        //String filePath ="D:\\Maria\\term4\\computer science\\java_programing\\HW\\Youtube-project\\YouTube\\src\\main\\resources\\com\\example\\youtube\\Videos\\La Panthère rose.mp4";
 
         File file = new File(filePath);
 
