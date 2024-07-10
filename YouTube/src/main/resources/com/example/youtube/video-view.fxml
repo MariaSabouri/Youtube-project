@@ -16,7 +16,7 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="500.0" prefWidth="860.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.Controllers.Channels.VideoViewControllers.VideoController">
+<BorderPane prefHeight="500.0" prefWidth="860.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.Controllers.VideoViewControllers.VideoController">
     <top>
         <HBox prefHeight="68.0" prefWidth="860.0" spacing="10" style="-fx-padding: 10;">
             <HBox prefHeight="56.0" prefWidth="8.0" />
@@ -277,37 +277,39 @@
                             <HBox prefHeight="75.0" prefWidth="289.0" />
                             <HBox prefHeight="41.0" prefWidth="497.0">
                                 <children>
-                                    <VBox prefHeight="41.0" prefWidth="104.0" />
+                                    <VBox alignment="CENTER" prefHeight="41.0" prefWidth="104.0" />
                                     <VBox prefHeight="41.0" prefWidth="40.0">
                                         <children>
                                             <HBox prefHeight="12.0" prefWidth="39.0" />
-                                            <Label fx:id="numOfLiksLabel" text="Likes">
-                                                <font>
-                                                    <Font name="System Bold Italic" size="12.0" />
-                                                </font>
-                                            </Label>
                                         </children>
                                     </VBox>
-                                    <Button fx:id="likeButton" prefHeight="37.0" prefWidth="37.0" style="-fx-background-color: white; -fx-text-fill: white; -fx-background-radius: 30; -fx-padding: 0;">
-                                        <graphic>
-                                            <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                                                <image>
-                                                    <Image url="@video pics/like_image.jpg" />
-                                                </image>
-                                            </ImageView>
-                                        </graphic>
+                                      <ImageView fx:id="LikeButton" fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                              <Image url="@video pics/like_image.jpg" />
+                                          </image>
+                                      </ImageView>
+                                    <Button fx:id="likeButton" prefHeight="38.0" prefWidth="77.0" style="-fx-background-color: white; -fx-text-fill: white; -fx-background-radius: 30; -fx-padding: 0;" text="Like">
+                              <graphic>
+                                 <Label fx:id="LikeLabel" prefHeight="44.0" prefWidth="59.0" text="Like" textAlignment="CENTER">
+                                    <font>
+                                       <Font name="System Bold" size="26.0" />
+                                    </font>
+                                 </Label>
+                              </graphic>
                                     </Button>
-                                    <VBox prefHeight="41.0" prefWidth="17.0" />
-                                    <Button fx:id="dislikeButton" prefHeight="46.0" prefWidth="36.0" style="-fx-background-color: white; -fx-text-fill: white; -fx-background-radius: 30; -fx-padding: 0;">
-                                        <graphic>
-                                            <ImageView fitHeight="42.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
-                                                <image>
-                                                    <Image url="@video pics/dislike_image.jpg" />
-                                                </image>
-                                            </ImageView>
-                                        </graphic>
+                                      <ImageView fx:id="DislikeButton" fitHeight="42.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                              <Image url="@video pics/dislike_image.jpg" />
+                                          </image>
+                                      </ImageView>
+                                    <Button fx:id="dislikeButton" prefHeight="42.0" prefWidth="79.0" style="-fx-background-color: white; -fx-text-fill: white; -fx-background-radius: 30; -fx-padding: 0;">
+                              <graphic>
+                                 <Label fx:id="DisLikeLabel" prefHeight="42.0" prefWidth="59.0" text="Dislike">
+                                    <font>
+                                       <Font name="System Bold" size="26.0" />
+                                    </font></Label>
+                              </graphic>
                                     </Button>
-                                    <VBox prefHeight="41.0" prefWidth="25.0" />
                                     <ImageView fitHeight="39.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
                                             <Image url="@video pics/share_image.jpg" />

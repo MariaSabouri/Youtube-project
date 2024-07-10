@@ -30,28 +30,34 @@ public class CreateChannelController implements Initializable {
 
 
     private static JSONObject UserInfo;
-    public static void setUserInfo(JSONObject userInfo) {
-        UserInfo = userInfo;
-    }
+
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        UserInfo=ClientToServerConnection.userInfo.getInfo();
+
         homeButton.setOnAction(event -> homeButtonhandler());
         createButton.setOnAction(event -> createButtonhandler());
     }
+
     private static String channelNameDecided;
     private void createButtonhandler() {
         stage=(Stage) createButton.getScene().getWindow();
+
         try {
             channelNameDecided = ChannelNameField.getText();
         if (channelNameDecided.isEmpty()){
             throw new IllegalArgumentException("Textfield is empty");
         }
-        UserInfo.put("ChannelName",channelNameDecided);
-        String jsonString = "{\"DataManager\":\"CreatingChannel\",\"Parameter1\":\"" + ClientToServerConnection.uiController.getUsername() + "\",\"Parameter2\":\"" + channelNameDecided + "\"}";
-        ClientToServerConnection.uiController.SetiMessage(jsonString);
+
+        String jsonString = "{\"DataManager\":\"CreatingChannel\",\"Parameter1\":\"" + ClientToServerConnection.userInfo.getInfo().getString("Username") + "\",\"Parameter2\":\"" + channelNameDecided + "\"}";
+        JSONObject jsonObject=new JSONObject(jsonString);
+        jsonObject.put("Class","database");
+        ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
+
         ChannelNameField.clear();
         }catch (IllegalArgumentException e){
             CommonTools.showingError();
@@ -65,8 +71,18 @@ public class CreateChannelController implements Initializable {
                 CommonTools.showingError();
             });
         }else {
+
             UserInfo.put("ChannelName",channelNameDecided);
-            HomePageController.setGetUserInfo(UserInfo);
+            ClientToServerConnection.userInfo.setInfo(UserInfo);
+
+
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("Class","videoHandeling");
+            jsonObject.put("videoHandelingFuctions","createUserFolder");
+            jsonObject.put("Parameter1",ClientToServerConnection.userInfo.getInfo().getString("Username"));
+
+            ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
+
             UiController.changingscene(stage,"homePage-view.fxml");
 
         }

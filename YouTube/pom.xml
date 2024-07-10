@@ -42,11 +42,15 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
+
+<!--      &lt;!&ndash; https://mvnrepository.com/artifact/org.qbicc.rt/qbicc-rt-java.sql &ndash;&gt;-->
 <!--      <dependency>-->
 <!--          <groupId>org.qbicc.rt</groupId>-->
 <!--          <artifactId>qbicc-rt-java.sql</artifactId>-->
 <!--          <version>17.alpha.0.57</version>-->
 <!--      </dependency>-->
+
+
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
@@ -78,6 +82,16 @@
           <artifactId>javafx-controls</artifactId>
           <version>21</version>
       </dependency>
+      <dependency>
+          <groupId>org.openjfx</groupId>
+          <artifactId>javafx-graphics</artifactId>
+          <version>21</version>
+      </dependency>
+<!--      <dependency>-->
+<!--          <groupId>org.qbicc.rt</groupId>-->
+<!--          <artifactId>qbicc-rt-java.base</artifactId>-->
+<!--          <version>17.alpha.0.57</version>-->
+<!--      </dependency>-->
 
   </dependencies>
 

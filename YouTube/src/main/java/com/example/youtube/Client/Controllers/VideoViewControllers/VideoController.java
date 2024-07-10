@@ -1,6 +1,10 @@
-package com.example.youtube.Client.Controllers.Channels.VideoViewControllers;
+package com.example.youtube.Client.Controllers.VideoViewControllers;
 
-import com.example.youtube.Client.Controllers.Channels.ChannelInterface;
+import com.example.youtube.Client.ClientToServerConnection;
+import com.example.youtube.Client.Controllers.ChannelInterface;
+import com.example.youtube.Client.Controllers.Channels.ChannelsConltrollers.VisitingChannelPlaylist;
+import com.example.youtube.Client.Controllers.CommonTools;
+import com.example.youtube.Client.UiController;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
@@ -22,15 +26,22 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
+import java.util.Base64;
 import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
 
-public class VideoController implements Initializable, ChannelInterface {
+public class VideoController implements Initializable,ChannelInterface {
+    private static Stage stage;
 
     @FXML
     private Button postComment;
@@ -109,6 +120,7 @@ public class VideoController implements Initializable, ChannelInterface {
 
     @FXML
     private Slider sliderVolume;
+
     private Boolean atEndOfVideo=false;
     private Boolean isPlaying=false;
     private Boolean isMuted=true;
@@ -121,23 +133,75 @@ public class VideoController implements Initializable, ChannelInterface {
     private ImageView ivMute;
     private ImageView ivExit;
 
+    @FXML
+    private Label DisLikeLabel;
+
+    @FXML
+    private Label LikeLabel;
+    @FXML
+    private Label views;
+
 
     private static JSONObject UserInfo;
-    public static void setUserInfo(JSONObject userInfo) {
-        UserInfo = userInfo;
+
+    private static JSONObject likeAndDislike;
+    public static void setLikeAndDislikeStatistics(JSONObject likeAndDislikeStatistics) {
+        likeAndDislike=likeAndDislikeStatistics;
     }
 
-    private static String getVPCID;
-    public static void setGetVPCID(String getVPCID) {
-        VideoController.getVPCID = getVPCID;
+    private static JSONObject GetVPCIfo;
+    public static void setGetVPCID(JSONObject getVPCID) {
+        GetVPCIfo = getVPCID;
     }
+
+
+    private static File tempFile;
+    public static void ReadfileContentBase64(String video){
+        byte[] fileContentBytes = Base64.getDecoder().decode(video);
+        try {
+            tempFile = File.createTempFile("tempvideo", ".mp4");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try (FileOutputStream fos = new FileOutputStream(tempFile)) {
+            fos.write(fileContentBytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        UserInfo= ClientToServerConnection.userInfo.getInfo();
+
+        titleLabel.setText(GetVPCIfo.getString("VideoName"));
+
+        LikeLabel.setText(String.valueOf(likeAndDislike.getInt("NumberOfLike")));
+        DisLikeLabel.setText(String.valueOf(likeAndDislike.getInt("NumberOfDislike")));
+        setInitialColorForLikeAndDislike();
+
+        channelButton.setText(GetVPCIfo.getString("ChannelName"));
+        views.setText(String.valueOf(1+GetVPCIfo.getInt("NumberOfView")));
+        descriptionLabel.setText("");
+
+        home_button.setOnAction(event -> homeButtonhandler());
+        searchButton.setOnAction(event -> searchButtonhandler());
+        likeButton.setOnAction(event -> handleLike());
+        dislikeButton.setOnAction(event -> handleDislike());
+        channelButton.setOnAction(event -> handleShowChannel());
+        subscribe.setOnAction(event -> handleSubscribe());
+
+
+
+
+
         final int IV_SIZE=25;
 
-        mediaVideo=new Media(getClass().getResource("/com/example/youtube/Videos/La Panthère rose.mp4").toString());
+        mediaVideo=new Media(tempFile.toURI().toString());
         mpVideo=new MediaPlayer(mediaVideo);
         mvVideo.setMediaPlayer(mpVideo);
 
@@ -353,12 +417,6 @@ public class VideoController implements Initializable, ChannelInterface {
                 }
             }
         });
-
-
-
-
-
-
     }
 
     private void bindCurrentTimeLabel() {
@@ -404,42 +462,72 @@ public class VideoController implements Initializable, ChannelInterface {
 
         }
     }
-
-
-    public void initialize() {
-        titleLabel.setText("Video Title");
-        descriptionLabel.setText("Video Description");
-        likeButton.setOnAction(event -> handleLike());
-        dislikeButton.setOnAction(event -> handleDislike());
-        addToWatchLaterButton.setOnAction(event -> handleAddToWatchLater());
-        channelButton.setOnAction(event -> handleShowChannel());
-        subscribe.setOnAction(event -> handleSubscribe());
-
+    private void setInitialColorForLikeAndDislike() {
+        if (likeAndDislike.getBoolean("Like")==true){
+            LikeLabel.setTextFill(Color.GOLD);
+        } else if (likeAndDislike.getBoolean("DisLike")==true) {
+            DisLikeLabel.setTextFill(Color.GOLD);
+        }
     }
+
 
     @FXML
     private void handleLike() {
-        System.out.println("Liked!");
+        if (!likeAndDislike.getBoolean("Like")){
+            if (likeAndDislike.getBoolean("DisLike")){
+                likeAndDislike.put("DisLike",false);
+                DisLikeLabel.setTextFill(Color.BLACK);
+                DisLikeLabel.setText(String.valueOf(likeAndDislike.getInt("NumberOfDislike")-1));
+                likeAndDislike.put("NumberOfDislike",likeAndDislike.getInt("NumberOfDislike")-1);
+            }
+            LikeLabel.setText(String.valueOf(likeAndDislike.getInt("NumberOfLike")+1));
+            likeAndDislike.put("NumberOfLike",likeAndDislike.getInt("NumberOfLike")+1);
+            LikeLabel.setTextFill(Color.GOLD);
+
+        }else {LikeLabel.setTextFill(Color.BLACK);
+            LikeLabel.setText(String.valueOf(likeAndDislike.getInt("NumberOfLike")-1));
+            likeAndDislike.put("NumberOfLike",likeAndDislike.getInt("NumberOfLike")-1);}
+
+        likeAndDislike.put("Like",!likeAndDislike.getBoolean("Like"));
+
+        CommonTools.UpdateLikeAndDislikeActionsOnDataBase(likeAndDislike);
+        System.out.println(likeAndDislike);
     }
 
     @FXML
     private void handleDislike() {
-        System.out.println("Disliked!");
+        if (!likeAndDislike.getBoolean("DisLike")){
+            if (likeAndDislike.getBoolean("Like")){
+                likeAndDislike.put("Like",false);
+                LikeLabel.setTextFill(Color.BLACK);
+                LikeLabel.setText(String.valueOf(likeAndDislike.getInt("NumberOfLike")-1));
+                likeAndDislike.put("NumberOfLike",likeAndDislike.getInt("NumberOfLike")-1);
+            }
+            DisLikeLabel.setText(String.valueOf(likeAndDislike.getInt("NumberOfDislike")+1));
+            likeAndDislike.put("NumberOfDislike",likeAndDislike.getInt("NumberOfDislike")+1);
+            DisLikeLabel.setTextFill(Color.GOLD);
+
+        }else {DisLikeLabel.setTextFill(Color.BLACK);
+            DisLikeLabel.setText(String.valueOf(likeAndDislike.getInt("NumberOfDislike")-1));
+            likeAndDislike.put("NumberOfDislike",likeAndDislike.getInt("NumberOfDislike")-1);}
+
+        likeAndDislike.put("DisLike",!likeAndDislike.getBoolean("DisLike"));
+
+        CommonTools.UpdateLikeAndDislikeActionsOnDataBase(likeAndDislike);
+        System.out.println(likeAndDislike);
     }
 
-    @FXML
-    private void handleAddToWatchLater() {
-        System.out.println("Added to Watch Later!");
-    }
+
 
     @FXML
     private void handleShowChannel() {
-        System.out.println("Show Channel!");
+        stage=(Stage) channelButton.getScene().getWindow();
+
+
     }
+
     @FXML
-    private void handleSubscribe() {
-        System.out.println("Subscribed!");
-    }
+    private void handleSubscribe() {System.out.println("Subscribed!");}
 
     @FXML
     private void handlePostComment() {
@@ -456,11 +544,28 @@ public class VideoController implements Initializable, ChannelInterface {
 
     @Override
     public void homeButtonhandler() {
+        stage = (Stage) home_button.getScene().getWindow();
+        if (mpVideo != null) {
+            mpVideo.stop();
+            mpVideo.dispose();
+        }
+        UiController.changingscene(stage,"homePage-view.fxml");
 
     }
 
     @Override
     public void searchButtonhandler() {
+        stage = (Stage) searchButton.getScene().getWindow();
+        try {
+            String searchText = searchField.getText();
+            if (searchText.isEmpty()){
+                throw new IllegalArgumentException("Search Textfield is empty");
+            }
+            CommonTools.searchbarToll(searchText,stage);
+            searchField.clear();
+        }catch (IllegalArgumentException e){
+            CommonTools.showingError();
 
+        }
     }
 }

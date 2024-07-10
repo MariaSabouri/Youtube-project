@@ -1,5 +1,6 @@
 package com.example.youtube.Client;
 
+import com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers.ChannelController;
 import com.example.youtube.Client.Controllers.CommonTools;
 import com.example.youtube.Client.Controllers.SearchbarController.SearchbarController;
 import com.example.youtube.Client.Controllers.SignUpLoginHomeControllers.HomePageController;
@@ -19,9 +20,16 @@ import org.json.JSONObject;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Semaphore;
 
 public class UiController {
     public static String Message;
+    private static int Port=6669;
+
+    public static int getPort() {
+        return Port;
+    }
 
     private Socket socket;
     private BufferedReader bufferedReader;
@@ -38,7 +46,7 @@ public class UiController {
         try {
             try {
                 // Connecting Client to the server
-                this.socket= new Socket("localhost", 6669);
+                this.socket= new Socket("localhost", Port);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -70,6 +78,7 @@ public class UiController {
                                 bufferedWriter.flush();
                                 System.out.println("Server: sended");
                                 Message=null;
+
                             }
                         }
                     }catch (IOException e){
@@ -99,39 +108,57 @@ public class UiController {
 
 
     private void OrientingToAClassBuyServerResponse(String messageToRead) {
+        try {
+            JSONObject jsonObject = new JSONObject(messageToRead);
 
-        JSONObject jsonObject = new JSONObject(messageToRead);
+            String UiClass=jsonObject.getString("Class");
 
-        String UiClass=jsonObject.getString("Class");
+            if (UiClass.equals("LoginController")){
+                if (jsonObject.getBoolean("Response")==true){
+                    LoginController.goHomeView(true);
+                }else {LoginController.goHomeView(false);}
 
-        if (UiClass.equals("LoginController")){
-            if (jsonObject.getBoolean("Response")==true){
-                LoginController.goHomeView(true);
-            }else {LoginController.goHomeView(false);}
+            } else if (UiClass.equals("SignUpController")) {
+                if (jsonObject.getBoolean("Response")==true){
+                    SignUpController.goHomeView(true);
+                }else{SignUpController.goHomeView(false);}
 
-        } else if (UiClass.equals("SignUpController")) {
-            if (jsonObject.getBoolean("Response")==true){
-                SignUpController.goHomeView(true);
-            }else{SignUpController.goHomeView(false);}
+            } else if (UiClass.equals("commonToolSearchBar")) {
+                CommonTools.goSeachview(jsonObject.getJSONArray("Response"));
 
-        } else if (UiClass.equals("commonToolSearchBar")) {
-            CommonTools.goSeachview(jsonObject.getJSONArray("Response"));
+            }else if (UiClass.equals("CommonTools/goVideoView")) {
+                CommonTools.goVideoView(jsonObject.getJSONObject("Response"));
 
-        } else if (UiClass.equals("video")) {
-            SearchbarController.goVideoView(jsonObject.getJSONObject("Response"));
+            }else if (UiClass.equals("CommonTools/setUserInfo")){
+                CommonTools.setUserInfo(jsonObject.getJSONObject("Response"));
 
-        } else if (UiClass.equals("HomePageController/YourChannel")){
-            HomePageController.setGetUserInfo(jsonObject.getJSONObject("Response"));
+            }else if (UiClass.equals("CreateChannelController/SettingNameForChannel")) {
+                CreateChannelController.SettingNameForChannel(jsonObject.getBoolean("Response"));
 
-        } else if (UiClass.equals("CreateChannelController/SettingNameForChannel")) {
-            CreateChannelController.SettingNameForChannel(jsonObject.getBoolean("Response"));
+            } else if (UiClass.equals("ChannelPlaylistsController/SettingNameForPlaylist")) {
+                CreatePlaylist.SettingNameForPlaylist(jsonObject.getBoolean("Response"));
 
-        } else if (UiClass.equals("ChannelPlaylistsController/SettingNameForPlaylist")) {
-            CreatePlaylist.SettingNameForPlaylist(jsonObject.getBoolean("Response"));
-        } else if (UiClass.equals("HomePageController/setHomepageTrendVideos")) {
-            HomePageController.setHomepageTrendVideos(jsonObject.getJSONArray("Response"));
+            } else if (UiClass.equals("HomePageController/setHomepageTrendVideos")) {
+                HomePageController.setHomepageTrendVideos(jsonObject.getJSONArray("Response"));
 
+            }else if (UiClass.equals("ChannelController/VideosForThisPlaylist")) {
+                ChannelController.VideosForThisPlaylist(jsonObject.getJSONArray("Response"));
+
+            } else if (UiClass.equals("CommonTools/getVideo")) {
+                CommonTools.getVideo(jsonObject.getString("Response"));
+
+            } else if (UiClass.equals("CommonTools/setLikeAndDislikeStatistics")) {
+                CommonTools.setLikeAndDislikeStatistics(jsonObject.getJSONObject("Response"));
+
+            } else if (UiClass.equals("CommonTools/updateViewsNubmerForVideo")) {
+                CommonTools.updateViewsNubmerForVideo();
+
+            }
+
+        }catch (Exception e){
+            System.out.println("May got null answer!");
         }
+
 
     }
 

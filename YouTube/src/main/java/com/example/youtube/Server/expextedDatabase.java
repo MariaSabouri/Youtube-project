@@ -4,16 +4,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class expextedDatabase {
     public static void openConnection(){
         //TODO
     }
-    public static Boolean SignUp(String Username, String Password){
+    public static Boolean SignUp(String Name,String Username, String Password){
         //if everything is okay
         return true;
         //return true;
@@ -23,12 +20,23 @@ public class expextedDatabase {
     public static JSONObject gettingUserInfo(String username){
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("Username","Ali");
-        jsonObject.put("ChannelName","asdasd");
+        jsonObject.put("Name","sala");
+        jsonObject.put("ChannelName","");
         jsonObject.put("Subscribers",23);
+
+        JSONArray Subscriptions=SubscriptionsJsonArray(username);
+        jsonObject.put("subscriptions",Subscriptions);
 
         JSONArray PlaylistNamejsonArray=GettingJsonArrayOfPlaylistNames(username);
         jsonObject.put("Playlists",PlaylistNamejsonArray);
       return jsonObject;
+    }
+
+    private static JSONArray SubscriptionsJsonArray(String username) {
+        JSONArray jsonArray=new JSONArray();
+        jsonArray.put("lala");
+        jsonArray.put("jj");
+        return jsonArray;
     }
 
     private static JSONArray GettingJsonArrayOfPlaylistNames(String username) {
@@ -39,7 +47,7 @@ public class expextedDatabase {
         jsonArray.put("laver");
         jsonArray.put("coucher");
 
-        return jsonArray;
+        return null;
     }
 
     ;
@@ -48,13 +56,14 @@ public class expextedDatabase {
         return true;
     }
     public static JSONObject VPCIDInfo(String VPCID, String Username){
-        //{"Username":---,"VPCID":---,"VideoName":---,"ChannelName":---,"NumberOfView":---,"NumberOfLike":---,"NumberOfDislike":---,"DateOfIllustration":---,"LikeOfThisUser":---,"DislikeOfThisUser":---
+        //{"Username":---,"VPCID":---,"VideoName":---,"ChannelName":---,"PlaylistName":---,"NumberOfView":---,"NumberOfLike":---,"NumberOfDislike":---,"DateOfIllustration":---,"LikeOfThisUser":---,"DislikeOfThisUser":---
         // ,"Comments":[{messageId(With No reply To any messageId):[list of messageIds which reply this messageId]},{},{},...]}
         JSONObject MainJsonObject=new JSONObject();
         MainJsonObject.put("Username","lala");
         MainJsonObject.put("VPCID",78);
         MainJsonObject.put("VideoName","kjkj");
-        MainJsonObject.put("ChannelName","jhdskjsd");
+        MainJsonObject.put("ChannelName","kn");
+        MainJsonObject.put("PlaylistName","laplap");
         MainJsonObject.put("NumberOfView",324);
         MainJsonObject.put("NumberOfLike",3);
         MainJsonObject.put("NumberOfDislike",44);
@@ -86,7 +95,6 @@ public class expextedDatabase {
         MainjsonArray.put(o2);
 
         return MainjsonArray;
-
     }
 
     public static JSONArray resultVideoFromSearchbar(String videoname){
@@ -114,7 +122,7 @@ public class expextedDatabase {
         return true;
     }
 
-    public static Boolean CreatingPlaylist(String parameter1, String parameter2) {return false;}
+    public static Boolean CreatingPlaylist(String parameter1, String parameter2) {return true;}
     public static JSONArray TrendVPCIDForHomePage(){
         //give top 9 trend Video:
         //[{"VPCID":---,"VideoName":---,"ChannelName":---,"NumberOfView":---},{},{},...]
@@ -177,7 +185,7 @@ public class expextedDatabase {
 
         return jsonArray;
     }
-    public static JSONArray gettingAllVPCI(String channelName,String playlistName){
+    public static JSONArray gettingAllUserVPCID(String Username,String playlistName){
         //[{"VPCID":---,"VideoName":---,"ChannelName":---,"NumberOfView":---},{},{},...]
         JSONArray jsonArray=new JSONArray();
 
@@ -208,4 +216,32 @@ public class expextedDatabase {
 
         return jsonArray;
     }
+
+    public static void uploadindVideo(String Username, String PlaylistName, String VideoName) {
+        //here for each record , we create a VPCID !!!!
+        //check if there exists such VideoName,don't add this record in database
+    }
+    public static void ViewCounterForVPCID(String VPCID, String Username) {
+        //Add this User To UserLikeAndDislikeAction
+    }
+    public static JSONObject getUserLikeAndDislikeAction(String VPCID,String UserName){
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("VPCID",22);
+        jsonObject.put("UserName","ryan");
+        jsonObject.put("Like",true);
+        jsonObject.put("NumberOfLike",2);
+        jsonObject.put("DisLike",false);
+        jsonObject.put("NumberOfDislike",3);
+        return jsonObject;
+
+    }
+
+    public static void UpdateLikeAndDislikeActionsOnDataBase(JSONObject jsonObject){
+        //jsonObject is like this:
+        //{"VPCID":22,"UserName":"ryan","Like":--,"DisLike":--}
+        //you should update UserLikeAndDislikeAction table
+
+
+    }
+
 }

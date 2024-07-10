@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -60,8 +61,14 @@ public class LoginController implements Initializable {
                 throw new IllegalArgumentException("Textfield is empty");
             }
             setUsername(username);
-            String jsonString = "{\"DataManager\":\"LogIn\",\"Parameter1\":\"" + username + "\",\"Parameter2\":\"" + password + "\"}";
-            ClientToServerConnection.uiController.SetiMessage(jsonString);
+
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("Class","database");
+            jsonObject.put("DataManager","LogIn");
+            jsonObject.put("Parameter1",username);
+            jsonObject.put("Parameter2",password);
+
+            ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
 
             UsernameField.clear();
             passwordField.clear();
@@ -78,8 +85,13 @@ public class LoginController implements Initializable {
                 CommonTools.showingError();
             });
         }else {
-//            Stage stage = (Stage) source.getScene().getWindow();
-            UiController.changingscene(stage,"homePage-view.fxml");
+            CommonTools.setCurrentstage(stage);
+
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("Class","database");
+            jsonObject.put("DataManager","gettingUserInfo");
+            jsonObject.put("Parameter1", ClientToServerConnection.uiController.getUsername());
+            ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
         }
     }
 

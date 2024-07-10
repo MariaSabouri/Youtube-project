@@ -11,9 +11,10 @@ import java.io.*;
 
 public class ClientToServerConnection extends Application  {
     public static UiController uiController;
+    public static UserInfo userInfo=new UserInfo();
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(FXML_Loader.loadURL("channel-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(FXML_Loader.loadURL("login-view.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         stage.setTitle("YouTube");
