@@ -29,7 +29,7 @@ CREATE EXTENSION IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
 --
 -- TOC entry 4862 (class 0 OID 0)
 -- Dependencies: 2
--- Name: EXTENSION adminpack; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION adminpack; Type: COMMENT; Schema: -; Owner:
 --
 
 COMMENT ON EXTENSION adminpack IS 'administrative functions for PostgreSQL';
@@ -45,10 +45,10 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.channelplayliststable (
-    pcid integer NOT NULL,
-    pcname character varying(25) NOT NULL,
-    usertable_uname character varying(25) NOT NULL,
-    "PCID" integer NOT NULL
+                                              pcid integer NOT NULL,
+                                              pcname character varying(25) NOT NULL,
+                                              usertable_uname character varying(25) NOT NULL,
+                                              "PCID" integer NOT NULL
 );
 
 
@@ -85,11 +85,11 @@ ALTER SEQUENCE public."channelplayliststable_ID2_seq" OWNED BY public.channelpla
 --
 
 CREATE TABLE public.commentstable (
-    messageid integer NOT NULL,
-    playlistchannelvideotable_vpcid integer NOT NULL,
-    message character varying(1000) NOT NULL,
-    usertable_uname character varying(25) NOT NULL,
-    commentstable_messageid integer
+                                      messageid integer NOT NULL,
+                                      playlistchannelvideotable_vpcid integer NOT NULL,
+                                      message character varying(1000) NOT NULL,
+                                      usertable_uname character varying(25) NOT NULL,
+                                      commentstable_messageid integer
 );
 
 
@@ -101,11 +101,11 @@ ALTER TABLE public.commentstable OWNER TO postgres;
 --
 
 CREATE TABLE public.playlistchannelvideotable (
-    vpcid integer DEFAULT nextval('public."channelplayliststable_ID2_seq"'::regclass) NOT NULL,
-    channelplayliststable_pcid integer NOT NULL,
-    videotable_vid integer NOT NULL,
-    "NumberOfLike" integer DEFAULT 0,
-    "NumberOfDislike" integer DEFAULT 0
+                                                  vpcid integer DEFAULT nextval('public."channelplayliststable_ID2_seq"'::regclass) NOT NULL,
+                                                  channelplayliststable_pcid integer NOT NULL,
+                                                  videotable_vid integer NOT NULL,
+                                                  "NumberOfLike" integer DEFAULT 0,
+                                                  "NumberOfDislike" integer DEFAULT 0
 );
 
 
@@ -117,8 +117,8 @@ ALTER TABLE public.playlistchannelvideotable OWNER TO postgres;
 --
 
 CREATE TABLE public."subscriptionsTable" (
-    username character varying(25),
-    channelname character varying(25)
+                                             username character varying(25),
+                                             channelname character varying(25)
 );
 
 
@@ -130,11 +130,11 @@ ALTER TABLE public."subscriptionsTable" OWNER TO postgres;
 --
 
 CREATE TABLE public.userlikeanddislikeaction (
-    id integer DEFAULT nextval('public."channelplayliststable_ID2_seq"'::regclass) NOT NULL,
-    playlistchannelvideotable_vpcid integer NOT NULL,
-    usertable_uname character varying(25) NOT NULL,
-    "Like" boolean DEFAULT false NOT NULL,
-    dislike boolean DEFAULT false NOT NULL
+                                                 id integer DEFAULT nextval('public."channelplayliststable_ID2_seq"'::regclass) NOT NULL,
+                                                 playlistchannelvideotable_vpcid integer NOT NULL,
+                                                 usertable_uname character varying(25) NOT NULL,
+                                                 "Like" boolean DEFAULT false NOT NULL,
+                                                 dislike boolean DEFAULT false NOT NULL
 );
 
 
@@ -146,9 +146,9 @@ ALTER TABLE public.userlikeanddislikeaction OWNER TO postgres;
 --
 
 CREATE TABLE public.userplaylisttable (
-    puid integer NOT NULL,
-    puname character varying(25) NOT NULL,
-    usertable_uname character varying(25) NOT NULL
+                                          puid integer NOT NULL,
+                                          puname character varying(25) NOT NULL,
+                                          usertable_uname character varying(25) NOT NULL
 );
 
 
@@ -160,11 +160,11 @@ ALTER TABLE public.userplaylisttable OWNER TO postgres;
 --
 
 CREATE TABLE public.usertable (
-    username character varying(25) NOT NULL,
-    password integer NOT NULL,
-    name character varying(25),
-    channel character varying(25),
-    "numberOfSubscriptions" integer DEFAULT 0
+                                  username character varying(25) NOT NULL,
+                                  password integer NOT NULL,
+                                  name character varying(25),
+                                  channel character varying(25),
+                                  "numberOfSubscriptions" integer DEFAULT 0
 );
 
 
@@ -176,9 +176,9 @@ ALTER TABLE public.usertable OWNER TO postgres;
 --
 
 CREATE TABLE public.uservideoplaylist (
-    vpuid integer NOT NULL,
-    userplaylisttable_puid integer NOT NULL,
-    playlistchannelvideotable_vpcid integer NOT NULL
+                                          vpuid integer NOT NULL,
+                                          userplaylisttable_puid integer NOT NULL,
+                                          playlistchannelvideotable_vpcid integer NOT NULL
 );
 
 
@@ -190,14 +190,14 @@ ALTER TABLE public.uservideoplaylist OWNER TO postgres;
 --
 
 CREATE TABLE public.videotable (
-    vid integer NOT NULL,
-    usertable_uname character varying(25) NOT NULL,
-    vname character varying(25) NOT NULL,
-    "numberOfview" integer DEFAULT 0,
-    "numberOfLikes" integer DEFAULT 0,
-    "dateOfIllustration" character varying(25),
-    idd integer NOT NULL,
-    "numberOfDislike" integer DEFAULT 0
+                                   vid integer NOT NULL,
+                                   usertable_uname character varying(25) NOT NULL,
+                                   vname character varying(25) NOT NULL,
+                                   "numberOfview" integer DEFAULT 0,
+                                   "numberOfLikes" integer DEFAULT 0,
+                                   "dateOfIllustration" character varying(25),
+                                   idd integer NOT NULL,
+                                   "numberOfDislike" integer DEFAULT 0
 );
 
 

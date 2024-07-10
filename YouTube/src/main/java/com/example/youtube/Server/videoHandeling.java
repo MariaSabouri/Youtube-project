@@ -23,7 +23,7 @@ public class videoHandeling {
         Path path=Paths.get(basePath,username);
         try {
             Files.createDirectories(path);
-            System.out.println("create a folder for"+username);
+            System.out.println("create a folder for "+username);
 
         }catch (IOException e){
             System.err.println("Failed to create directory: " + e.getMessage());

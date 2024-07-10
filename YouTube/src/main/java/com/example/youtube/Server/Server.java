@@ -52,6 +52,7 @@ public class Server {
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket=new ServerSocket(6669);
         Server server=new Server(serverSocket);
+        DataManager.openConnection();
         server.startServer();
 
     }

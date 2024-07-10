@@ -148,11 +148,12 @@ public class HomePageController extends CommonTools implements Initializable, Ch
     private void handleYourChannel() {
         stage = (Stage) yourChannel.getScene().getWindow();
         try {
-            if (!Objects.equals(ClientToServerConnection.userInfo.getInfo().getString("ChannelName"), "")){
+            if (!Objects.equals(ClientToServerConnection.userInfo.getInfo().getString("ChannelName"),null)){
                 UiController.changingscene(stage,"channelPlaylists-view.fxml");
             }else {throw new Exception("User doesn't have channel!");}
 
         }catch (Exception e){
+
             UiController.changingscene(stage,"createChannel.fxml");
         }
 

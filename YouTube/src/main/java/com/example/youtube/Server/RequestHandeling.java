@@ -113,7 +113,11 @@ public class RequestHandeling {
             } else if (Objects.equals(videoHandelingFuctions,"UploadVideo")) {
                 videoHandeling.UploadVideo(jsonObject.getString("Parameter1"),jsonObject.getString("Parameter2"),jsonObject.getString("Parameter3"),jsonObject.getString("Parameter4"));
                 expextedDatabase.uploadindVideo(jsonObject.getString("Parameter1"),jsonObject.getString("Parameter2"),jsonObject.getString("Parameter3"));
-                return null;
+                JSONObject UserInfo=expextedDatabase.gettingUserInfo(jsonObject.getString("Parameter1"));
+                JSONObject jsonObject1=new JSONObject();
+                jsonObject1.put("Class","CommonTools/setUserInfo");
+                jsonObject1.put("Response",UserInfo);
+                return jsonObject1;
 
             } else if (Objects.equals(videoHandelingFuctions,"gettingVideoViaViedoNamePlaylistNamePublisher")) {
                 String Video=videoHandeling.gettingVideoViaViedoNamePlaylistNamePublisher(jsonObject.getString("Parameter1"),jsonObject.getString("Parameter2"),jsonObject.getString("Parameter3"));

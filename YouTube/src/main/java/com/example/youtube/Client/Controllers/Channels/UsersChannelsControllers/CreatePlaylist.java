@@ -68,6 +68,7 @@ public class CreatePlaylist implements Initializable {
                 JSONArray jsonArray=new JSONArray();
                 jsonArray.put(PLaylistNameDecided);
                 UserInfo.put("Playlists",jsonArray);
+                System.out.println("");
             }finally {
 
                 ClientToServerConnection.userInfo.setInfo(UserInfo);

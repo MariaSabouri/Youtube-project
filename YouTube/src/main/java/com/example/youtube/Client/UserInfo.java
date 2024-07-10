@@ -7,7 +7,7 @@ public class UserInfo {
 
     }
 
-    private JSONObject info;
+    private static JSONObject info;
 
     public JSONObject getInfo() {
         return info;

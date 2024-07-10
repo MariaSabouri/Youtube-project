@@ -23,38 +23,38 @@ public class DataManager {
         }
     }
 
-    public static void InsertingVideoTo_VideoTable(String Username,String videoName){
-        // Note that for a user, any two VideoNames shouldn't have the same name
-        UUID myUuid = UUID.randomUUID();
-        int hashedInt = myUuid.hashCode();
-        // Store hashedInt in an INT column in your database
-        try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO VideoTable (VId, UserTable_UName, VName) VALUES (?, ?, ?)")) {
-
-            stmt.setInt(1, hashedInt);
-            stmt.setString(2, Username);
-            stmt.setString(3, videoName);
-            // Check if a video with the same name already exists for the user
-            try (PreparedStatement checkStmt = conn.prepareStatement("SELECT COUNT(*) FROM VideoTable WHERE UserTable_UName = ? AND VName = ?")) {
-                checkStmt.setString(1, Username);
-                checkStmt.setString(2, videoName);
-                try (ResultSet checkResult = checkStmt.executeQuery()) {
-                    if (checkResult.next() && checkResult.getInt(1) > 0) {
-                        System.err.println("Error: A video with the same name already exists for this user.");
-                        return;
-                    }
-                }
-            }
-
-            int rowsAffected = stmt.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("Video inserted successfully.");
-            } else {
-                System.err.println("Error: Unable to insert video.");
-            }
-        } catch (SQLException e) {
-            System.err.println("Error inserting video: " + e.getMessage());
-        }
-    }
+//    public static void InsertingVideoTo_VideoTable(String Username,String videoName){
+//        // Note that for a user, any two VideoNames shouldn't have the same name
+//        UUID myUuid = UUID.randomUUID();
+//        int hashedInt = myUuid.hashCode();
+//        // Store hashedInt in an INT column in your database
+//        try (PreparedStatement stmt = conn.prepareStatement("INSERT INTO VideoTable (VId, UserTable_UName, VName) VALUES (?, ?, ?)")) {
+//
+//            stmt.setInt(1, hashedInt);
+//            stmt.setString(2, Username);
+//            stmt.setString(3, videoName);
+//            // Check if a video with the same name already exists for the user
+//            try (PreparedStatement checkStmt = conn.prepareStatement("SELECT COUNT(*) FROM VideoTable WHERE UserTable_UName = ? AND VName = ?")) {
+//                checkStmt.setString(1, Username);
+//                checkStmt.setString(2, videoName);
+//                try (ResultSet checkResult = checkStmt.executeQuery()) {
+//                    if (checkResult.next() && checkResult.getInt(1) > 0) {
+//                        System.err.println("Error: A video with the same name already exists for this user.");
+//                        return;
+//                    }
+//                }
+//            }
+//
+//            int rowsAffected = stmt.executeUpdate();
+//            if (rowsAffected > 0) {
+//                System.out.println("Video inserted successfully.");
+//            } else {
+//                System.err.println("Error: Unable to insert video.");
+//            }
+//        } catch (SQLException e) {
+//            System.err.println("Error inserting video: " + e.getMessage());
+//        }
+//    }
     /**
      * In SignUp method,we insert new user to "UserTable" table in database
      * In this function, it is also checked if such a username exists in the database; if so, "false" output is sent else
@@ -503,33 +503,33 @@ public static JSONArray gettingAllUserVPCID(String Username,String playlistName)
 
     public static void main(String args[]) {
         openConnection();
-        //System.out.println(SignUp("lc","pp", "123"));
-        //System.out.println(LogIn("nn","123"));
-        //System.out.println(GettingJsonArrayOfPlaylistNames("l"));
-        //System.out.println(gettingUserInfo("String Username"));
-        //System.out.println(CreatingChannel("String Username", "shala"));
-        //CreatingPlaylist("l;k","name");
-        //System.out.println(gettingAllVPCI("sha la la","playlist name"));
-        ////System.out.println(gettingAllVPCI("sha la la","playlist name"));
-        //InsertingVideoTo_VideoTable("l","lhkjjklh");
-        //System.out.println(resultVideoFromSearchbar("dd"));
-        //System.out.println();
-        //TrendVPCIDForHomePage();
-        //gettingAllUserVPCID("l", "name");
-        //TrendVPCIDForHomePage();
-        /////////////
-//        InsertingNewMessageForAVPC("VPCID", String username, String MessageIdToReply, String Message)
-//        CreatingAplaylistForAChannel("ll","ss", "l");
-//        CreatNewPlaylistForAUser("l","ll","hh");
-//        insertAVPCIDToUserPlaylist("11","22");
-//        ListingVPCIDForUserPlaylist("192577626");
-//        CreatingAChannel("p","lll");
-        //resultVideoFromSearchbar("l");
-        //VPCIDInfo("12","l");
-        //System.out.println(GettingJsonArrayOfPlaylistNames("l"));
-        //ViewCounterForVPCID("1","l");
-//        UpdateLikeAndDislikeActionsOnDataBase();
-        //uploadindVideo("String Username", "String PlaylistName", "String VieoName");
+        System.out.println(SignUp("lc","pp", "123"));
+//        //System.out.println(LogIn("nn","123"));
+//        //System.out.println(GettingJsonArrayOfPlaylistNames("l"));
+//        //System.out.println(gettingUserInfo("String Username"));
+//        //System.out.println(CreatingChannel("String Username", "shala"));
+//        //CreatingPlaylist("l;k","name");
+//        //System.out.println(gettingAllVPCI("sha la la","playlist name"));
+//        ////System.out.println(gettingAllVPCI("sha la la","playlist name"));
+//        //InsertingVideoTo_VideoTable("l","lhkjjklh");
+//        //System.out.println(resultVideoFromSearchbar("dd"));
+//        //System.out.println();
+//        //TrendVPCIDForHomePage();
+//        //gettingAllUserVPCID("l", "name");
+//        //TrendVPCIDForHomePage();
+//        /////////////
+////        InsertingNewMessageForAVPC("VPCID", String username, String MessageIdToReply, String Message)
+////        CreatingAplaylistForAChannel("ll","ss", "l");
+////        CreatNewPlaylistForAUser("l","ll","hh");
+////        insertAVPCIDToUserPlaylist("11","22");
+////        ListingVPCIDForUserPlaylist("192577626");
+////        CreatingAChannel("p","lll");
+//        //resultVideoFromSearchbar("l");
+//        //VPCIDInfo("12","l");
+//        //System.out.println(GettingJsonArrayOfPlaylistNames("l"));
+//        //ViewCounterForVPCID("1","l");
+////        UpdateLikeAndDislikeActionsOnDataBase();
+//        //uploadindVideo("String Username", "String PlaylistName", "String VieoName");
     }
 
 

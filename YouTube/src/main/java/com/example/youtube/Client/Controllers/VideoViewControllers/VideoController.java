@@ -120,6 +120,8 @@ public class VideoController implements Initializable,ChannelInterface {
 
     @FXML
     private Slider sliderVolume;
+    @FXML
+    private Button downloadButton;
 
     private Boolean atEndOfVideo=false;
     private Boolean isPlaying=false;
@@ -194,6 +196,7 @@ public class VideoController implements Initializable,ChannelInterface {
         dislikeButton.setOnAction(event -> handleDislike());
         channelButton.setOnAction(event -> handleShowChannel());
         subscribe.setOnAction(event -> handleSubscribe());
+        downloadButton.setOnAction(event -> downloadButtonHandler());
 
 
 
@@ -515,6 +518,11 @@ public class VideoController implements Initializable,ChannelInterface {
 
         CommonTools.UpdateLikeAndDislikeActionsOnDataBase(likeAndDislike);
         System.out.println(likeAndDislike);
+    }
+
+
+    private void downloadButtonHandler() {
+
     }
 
 
