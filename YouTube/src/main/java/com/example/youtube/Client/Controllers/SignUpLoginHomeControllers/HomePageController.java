@@ -69,9 +69,12 @@ public class HomePageController extends CommonTools implements Initializable, Ch
     private static JSONArray HomepageTrendVideos;
 
     public static void setHomepageTrendVideos(JSONArray homepageTrendVideos) {
-        HomepageTrendVideos = homepageTrendVideos;
-        setViewForTrendVideos();
-
+//        try {
+            HomepageTrendVideos = homepageTrendVideos;
+            //setViewForTrendVideos();
+//        } catch(Exception e) {
+//            System.out.println("Error in set homepage videotrends");
+//        }
     }
     @FXML
     private static void setViewForTrendVideos() {
@@ -148,12 +151,16 @@ public class HomePageController extends CommonTools implements Initializable, Ch
     private void handleYourChannel() {
         stage = (Stage) yourChannel.getScene().getWindow();
         try {
-            if (!Objects.equals(ClientToServerConnection.userInfo.getInfo().getString("ChannelName"), "")){
+            System.out.println(ClientToServerConnection.userInfo.getInfo().getString("ChannelName"));
+            if (!Objects.equals(ClientToServerConnection.userInfo.getInfo().getString("ChannelName"), null)){
+                System.out.println(ClientToServerConnection.userInfo.getInfo().getJSONArray("Playlists"));
                 UiController.changingscene(stage,"channelPlaylists-view.fxml");
             }else {throw new Exception("User doesn't have channel!");}
 
         }catch (Exception e){
+            e.printStackTrace();
             UiController.changingscene(stage,"createChannel.fxml");
+
         }
 
     }

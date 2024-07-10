@@ -101,6 +101,7 @@ public class CommonTools {
         try {
             ClientToServerConnection.userInfo.setInfo(getUserInfo);
             UiController.changingscene(Currentstage,"homePage-view.fxml");
+            System.out.println(getUserInfo);
 
         }catch (Exception e){
             System.out.println("There is an error!");

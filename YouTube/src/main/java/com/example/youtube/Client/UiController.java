@@ -96,7 +96,7 @@ public class UiController {
                     try {
                         messageToRead=bufferedReader.readLine();
                         OrientingToAClassBuyServerResponse(messageToRead);
-                        System.out.println(messageToRead);
+                        //System.out.println(messageToRead);
                     }catch (IOException e){
                         CloseEveryThing(socket,bufferedReader,bufferedWriter);
                     }
@@ -139,7 +139,7 @@ public class UiController {
                 CreatePlaylist.SettingNameForPlaylist(jsonObject.getBoolean("Response"));
 
             } else if (UiClass.equals("HomePageController/setHomepageTrendVideos")) {
-                HomePageController.setHomepageTrendVideos(jsonObject.getJSONArray("Response"));
+                //HomePageController.setHomepageTrendVideos(jsonObject.getJSONArray("Response"));
 
             }else if (UiClass.equals("ChannelController/VideosForThisPlaylist")) {
                 ChannelController.VideosForThisPlaylist(jsonObject.getJSONArray("Response"));

@@ -129,6 +129,7 @@ public class ChannelController implements Initializable,ChannelInterface {
             }
 
         }catch (Exception e){
+            e.printStackTrace();
             System.out.println("User does not have any video for this playlist");
         }
 

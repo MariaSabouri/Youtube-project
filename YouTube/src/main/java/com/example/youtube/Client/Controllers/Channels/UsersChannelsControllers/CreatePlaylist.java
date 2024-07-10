@@ -63,12 +63,13 @@ public class CreatePlaylist implements Initializable {
             });
         }else {
             try {
-                UserInfo.getJSONArray("Playlists").put(PLaylistNameDecided);
+                ClientToServerConnection.userInfo.getInfo().getJSONArray("Playlists").put(PLaylistNameDecided);
             }catch (Exception e){
                 JSONArray jsonArray=new JSONArray();
                 jsonArray.put(PLaylistNameDecided);
-                UserInfo.put("Playlists",jsonArray);
+                UserInfo = ClientToServerConnection.userInfo.getInfo().put("Playlists",jsonArray);
             }finally {
+                System.out.println(UserInfo +"kkkk");
 
                 ClientToServerConnection.userInfo.setInfo(UserInfo);
 
