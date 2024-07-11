@@ -237,19 +237,15 @@ public static Boolean CreatingChannel(String username, String channelName) {
         //[{"VPCID":---,"VideoName":---,"ChannelName":---,"NumberOfView":---},{},{},...]
         JSONArray jsonArray = new JSONArray();
         try (PreparedStatement stmt = conn.prepareStatement(
-                "SELECT VPCId, VName, UserTable.channel, videotable.\"numberOfview\" " +
-                        "FROM PlaylistChannelVideoTable " +
-                        "JOIN VideoTable ON PlaylistChannelVideoTable.VideoTable_VId = VideoTable.VId " +
-                        "JOIN UserTable ON VideoTable.UserTable_UName = UserTable.username " +
-                        "ORDER BY videotable.\"numberOfview\" DESC " +
-                        "LIMIT 9")) { // Get top 9 trending videos
+                "SELECT * FROM PlaylistChannelVideoTable\n" +
+                        "                        ORDER BY \"numberOfview\" DESC LIMIT 9")) { // Get top 9 trending videos
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     JSONObject video = new JSONObject();
                     video.put("VPCID", rs.getInt("VPCId"));
-                    video.put("VideoName", rs.getString("VName"));
-                    video.put("ChannelName", rs.getString("channel"));
+                    video.put("VideoName", rs.getString("videoName"));
+                    //video.put("ChannelName", rs.getString("channel"));
                     video.put("NumberOfView", rs.getInt("numberOfview"));
                     jsonArray.put(video);
                 }
@@ -342,42 +338,99 @@ public static Boolean CreatingChannel(String username, String channelName) {
 //
 //        return jsonArray;
 //    }
+//    public static JSONArray gettingAllUserVPCID(String Username,String playlistName){
+//        //[{"VPCID":---,"VideoName":---,"ChannelName":---,"NumberOfView":---},{},{},...]
+//        JSONArray jsonArray=new JSONArray();
+//
+//        JSONObject o1=new JSONObject();
+//        o1.put("VPCID",987);
+//        o1.put("VideoName","alex in heaven");
+//        o1.put("ChannelName","sd");
+//        o1.put("NumberOfView",23);
+//        jsonArray.put(o1);
+//        JSONObject o2=new JSONObject();
+//        o2.put("VPCID",987);
+//        o2.put("VideoName","alex in heaven");
+//        o2.put("ChannelName","sd");
+//        o2.put("NumberOfView",23);
+//        jsonArray.put(o2);
+//        JSONObject o3=new JSONObject();
+//        o3.put("VPCID",987);
+//        o3.put("VideoName","alex in heaven");
+//        o3.put("ChannelName","sd");
+//        o3.put("NumberOfView",23);
+//        jsonArray.put(o3);
+//        JSONObject o4=new JSONObject();
+//        o4.put("VPCID",987);
+//        o4.put("VideoName","alex in heaven");
+//        o4.put("ChannelName","sd");
+//        o4.put("NumberOfView",23);
+//        jsonArray.put(o4);
+//
+//        return jsonArray;
+//    }
     public static JSONArray gettingAllUserVPCID(String Username,String playlistName){
         //[{"VPCID":---,"VideoName":---,"ChannelName":---,"NumberOfView":---},{},{},...]
-        JSONArray jsonArray=new JSONArray();
+        JSONArray jsonArray = new JSONArray();
+        try (PreparedStatement stmt = conn.prepareStatement(
+                "SELECT * FROM playlistchannelvideotable WHERE username = ? AND \'playlistchannelvideotable.playlistName\' = ?")) {
+            stmt.setString(1, Username);
+            stmt.setString(2, playlistName);
 
-        JSONObject o1=new JSONObject();
-        o1.put("VPCID",987);
-        o1.put("VideoName","alex in heaven");
-        o1.put("ChannelName","sd");
-        o1.put("NumberOfView",23);
-        jsonArray.put(o1);
-        JSONObject o2=new JSONObject();
-        o2.put("VPCID",987);
-        o2.put("VideoName","alex in heaven");
-        o2.put("ChannelName","sd");
-        o2.put("NumberOfView",23);
-        jsonArray.put(o2);
-        JSONObject o3=new JSONObject();
-        o3.put("VPCID",987);
-        o3.put("VideoName","alex in heaven");
-        o3.put("ChannelName","sd");
-        o3.put("NumberOfView",23);
-        jsonArray.put(o3);
-        JSONObject o4=new JSONObject();
-        o4.put("VPCID",987);
-        o4.put("VideoName","alex in heaven");
-        o4.put("ChannelName","sd");
-        o4.put("NumberOfView",23);
-        jsonArray.put(o4);
-
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    JSONObject video = new JSONObject();
+                    video.put("VPCID", rs.getInt("VPCId"));
+                    video.put("VideoName", rs.getString("VideoName"));
+                    video.put("ChannelName", Username);
+                    video.put("NumberOfView", rs.getInt("numberOfview"));
+                    jsonArray.put(video);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching videos from user playlist: " + e.getMessage());
+        }
         return jsonArray;
     }
 
-    public static void uploadindVideo(String Username, String PlaylistName, String VideoName) {
-        //here for each record , we create a VPCID !!!!
-        //check if there exists such VideoName,don't add this record in database
+//    public static void uploadindVideo(String Username, String PlaylistName, String VideoName) {
+//        //here for each record , we create a VPCID !!!!
+//        //check if there exists such VideoName,don't add this record in database
+//    }
+public static void uploadindVideo(String Username, String PlaylistName, String VideoName) {
+    //here for each record , we create a VPCID !!!!
+    //check if there exists suck VideoName,don't add this record in database
+    // Check if the video already exists
+//    try (PreparedStatement checkStmt = conn.prepareStatement("SELECT COUNT(*) FROM playlistChannelvideotable WHERE videoName = ? and \"playlistName\" = ? and usertable_uname = ?")) {
+//        checkStmt.setString(1, VideoName);
+//        checkStmt.setString(2, PlaylistName);
+//        checkStmt.setString(3, VideoName);
+//
+//        try (ResultSet checkResult = checkStmt.executeQuery()) {
+//            if (checkResult.next() && checkResult.getInt(1) > 0) {
+//                System.err.println("Error: Video with this name already exists.");
+//            }
+//        }
+//    } catch (SQLException e) {
+//        System.err.println("Error checking for existing video: " + e.getMessage());
+//        return; // Exit if there's an error checking
+//    }
+    System.out.println("-------");
+    // Insert the video into VideoTable
+    try (PreparedStatement insertVideoStmt = conn.prepareStatement(
+            "\n" +
+                    "INSERT INTO playlistChannelvideotable (username, \"videoName\", \"playlistName\") VALUES (?, ?, ?)")) {
+        //insertVideoStmt.setInt(1, generateNewVPCID());
+        insertVideoStmt.setString(1, Username);
+        insertVideoStmt.setString(2, VideoName);
+        insertVideoStmt.setString(3, PlaylistName);
+        insertVideoStmt.executeUpdate();
+        System.out.println("Video inserted into VideoTable.");
+    } catch (SQLException e) {
+        System.err.println("Error inserting video: " + e.getMessage());
+        return;
     }
+}
     public static void ViewCounterForVPCID(String VPCID, String Username) {
         //Add this User To UserLikeAndDislikeAction
     }
