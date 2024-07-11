@@ -30,7 +30,7 @@ public class ClientHandler implements Runnable{
             try {
                 String read=bufferedReader.readLine();
                 JSONObject jsonObject = new JSONObject(read);
-                System.out.println(jsonObject);
+                //System.out.println(jsonObject);
                 JSONObject jsonObject1 = RequestHandeling.JsonHanldler(jsonObject);
                 if (jsonObject1!=null){
                     bufferedWriter.write(jsonObject1.toString());

@@ -69,12 +69,12 @@ public class HomePageController extends CommonTools implements Initializable, Ch
     private static JSONArray HomepageTrendVideos;
 
     public static void setHomepageTrendVideos(JSONArray homepageTrendVideos) {
-//        try {
+        try {
             HomepageTrendVideos = homepageTrendVideos;
-            //setViewForTrendVideos();
-//        } catch(Exception e) {
-//            System.out.println("Error in set homepage videotrends");
-//        }
+            setViewForTrendVideos();
+        } catch(Exception e) {
+            System.out.println("Error in set homepage videotrends");
+        }
     }
     @FXML
     private static void setViewForTrendVideos() {
@@ -133,10 +133,10 @@ public class HomePageController extends CommonTools implements Initializable, Ch
         borders.add(border8);
         borders.add(border9);
 
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("Class","database");
-        jsonObject.put("DataManager","TrendVPCIDForHomePage");
-        ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
+//        JSONObject jsonObject=new JSONObject();
+//        jsonObject.put("Class","database");
+//        jsonObject.put("DataManager","TrendVPCIDForHomePage");
+//        ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
 
 
         homeButton.setOnAction(event -> homeButtonhandler());
@@ -151,7 +151,7 @@ public class HomePageController extends CommonTools implements Initializable, Ch
     private void handleYourChannel() {
         stage = (Stage) yourChannel.getScene().getWindow();
         try {
-            System.out.println(ClientToServerConnection.userInfo.getInfo().getString("ChannelName"));
+            System.out.println(ClientToServerConnection.userInfo.getInfo());
             if (!Objects.equals(ClientToServerConnection.userInfo.getInfo().getString("ChannelName"), null)){
                 System.out.println(ClientToServerConnection.userInfo.getInfo().getJSONArray("Playlists"));
                 UiController.changingscene(stage,"channelPlaylists-view.fxml");

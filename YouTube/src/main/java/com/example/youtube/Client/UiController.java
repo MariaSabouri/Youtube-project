@@ -139,7 +139,12 @@ public class UiController {
                 CreatePlaylist.SettingNameForPlaylist(jsonObject.getBoolean("Response"));
 
             } else if (UiClass.equals("HomePageController/setHomepageTrendVideos")) {
-                //HomePageController.setHomepageTrendVideos(jsonObject.getJSONArray("Response"));
+                try {
+                    HomePageController.setHomepageTrendVideos(jsonObject.getJSONArray("Response"));
+                } catch(Exception e) {
+                    e.printStackTrace();
+                    System.out.println("thre isn't a video to be shown");
+                }
 
             }else if (UiClass.equals("ChannelController/VideosForThisPlaylist")) {
                 ChannelController.VideosForThisPlaylist(jsonObject.getJSONArray("Response"));
@@ -156,6 +161,7 @@ public class UiController {
             }
 
         }catch (Exception e){
+            e.printStackTrace();
             System.out.println("May got null answer!");
         }
 
