@@ -1,10 +1,9 @@
-package com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers;
+package com.example.youtube.client.controllers.channels.UsersChannelsControllers;
 
-import com.example.youtube.Client.ClientToServerConnection;
-import com.example.youtube.Client.Controllers.ChannelInterface;
-import com.example.youtube.Client.Controllers.CommonTools;
-import com.example.youtube.Client.UiController;
-import javafx.event.ActionEvent;
+import com.example.youtube.client.ClientToServerConnection;
+import com.example.youtube.client.controllers.ChannelInterface;
+import com.example.youtube.client.controllers.CommonTools;
+import com.example.youtube.client.UiController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,13 +16,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import javafx.scene.control.ScrollPane;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 

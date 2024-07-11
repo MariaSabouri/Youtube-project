@@ -1,15 +1,13 @@
-package com.example.youtube.Client.Controllers;
+package com.example.youtube.client.controllers;
 
-import com.example.youtube.Client.ClientToServerConnection;
-import com.example.youtube.Client.Controllers.SearchbarController.SearchbarController;
-import com.example.youtube.Client.Controllers.VideoViewControllers.VideoController;
-import com.example.youtube.Client.UiController;
+import com.example.youtube.client.ClientToServerConnection;
+import com.example.youtube.client.controllers.searchbarController.SearchbarController;
+import com.example.youtube.client.controllers.videoViewControllers.VideoController;
+import com.example.youtube.client.UiController;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.util.concurrent.CountDownLatch;
 
 
 public class CommonTools {

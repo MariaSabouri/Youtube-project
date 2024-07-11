@@ -1,13 +1,12 @@
-package com.example.youtube.Client;
+package com.example.youtube.client;
 
-import com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers.ChannelController;
-import com.example.youtube.Client.Controllers.CommonTools;
-import com.example.youtube.Client.Controllers.SearchbarController.SearchbarController;
-import com.example.youtube.Client.Controllers.SignUpLoginHomeControllers.HomePageController;
-import com.example.youtube.Client.Controllers.SignUpLoginHomeControllers.LoginController;
-import com.example.youtube.Client.Controllers.SignUpLoginHomeControllers.SignUpController;
-import com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers.CreateChannelController;
-import com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers.CreatePlaylist;
+import com.example.youtube.client.controllers.channels.UsersChannelsControllers.ChannelController;
+import com.example.youtube.client.controllers.CommonTools;
+import com.example.youtube.client.controllers.signUpLoginHomeControllers.HomePageController;
+import com.example.youtube.client.controllers.signUpLoginHomeControllers.LoginController;
+import com.example.youtube.client.controllers.signUpLoginHomeControllers.SignUpController;
+import com.example.youtube.client.controllers.channels.UsersChannelsControllers.CreateChannelController;
+import com.example.youtube.client.controllers.channels.UsersChannelsControllers.CreatePlaylist;
 import com.example.youtube.FXML_Loader;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -20,8 +19,6 @@ import org.json.JSONObject;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Semaphore;
 
 public class UiController {
     public static String Message;

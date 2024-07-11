@@ -1,11 +1,10 @@
-package com.example.youtube.Server;
+package com.example.youtube.server;
 
 //import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.sql.*;
-import java.util.*;
 
 public class DataManager {
     //When Calling openConnection method,the connection with database will be connected

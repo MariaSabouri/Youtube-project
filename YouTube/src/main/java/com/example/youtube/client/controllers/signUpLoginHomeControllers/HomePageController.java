@@ -1,12 +1,9 @@
-package com.example.youtube.Client.Controllers.SignUpLoginHomeControllers;
+package com.example.youtube.client.controllers.signUpLoginHomeControllers;
 
-import com.example.youtube.Client.ClientToServerConnection;
-import com.example.youtube.Client.Controllers.ChannelInterface;
-import com.example.youtube.Client.Controllers.VideoViewControllers.VideoController;
-import com.example.youtube.Client.Controllers.CommonTools;
-import com.example.youtube.Client.UiController;
-import com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers.ChannelPlaylistsController;
-import com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers.CreateChannelController;
+import com.example.youtube.client.ClientToServerConnection;
+import com.example.youtube.client.controllers.ChannelInterface;
+import com.example.youtube.client.controllers.CommonTools;
+import com.example.youtube.client.UiController;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

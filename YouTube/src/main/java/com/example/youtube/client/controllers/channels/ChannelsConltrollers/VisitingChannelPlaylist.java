@@ -1,6 +1,6 @@
-package com.example.youtube.Client.Controllers.Channels.ChannelsConltrollers;
+package com.example.youtube.client.controllers.channels.ChannelsConltrollers;
 
-import com.example.youtube.Client.Controllers.ChannelInterface;
+import com.example.youtube.client.controllers.ChannelInterface;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

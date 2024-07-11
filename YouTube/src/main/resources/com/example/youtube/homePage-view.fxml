@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="594.0" prefWidth="853.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.Client.Controllers.SignUpLoginHomeControllers.HomePageController">
+<BorderPane prefHeight="594.0" prefWidth="853.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.youtube.client.controllers.signUpLoginHomeControllers.HomePageController">
     <top>
 <!--        <HBox alignment="TOP_CENTER" spacing="10" style="-fx-padding: 10;">-->
 <!--            <TextField fx:id="searchField" prefHeight="16.0" prefWidth="295.0" promptText="Search" style="-fx-background-radius: 20;" HBox.hgrow="ALWAYS" />-->

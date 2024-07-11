@@ -1,5 +1,4 @@
-package com.example.youtube.Server;
-import org.json.JSONObject;
+package com.example.youtube.server;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -1,10 +1,9 @@
-package com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers;
+package com.example.youtube.client.controllers.channels.UsersChannelsControllers;
 
-import com.example.youtube.Client.ClientToServerConnection;
-import com.example.youtube.Client.Controllers.ChannelInterface;
-import com.example.youtube.Client.Controllers.VideoViewControllers.VideoController;
-import com.example.youtube.Client.Controllers.CommonTools;
-import com.example.youtube.Client.UiController;
+import com.example.youtube.client.ClientToServerConnection;
+import com.example.youtube.client.controllers.ChannelInterface;
+import com.example.youtube.client.controllers.CommonTools;
+import com.example.youtube.client.UiController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

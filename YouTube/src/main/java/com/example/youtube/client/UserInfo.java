@@ -1,4 +1,4 @@
-package com.example.youtube.Client;
+package com.example.youtube.client;
 
 import org.json.JSONObject;
 

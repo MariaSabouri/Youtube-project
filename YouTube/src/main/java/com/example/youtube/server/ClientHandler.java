@@ -1,8 +1,8 @@
-package com.example.youtube.Server;
+package com.example.youtube.server;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Vector;
+
 import org.json.JSONObject;
 
 

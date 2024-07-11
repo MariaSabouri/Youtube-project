@@ -8,21 +8,21 @@ module com.example.youtube {
 
     opens com.example.youtube to javafx.fxml;
     exports com.example.youtube;
-    exports com.example.youtube.Server;
-    opens com.example.youtube.Server to javafx.fxml;
-    exports com.example.youtube.Client;
-    opens com.example.youtube.Client to javafx.fxml;
-    exports com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers;
-    opens com.example.youtube.Client.Controllers.Channels.UsersChannelsControllers to javafx.fxml;
-    exports com.example.youtube.Client.Controllers.Channels.ChannelsConltrollers;
-    opens com.example.youtube.Client.Controllers.Channels.ChannelsConltrollers to javafx.fxml;
-    exports com.example.youtube.Client.Controllers.SearchbarController;
-    opens com.example.youtube.Client.Controllers.SearchbarController to javafx.fxml;
-    exports com.example.youtube.Client.Controllers.SignUpLoginHomeControllers;
-    opens com.example.youtube.Client.Controllers.SignUpLoginHomeControllers to javafx.fxml;
-    exports com.example.youtube.Client.Controllers.VideoViewControllers;
-    opens com.example.youtube.Client.Controllers.VideoViewControllers to javafx.fxml;
-    exports com.example.youtube.Client.Controllers;
-    opens com.example.youtube.Client.Controllers to javafx.fxml;
+    exports com.example.youtube.server;
+    opens com.example.youtube.server to javafx.fxml;
+    exports com.example.youtube.client;
+    opens com.example.youtube.client to javafx.fxml;
+    exports com.example.youtube.client.controllers.channels.UsersChannelsControllers;
+    opens com.example.youtube.client.controllers.channels.UsersChannelsControllers to javafx.fxml;
+    exports com.example.youtube.client.controllers.channels.ChannelsConltrollers;
+    opens com.example.youtube.client.controllers.channels.ChannelsConltrollers to javafx.fxml;
+    exports com.example.youtube.client.controllers.searchbarController;
+    opens com.example.youtube.client.controllers.searchbarController to javafx.fxml;
+    exports com.example.youtube.client.controllers.signUpLoginHomeControllers;
+    opens com.example.youtube.client.controllers.signUpLoginHomeControllers to javafx.fxml;
+    exports com.example.youtube.client.controllers.videoViewControllers;
+    opens com.example.youtube.client.controllers.videoViewControllers to javafx.fxml;
+    exports com.example.youtube.client.controllers;
+    opens com.example.youtube.client.controllers to javafx.fxml;
 
 }

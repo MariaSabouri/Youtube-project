@@ -1,8 +1,8 @@
-package com.example.youtube.Client.Controllers.SignUpLoginHomeControllers;
+package com.example.youtube.client.controllers.signUpLoginHomeControllers;
 
-import com.example.youtube.Client.ClientToServerConnection;
-import com.example.youtube.Client.Controllers.CommonTools;
-import com.example.youtube.Client.UiController;
+import com.example.youtube.client.ClientToServerConnection;
+import com.example.youtube.client.controllers.CommonTools;
+import com.example.youtube.client.UiController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import org.json.JSONObject;
 
 import java.net.URL;

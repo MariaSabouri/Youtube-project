@@ -1,4 +1,4 @@
-package com.example.youtube.Client;
+package com.example.youtube.client;
 
 import com.example.youtube.FXML_Loader;
 import javafx.application.Application;

@@ -1,19 +1,8 @@
-package com.example.youtube.Server;
-
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import org.json.JSONArray;
-import org.json.JSONObject;
+package com.example.youtube.server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Server {
     private ServerSocket ss;

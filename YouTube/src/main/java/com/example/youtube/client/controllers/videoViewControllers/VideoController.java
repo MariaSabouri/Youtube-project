@@ -1,10 +1,9 @@
-package com.example.youtube.Client.Controllers.VideoViewControllers;
+package com.example.youtube.client.controllers.videoViewControllers;
 
-import com.example.youtube.Client.ClientToServerConnection;
-import com.example.youtube.Client.Controllers.ChannelInterface;
-import com.example.youtube.Client.Controllers.Channels.ChannelsConltrollers.VisitingChannelPlaylist;
-import com.example.youtube.Client.Controllers.CommonTools;
-import com.example.youtube.Client.UiController;
+import com.example.youtube.client.ClientToServerConnection;
+import com.example.youtube.client.controllers.ChannelInterface;
+import com.example.youtube.client.controllers.CommonTools;
+import com.example.youtube.client.UiController;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
@@ -31,7 +30,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.json.JSONObject;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

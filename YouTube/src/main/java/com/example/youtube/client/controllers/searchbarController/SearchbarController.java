@@ -1,14 +1,12 @@
-package com.example.youtube.Client.Controllers.SearchbarController;
+package com.example.youtube.client.controllers.searchbarController;
 
-import com.example.youtube.Client.ClientToServerConnection;
-import com.example.youtube.Client.Controllers.CommonTools;
-import com.example.youtube.Client.Controllers.SignUpLoginHomeControllers.HomePageController;
-import com.example.youtube.Client.Controllers.VideoViewControllers.VideoController;
-import com.example.youtube.Client.UiController;
+import com.example.youtube.client.ClientToServerConnection;
+import com.example.youtube.client.controllers.CommonTools;
+import com.example.youtube.client.controllers.signUpLoginHomeControllers.HomePageController;
+import com.example.youtube.client.UiController;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
