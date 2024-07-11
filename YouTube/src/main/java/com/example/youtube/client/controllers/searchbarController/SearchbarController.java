@@ -69,7 +69,7 @@ public class SearchbarController implements Initializable {
                     channelNameLabel.setText(jsonObject.getString("ChannelName"));
                     viewCountLabel.setText(String.valueOf(jsonObject.getInt("NumberOfView")));
 
-                    Image image=new Image(HomePageController.class.getResource("/com/example/youtube/videoTools/VideoImage.png").toString());
+                    Image image=new Image(HomePageController.class.getResource("/com/example/youtube/videoTools/videoImage.png").toString());
                     ImageView imageView = (ImageView) borderPane.getLeft();
                     imageView.setFitWidth(IV_SIZE);
                     imageView.setFitHeight(IV_SIZE);

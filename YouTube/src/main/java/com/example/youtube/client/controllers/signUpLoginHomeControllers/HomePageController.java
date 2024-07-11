@@ -79,7 +79,7 @@ public class HomePageController extends CommonTools implements Initializable, Ch
             JSONObject jsonObject1= (JSONObject) HomepageTrendVideos.get(i);
             borderPane.setId(String.valueOf(jsonObject1.getInt("VPCID")));
 
-            Image image=new Image(HomePageController.class.getResource("/com/example/youtube/videoTools/VideoImage.png").toString());
+            Image image=new Image(HomePageController.class.getResource("/com/example/youtube/videoTools/videoImage.png").toString());
             ImageView imageView = (ImageView) borderPane.getCenter();
             imageView.setFitWidth(IV_SIZE);
             imageView.setFitHeight(IV_SIZE);

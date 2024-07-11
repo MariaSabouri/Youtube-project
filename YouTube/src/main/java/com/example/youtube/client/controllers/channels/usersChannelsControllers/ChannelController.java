@@ -91,7 +91,7 @@ public class ChannelController implements Initializable,ChannelInterface {
 
                 newBorderPane.setId(String.valueOf(jsonObject.getInt("VPCID")));
 
-                ImageView newImageView = new ImageView(ChannelController.class.getResource("/com/example/youtube/videoTools/VideoImage.png").toString());
+                ImageView newImageView = new ImageView(ChannelController.class.getResource("/com/example/youtube/videoTools/videoImage.png").toString());
                 newImageView.setFitWidth(IV_SIZE);
                 newImageView.setFitHeight(IV_SIZE);
                 newBorderPane.setLeft(newImageView);
