@@ -500,9 +500,9 @@ public static JSONArray gettingAllUserVPCID(String Username,String playlistName)
         }
     }
 
-    public static void main(String args[]) {
-        openConnection();
-        System.out.println(SignUp("lc","pp", "123"));
+//    public static void main(String args[]) {
+//        openConnection();
+//        System.out.println(SignUp("lc","pp", "123"));
 //        //System.out.println(LogIn("nn","123"));
 //        //System.out.println(GettingJsonArrayOfPlaylistNames("l"));
 //        //System.out.println(gettingUserInfo("String Username"));
@@ -529,7 +529,7 @@ public static JSONArray gettingAllUserVPCID(String Username,String playlistName)
 //        //ViewCounterForVPCID("1","l");
 ////        UpdateLikeAndDislikeActionsOnDataBase();
 //        //uploadindVideo("String Username", "String PlaylistName", "String VieoName");
-    }
+//    }
 
 
 
