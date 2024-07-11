@@ -322,7 +322,7 @@
                                     <graphic>
                                        <ImageView fitHeight="44.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
                                           <image>
-                                             <Image url="@video%20pics/download_image.jpg" />
+                                             <Image url="@video pics/download_image.jpg" />
                                           </image>
                                        </ImageView>
                                     </graphic>
