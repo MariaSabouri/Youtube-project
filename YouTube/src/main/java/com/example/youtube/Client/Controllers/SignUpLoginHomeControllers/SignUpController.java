@@ -81,6 +81,7 @@ public class SignUpController implements Initializable {
             jsonObject.put("Parameter3",password);
             ClientToServerConnection.uiController.SetiMessage(jsonObject.toString());
 
+            NameField.clear();
             usernameField.clear();
             passwordField.clear();
 
