@@ -1,4 +1,4 @@
-package com.example.youtube.client.controllers.channels.UsersChannelsControllers;
+package com.example.youtube.client.controllers.channels.usersChannelsControllers;
 
 import com.example.youtube.client.ClientToServerConnection;
 import com.example.youtube.client.controllers.ChannelInterface;

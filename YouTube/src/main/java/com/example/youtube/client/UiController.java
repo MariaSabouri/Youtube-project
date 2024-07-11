@@ -1,12 +1,12 @@
 package com.example.youtube.client;
 
-import com.example.youtube.client.controllers.channels.UsersChannelsControllers.ChannelController;
+import com.example.youtube.client.controllers.channels.usersChannelsControllers.ChannelController;
 import com.example.youtube.client.controllers.CommonTools;
 import com.example.youtube.client.controllers.signUpLoginHomeControllers.HomePageController;
 import com.example.youtube.client.controllers.signUpLoginHomeControllers.LoginController;
 import com.example.youtube.client.controllers.signUpLoginHomeControllers.SignUpController;
-import com.example.youtube.client.controllers.channels.UsersChannelsControllers.CreateChannelController;
-import com.example.youtube.client.controllers.channels.UsersChannelsControllers.CreatePlaylist;
+import com.example.youtube.client.controllers.channels.usersChannelsControllers.CreateChannelController;
+import com.example.youtube.client.controllers.channels.usersChannelsControllers.CreatePlaylist;
 import com.example.youtube.FXML_Loader;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
