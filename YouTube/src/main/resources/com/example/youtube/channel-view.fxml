@@ -89,9 +89,9 @@
     </top>
     <left>
         <VBox alignment="CENTER" prefHeight="464.0" prefWidth="177.0" spacing="10" style="-fx-padding: 10; -fx-background-color: white;">
-         <HBox prefHeight="228.0" prefWidth="157.0">
+         <HBox prefHeight="496.0" prefWidth="157.0">
             <children>
-               <VBox prefHeight="227.0" prefWidth="164.0">
+               <VBox prefHeight="279.0" prefWidth="157.0">
                   <children>
                         <Button fx:id="homeButton" prefHeight="38.0" prefWidth="185.0" style="-fx-background-color: white; -fx-text-fill: black; -fx-border-color: silver;" text="Home">
                         <font>
@@ -120,7 +120,7 @@
     </left>
     <center>
         <VBox alignment="CENTER" spacing="10" style="-fx-padding: 10; -fx-background-color: white;" BorderPane.alignment="TOP_CENTER">
-         <VBox prefHeight="100.0" prefWidth="663.0">
+         <VBox prefHeight="63.0" prefWidth="663.0">
             <children>
                <HBox prefHeight="62.0" prefWidth="663.0">
                   <children>
@@ -173,7 +173,7 @@
                </HBox>
             </children>
          </VBox>
-            <ScrollPane prefHeight="317.0" prefWidth="502.0" BorderPane.alignment="CENTER">
+            <ScrollPane prefHeight="313.0" prefWidth="642.0" BorderPane.alignment="CENTER">
                 <content>
                     <VBox fx:id="SearchResultVbox" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="278.0" prefWidth="501.0" />
                 </content>

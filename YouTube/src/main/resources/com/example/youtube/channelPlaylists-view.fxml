@@ -89,11 +89,11 @@
     </top>
     <left>
         <VBox alignment="CENTER" spacing="10" style="-fx-padding: 10; -fx-background-color: white;">
-         <HBox prefHeight="452.0" prefWidth="180.0">
+         <HBox prefHeight="208.0" prefWidth="180.0">
             <children>
-               <VBox prefHeight="410.0" prefWidth="180.0">
+               <VBox prefHeight="202.0" prefWidth="180.0">
                   <children>
-                     <HBox prefHeight="50.0" prefWidth="180.0">
+                     <HBox prefHeight="52.0" prefWidth="180.0">
                         <children>
                               <Button fx:id="homeButton" prefHeight="38.0" prefWidth="185.0" style="-fx-background-color: white; -fx-border-color: silver;" text="Home">
                               <font>
@@ -102,7 +102,7 @@
                            </Button>
                         </children>
                      </HBox>
-                     <HBox prefHeight="50.0" prefWidth="180.0">
+                     <HBox prefHeight="52.0" prefWidth="180.0">
                         <children>
                               <Button fx:id="subscriptionButton" prefHeight="38.0" prefWidth="185.0" style="-fx-background-color: white; -fx-border-color: silver;" text="Subscriptions">
                               <font>
@@ -111,7 +111,7 @@
                            </Button>
                         </children>
                      </HBox>
-                     <HBox prefHeight="100.0" prefWidth="200.0">
+                     <HBox prefHeight="52.0" prefWidth="180.0">
                         <children>
                            <Button fx:id="creatPlaylist" mnemonicParsing="false" prefHeight="38.0" prefWidth="185.0" style="-fx-background-color: white; -fx-border-color: silver;" text="CreatePlaylist">
                               <font>
@@ -120,8 +120,58 @@
                            </Button>
                         </children>
                      </HBox>
+                     <Button fx:id="subscriptionButton1" prefHeight="38.0" prefWidth="180.0" style="-fx-background-color: white; -fx-border-color: silver;" text="Your Channel">
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                     </Button>
                   </children>
                </VBox>
+            </children>
+         </HBox>
+         <HBox prefHeight="48.0" prefWidth="180.0">
+            <children>
+               <Button fx:id="creatPlaylist2" mnemonicParsing="false" prefHeight="38.0" prefWidth="185.0" style="-fx-background-color: white; -fx-border-color: silver;" text="Playlists">
+                  <font>
+                     <Font name="System Bold" size="15.0" />
+                  </font>
+               </Button>
+            </children>
+         </HBox>
+         <HBox prefHeight="48.0" prefWidth="180.0">
+            <children>
+               <Button fx:id="creatPlaylist3" mnemonicParsing="false" prefHeight="38.0" prefWidth="185.0" style="-fx-background-color: white; -fx-border-color: silver;" text="Your Videos">
+                  <font>
+                     <Font name="System Bold" size="15.0" />
+                  </font>
+               </Button>
+            </children>
+         </HBox>
+         <HBox prefHeight="48.0" prefWidth="180.0">
+            <children>
+               <Button fx:id="creatPlaylist4" mnemonicParsing="false" prefHeight="38.0" prefWidth="185.0" style="-fx-background-color: white; -fx-border-color: silver;" text="Watch Later">
+                  <font>
+                     <Font name="System Bold" size="15.0" />
+                  </font>
+               </Button>
+            </children>
+         </HBox>
+         <HBox prefHeight="48.0" prefWidth="180.0">
+            <children>
+               <Button fx:id="creatPlaylist5" mnemonicParsing="false" prefHeight="38.0" prefWidth="185.0" style="-fx-background-color: white; -fx-border-color: silver;" text="Liked Videos">
+                  <font>
+                     <Font name="System Bold" size="15.0" />
+                  </font>
+               </Button>
+            </children>
+         </HBox>
+         <HBox prefHeight="48.0" prefWidth="180.0">
+            <children>
+               <Button fx:id="creatPlaylist6" mnemonicParsing="false" prefHeight="38.0" prefWidth="185.0" style="-fx-background-color: white; -fx-border-color: silver;" text="Settings">
+                  <font>
+                     <Font name="System Bold" size="15.0" />
+                  </font>
+               </Button>
             </children>
          </HBox>
         </VBox>

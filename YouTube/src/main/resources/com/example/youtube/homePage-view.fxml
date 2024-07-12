@@ -78,7 +78,7 @@
           <VBox prefHeight="59.0" prefWidth="51.0">
              <children>
                 <HBox prefHeight="3.0" prefWidth="51.0" />
-                <Label fx:id="UsernameLeterLabel" alignment="CENTER" prefHeight="51.0" prefWidth="49.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 40;" text="L" textAlignment="CENTER">
+                <Label fx:id="UsernameLeterLabel" alignment="CENTER" prefHeight="51.0" prefWidth="49.0" style="-fx-background-color: #f2f2f2; -fx-background-radius: 40;" text="C" textAlignment="CENTER">
                    <font>
                       <Font name="System Bold" size="19.0" />
                    </font>
@@ -88,12 +88,12 @@
        </HBox>
     </top>
     <left>
-        <VBox alignment="CENTER" spacing="10">
+        <VBox alignment="CENTER" prefHeight="530.0" prefWidth="205.0" spacing="10">
          <HBox prefHeight="492.0" prefWidth="185.0">
             <children>
                <VBox prefHeight="492.0" prefWidth="189.0">
                   <children>
-                     <HBox prefHeight="49.0" prefWidth="185.0">
+                     <HBox prefHeight="60.0" prefWidth="185.0" style="-fx-background-radius: 20;">
                         <children>
                               <Button fx:id="homeButton" prefHeight="38.0" prefWidth="185.0" style="-fx-background-color: white; -fx-border-color: silver;" text="LogOut">
                               <font>
@@ -111,8 +111,45 @@
                            </Button>
                         </children>
                      </HBox>
-                     <HBox prefHeight="13.0" prefWidth="185.0" />
+                     <HBox prefHeight="19.0" prefWidth="185.0" />
                         <Button fx:id="subscriptionsButton" prefHeight="38.0" prefWidth="185.0" style="-fx-border-color: silver; -fx-background-color: white;" text="Subscriptions">
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                     </Button>
+                     <HBox prefHeight="13.0" prefWidth="185.0" />
+                     <HBox prefHeight="5.0" prefWidth="185.0" />
+                     <Button fx:id="subscriptionsButton11" prefHeight="38.0" prefWidth="185.0" style="-fx-border-color: silver; -fx-background-color: white;" text="History">
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                     </Button>
+                     <HBox prefHeight="21.0" prefWidth="185.0" />
+                     <Button fx:id="subscriptionsButton111" prefHeight="38.0" prefWidth="185.0" style="-fx-border-color: silver; -fx-background-color: white;" text="Playlists">
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                     </Button>
+                     <HBox prefHeight="21.0" prefWidth="185.0" />
+                     <Button fx:id="subscriptionsButton1111" prefHeight="38.0" prefWidth="185.0" style="-fx-border-color: silver; -fx-background-color: white;" text="Your Videos">
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                     </Button>
+                     <HBox prefHeight="21.0" prefWidth="185.0" />
+                     <Button fx:id="subscriptionsButton11111" prefHeight="38.0" prefWidth="185.0" style="-fx-border-color: silver; -fx-background-color: white;" text="Watch later">
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                     </Button>
+                     <HBox prefHeight="19.0" prefWidth="185.0" />
+                     <Button fx:id="subscriptionsButton111111" prefHeight="38.0" prefWidth="185.0" style="-fx-border-color: silver; -fx-background-color: white;" text="Liked Videos">
+                        <font>
+                           <Font name="System Bold" size="15.0" />
+                        </font>
+                     </Button>
+                     <HBox prefHeight="20.0" prefWidth="185.0" />
+                     <Button fx:id="subscriptionsButton1111111" prefHeight="38.0" prefWidth="185.0" style="-fx-border-color: silver; -fx-background-color: white;" text="Settings">
                         <font>
                            <Font name="System Bold" size="15.0" />
                         </font>
@@ -131,7 +168,7 @@
     <center>
         <ScrollPane prefHeight="386.0" prefWidth="511.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <content>
-            <HBox alignment="CENTER" prefHeight="387.0" prefWidth="530.0" spacing="10.0">
+            <HBox alignment="CENTER" prefHeight="661.0" prefWidth="622.0" spacing="10.0" style="-fx-border-color: silver; -fx-background-color: white;">
                <children>
                   <VBox prefHeight="200.0" spacing="10.0">
                      <children>
